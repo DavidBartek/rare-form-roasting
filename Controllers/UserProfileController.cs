@@ -19,7 +19,7 @@ public class UserProfileController : ControllerBase
 
     // get all users
     [HttpGet]
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     public IActionResult Get()
     {
         return Ok(_dbContext.UserProfiles.ToList());
@@ -28,7 +28,7 @@ public class UserProfileController : ControllerBase
     // get all users, roles included if specified
     // a very inefficient way of retrieving this data, but without much complexity (relatively).
     [HttpGet("withroles")]
-    [Authorize(Roles = "Admin")]
+    // [Authorize(Roles = "Admin")]
     public IActionResult GetWithRoles()
     {
         return Ok(_dbContext.UserProfiles
@@ -46,6 +46,30 @@ public class UserProfileController : ControllerBase
             .Select(ur => _dbContext.Roles.SingleOrDefault(r => r.Id == ur.RoleId).Name)
             .ToList()
         }));
+    }
+
+    // get all addresses (test)
+    [HttpGet("addresses")]
+    public IActionResult GetAllAddresses()
+    {
+        return Ok(_dbContext.ShippingAddresses.ToList());
+    }
+
+    // get all addresses associated with a user id
+    [HttpGet("{userId}/addresses")]
+    // [Authorize]
+    public IActionResult GetUserAddresses(int userId)
+    {
+        List<ShippingAddress> foundAddresses = _dbContext.ShippingAddresses
+            .Where(sa => sa.UserProfileId == userId)
+            .ToList();
+
+        if (foundAddresses == null || !foundAddresses.Any())
+        {
+            return NotFound("No addresses found for this user.");
+        }
+
+        return Ok(foundAddresses);
     }
 
 }

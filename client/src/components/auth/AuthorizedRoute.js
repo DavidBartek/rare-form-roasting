@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 
 // This component returns a Route that either display the prop element
-// or navigates to the login. If roles are provided, the route will require
+// or navigates to the home page. If roles are provided, the route will require
 // all of the roles when all is true, or any of the roles when all is false
 export const AuthorizedRoute = ({ children, loggedInUser, roles, all }) => {
   let authed = false;
@@ -15,5 +15,5 @@ export const AuthorizedRoute = ({ children, loggedInUser, roles, all }) => {
     }
   }
 
-  return authed ? children : <Navigate to="/login" />;
+  return authed ? children : <Navigate to="/" />;
 };

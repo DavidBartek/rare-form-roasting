@@ -45,17 +45,26 @@ export default function NavBarAuth ({ loggedInUser, setLoggedInUser, toggleNavba
                     <BsPersonCircle />
                 </DropdownToggle>
                 <DropdownMenu>
-                    <DropdownItem>Option 1</DropdownItem>
+                    <DropdownItem header>Hi, {loggedInUser.firstName}</DropdownItem>
                     <DropdownItem
-                        onClick={(e) => {
-                            e.preventDefault();
-                            setOpen(false);
+                        onClick={() => {
                             logout().then(() => {
                             setLoggedInUser(null);
-                            setOpen(false);
                             });
                         }}
-                    >Log out</DropdownItem>
+                    >Sign out</DropdownItem>
+                    <DropdownItem divider/>
+                    <DropdownItem>
+                        <NavLink tag={RRNavLink} to="/orders">
+                            My Orders
+                        </NavLink>
+                    </DropdownItem>
+                    <DropdownItem>
+                        <NavLink tag={RRNavLink} to="/profile">
+                            Profile
+                        </NavLink>
+                    </DropdownItem>
+                    
                 </DropdownMenu>
             </UncontrolledDropdown>
             <BsCart />

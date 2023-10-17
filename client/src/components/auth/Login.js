@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { login } from "../../managers/authManager";
 import { Button, FormFeedback, FormGroup, Input, Label } from "reactstrap";
 
-export default function Login({ setLoggedInUser }) {
+export default function Login({ loggedInUser, setLoggedInUser }) {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,7 +21,7 @@ export default function Login({ setLoggedInUser }) {
     });
   };
 
-  return (
+  return loggedInUser ? <Navigate to="/" /> : ( // if manually typed in, user will automatically be redirected to home if already logged in.
     <div className="container" style={{ maxWidth: "500px" }}>
       <h3>Login</h3>
       <FormGroup>
@@ -58,4 +58,5 @@ export default function Login({ setLoggedInUser }) {
       </p>
     </div>
   );
+  
 }
