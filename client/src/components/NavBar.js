@@ -11,25 +11,55 @@ NavbarBrand,
 NavbarToggler,
 } from "reactstrap";
 import { logout } from "../managers/authManager";
+import { BsPersonCircle, BsCart } from "react-icons/bs";
 
 export default function NavBar({ loggedInUser, setLoggedInUser }) {
 const [open, setOpen] = useState(false);
 
 const toggleNavbar = () => setOpen(!open);
 
+// to do:
+// flesh out remaining ternary statement with corresponding navbar view
+
 return (
     <div>
     <Navbar color="light" light fixed="true" expand="lg">
         <NavbarBrand className="mr-auto" tag={RRNavLink} to="/">
-        Rare Form Roasting
+        Rare Form Roasting Logo
         </NavbarBrand>
         {loggedInUser ? (
         <>
             <NavbarToggler onClick={toggleNavbar} />
             <Collapse isOpen={open} navbar>
-            <Nav navbar></Nav>
+                <Nav navbar pills>
+                    <NavItem onClick={() => setOpen(false)}>
+                        <NavLink tag={RRNavLink} to="/coffees">
+                            Coffees
+                        </NavLink>
+                    </NavItem>
+                    {loggedInUser.roles.includes("Admin") && (
+                        <>
+                        <NavItem onClick={() => setOpen(false)}>
+                            <NavLink tag={RRNavLink} to="/inventorymanager">
+                                Inventory Manager
+                            </NavLink>
+                        </NavItem>
+                        <NavItem onClick={() => setOpen(false)}>
+                            <NavLink tag={RRNavLink} to="/ordermanager">
+                                Order Manager
+                            </NavLink>
+                        </NavItem>
+                        </>
+                    )}
+                </Nav>
             </Collapse>
-            <Button
+            <NavItem>
+                <BsPersonCircle />
+            </NavItem>
+            <NavItem>
+                <BsCart />
+            </NavItem>
+            {/* <Button
             color="primary"
             onClick={(e) => {
                 e.preventDefault();
@@ -41,7 +71,7 @@ return (
             }}
             >
             Logout
-            </Button>
+            </Button> */}
         </>
         ) : (
         <Nav navbar>
