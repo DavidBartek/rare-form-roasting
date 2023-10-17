@@ -9,6 +9,10 @@ NavItem,
 Navbar,
 NavbarBrand,
 NavbarToggler,
+UncontrolledDropdown,
+DropdownToggle,
+DropdownMenu,
+DropdownItem,
 } from "reactstrap";
 import { logout } from "../managers/authManager";
 import { BsPersonCircle, BsCart } from "react-icons/bs";
@@ -53,25 +57,25 @@ return (
                     )}
                 </Nav>
             </Collapse>
-            <NavItem>
-                <BsPersonCircle />
-            </NavItem>
-            <NavItem>
-                <BsCart />
-            </NavItem>
-            {/* <Button
-            color="primary"
-            onClick={(e) => {
-                e.preventDefault();
-                setOpen(false);
-                logout().then(() => {
-                setLoggedInUser(null);
-                setOpen(false);
-                });
-            }}
-            >
-            Logout
-            </Button> */}
+            <UncontrolledDropdown nav inNavbar>
+                <DropdownToggle nav caret>
+                    <BsPersonCircle />
+                </DropdownToggle>
+                <DropdownMenu>
+                    <DropdownItem>Option 1</DropdownItem>
+                    <DropdownItem
+                        onClick={(e) => {
+                            e.preventDefault();
+                            setOpen(false);
+                            logout().then(() => {
+                            setLoggedInUser(null);
+                            setOpen(false);
+                            });
+                        }}
+                    >Log out</DropdownItem>
+                </DropdownMenu>
+            </UncontrolledDropdown>
+            <BsCart />
         </>
         ) : (
         <Nav navbar>
