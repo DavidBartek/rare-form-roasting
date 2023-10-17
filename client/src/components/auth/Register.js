@@ -27,7 +27,6 @@ export default function Register({ setLoggedInUser }) {
         lastName,
         userName,
         email,
-        address,
         password,
       };
       register(newUser).then((user) => {
@@ -77,16 +76,6 @@ export default function Register({ setLoggedInUser }) {
           value={userName}
           onChange={(e) => {
             setUserName(e.target.value);
-          }}
-        />
-      </FormGroup>
-      <FormGroup>
-        <Label>Address</Label>
-        <Input
-          type="text"
-          value={address}
-          onChange={(e) => {
-            setAddress(e.target.value);
           }}
         />
       </FormGroup>

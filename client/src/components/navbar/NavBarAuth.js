@@ -1,37 +1,20 @@
-import { useState } from "react";
 import { NavLink as RRNavLink } from "react-router-dom";
 import {
-Button,
 Collapse,
 Nav,
 NavLink,
 NavItem,
-Navbar,
-NavbarBrand,
 NavbarToggler,
 UncontrolledDropdown,
 DropdownToggle,
 DropdownMenu,
 DropdownItem,
 } from "reactstrap";
-import { logout } from "../managers/authManager";
+import { logout } from "../../managers/authManager";
 import { BsPersonCircle, BsCart } from "react-icons/bs";
 
-export default function NavBar({ loggedInUser, setLoggedInUser }) {
-const [open, setOpen] = useState(false);
-
-const toggleNavbar = () => setOpen(!open);
-
-// to do:
-// flesh out remaining ternary statement with corresponding navbar view
-
-return (
-    <div>
-    <Navbar color="light" light fixed="true" expand="lg">
-        <NavbarBrand className="mr-auto" tag={RRNavLink} to="/">
-        Rare Form Roasting Logo
-        </NavbarBrand>
-        {loggedInUser ? (
+export default function NavBarAuth ({ loggedInUser, setLoggedInUser, toggleNavbar, open, setOpen }) {
+    return (
         <>
             <NavbarToggler onClick={toggleNavbar} />
             <Collapse isOpen={open} navbar>
@@ -77,16 +60,5 @@ return (
             </UncontrolledDropdown>
             <BsCart />
         </>
-        ) : (
-        <Nav navbar>
-            <NavItem>
-            <NavLink tag={RRNavLink} to="/login">
-                <Button color="primary">Login</Button>
-            </NavLink>
-            </NavItem>
-        </Nav>
-        )}
-    </Navbar>
-    </div>
-);
+    )
 }
