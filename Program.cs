@@ -40,7 +40,7 @@ builder.Services.AddIdentityCore<IdentityUser>(config =>
             {
                 //for demonstration only - change these for other projects
                 config.Password.RequireDigit = false;
-                config.Password.RequiredLength = 8;
+                config.Password.RequiredLength = 6;
                 config.Password.RequireLowercase = false;
                 config.Password.RequireNonAlphanumeric = false;
                 config.Password.RequireUppercase = false;

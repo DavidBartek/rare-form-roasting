@@ -45,8 +45,6 @@ public class Product
     [MaxLength(75, ErrorMessage = "Must be 75 characters or less.")]
     public string ElevationRangeMASL { get; set; }
     
-    [Required]
-    public DateTime HarvestDate { get; set; }
     
     [Required]
     public DateTime DateAdded { get; set; }

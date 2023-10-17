@@ -12,5 +12,5 @@ public class Weight
     public int WeightOz { get; set; }
 
     [Required]
-    public int PriceMultiplier { get; set; }
+    public decimal PriceMultiplier { get; set; }
 }
