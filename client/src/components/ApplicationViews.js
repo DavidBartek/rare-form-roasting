@@ -7,6 +7,8 @@ import CoffeeList from "./coffees/CoffeeList";
 import CoffeeDetails from "./coffees/CoffeeDetails";
 import InventoryManagerList from "./inventorymanager/InventoryManagerList";
 import OrderManagerList from "./ordermanager/OrderManagerList";
+import Profile from "./profile/Profile";
+import OrdersList from "./orders/OrdersList";
 
 // note on auth...
 // should each component that is viewable by logged in and non logged in user contain a ternary in the "element" prop?
@@ -19,6 +21,22 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
             <Home />
         } />
 
+        <Route path="profile">
+          <Route index element={
+            <AuthorizedRoute loggedInUser={loggedInUser}>
+              <Profile loggedInUser={loggedInUser}/>
+            </AuthorizedRoute>
+          } />
+        </Route>
+
+        <Route path="orders">
+          <Route index element={
+            <AuthorizedRoute loggedInUser={loggedInUser}>
+              <OrdersList loggedInUser={loggedInUser}/>
+            </AuthorizedRoute>
+          } />
+        </Route>
+
         <Route path="coffees">
           <Route index element={
             <CoffeeList />
@@ -30,23 +48,27 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
           
         <Route path="inventorymanager">
           <Route index element={
-            <AuthorizedRoute loggedInUser={loggedInUser}>
-              <InventoryManagerList roles={["Admin"]} loggedInUser={loggedInUser}/>
+            <AuthorizedRoute loggedInUser={loggedInUser} roles={["Admin"]}>
+              <InventoryManagerList />
             </AuthorizedRoute>
           } />
         </Route>
 
         <Route path="ordermanager">
           <Route index element={
-            <AuthorizedRoute loggedInUser={loggedInUser}>
-              <OrderManagerList roles={["Admin"]} loggedInUser={loggedInUser}/>
+            <AuthorizedRoute loggedInUser={loggedInUser} roles={["Admin"]}>
+              <OrderManagerList />
             </AuthorizedRoute>
           } />
         </Route>
         
-        <Route
+        {/* <Route
           path="login"
           element={<Login setLoggedInUser={setLoggedInUser} />}
+        /> */}
+        <Route
+          path="login"
+          element={<Login loggedInUser={loggedInUser} setLoggedInUser={setLoggedInUser} />}
         />
         <Route
           path="register"

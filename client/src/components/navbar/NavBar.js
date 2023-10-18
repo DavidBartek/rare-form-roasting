@@ -1,21 +1,9 @@
 import { useState } from "react";
 import { NavLink as RRNavLink } from "react-router-dom";
 import {
-Button,
-Collapse,
-Nav,
-NavLink,
-NavItem,
 Navbar,
-NavbarBrand,
-NavbarToggler,
-UncontrolledDropdown,
-DropdownToggle,
-DropdownMenu,
-DropdownItem,
+NavbarBrand
 } from "reactstrap";
-import { logout } from "../../managers/authManager";
-import { BsPersonCircle, BsCart } from "react-icons/bs";
 import NavBarAuth from "./NavBarAuth";
 import NavBarUnauth from "./NavBarUnauth";
 
@@ -26,6 +14,8 @@ const toggleNavbar = () => setOpen(!open);
 
 // to do:
 // flesh out remaining ternary statement with corresponding navbar view
+
+// console.log(loggedInUser)
 
 return (
     <div>

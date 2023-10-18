@@ -12,7 +12,7 @@ using RareFormRoasting.Data;
 namespace rare_form_roasting.Migrations
 {
     [DbContext(typeof(RareFormRoastingDbContext))]
-    [Migration("20231017154350_InitialCreate")]
+    [Migration("20231017203602_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,7 +53,7 @@ namespace rare_form_roasting.Migrations
                         new
                         {
                             Id = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
-                            ConcurrencyStamp = "95436e5e-30a8-420a-8e41-b58cb87fb68b",
+                            ConcurrencyStamp = "5f8e314a-7f82-42de-bf0a-b245e7ce79f6",
                             Name = "Admin",
                             NormalizedName = "admin"
                         });
@@ -152,13 +152,13 @@ namespace rare_form_roasting.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2eaf7b2e-e62a-4fa2-8bc5-3dd3cde6a1bd",
+                            ConcurrencyStamp = "a1fdef57-4bc2-4b2d-b2b4-5c2e94c2c074",
                             Email = "david@rfr.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEP77UBitusN8Cwj9QzoP4vb0grTXW8ZSQJY4KMcVTcDxwdmXGEq5dxzKvhaEhVAvgA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAECGClpxa4/MlGP5fKo5Dh6bJiVOEqqzT954mMXqGy4oouFbddn5Nd+7GhE8yZAnOKA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "de5cb071-0830-464c-8be4-e4ffe95fbe9a",
+                            SecurityStamp = "b081b707-e043-4cd3-bd6e-e389082c626a",
                             TwoFactorEnabled = false,
                             UserName = "dwbartek"
                         });

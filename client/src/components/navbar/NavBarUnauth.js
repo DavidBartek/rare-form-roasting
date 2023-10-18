@@ -8,10 +8,8 @@ NavbarToggler,
 UncontrolledDropdown,
 DropdownToggle,
 DropdownMenu,
-DropdownItem,
-Button,
+DropdownItem
 } from "reactstrap";
-import { logout } from "../../managers/authManager";
 import { BsPersonCircle, BsCart } from "react-icons/bs";
 
 export default function NavBarUnauth ({ toggleNavbar, open, setOpen }) {
