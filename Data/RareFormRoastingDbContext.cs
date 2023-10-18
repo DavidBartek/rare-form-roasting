@@ -37,7 +37,6 @@ public class RareFormRoastingDbContext : IdentityDbContext<IdentityUser>
         modelBuilder.Entity<IdentityUser>().HasData(new IdentityUser
         {
             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
-            UserName = "dwbartek",
             Email = "david@rfr.comx",
             PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, _configuration["AdminPassword"])
         });

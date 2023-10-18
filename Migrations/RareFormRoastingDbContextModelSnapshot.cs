@@ -51,7 +51,7 @@ namespace rare_form_roasting.Migrations
                         new
                         {
                             Id = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
-                            ConcurrencyStamp = "5f8e314a-7f82-42de-bf0a-b245e7ce79f6",
+                            ConcurrencyStamp = "d5434a2a-88c3-49dc-b53c-07e3a8ec257c",
                             Name = "Admin",
                             NormalizedName = "admin"
                         });
@@ -150,15 +150,14 @@ namespace rare_form_roasting.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a1fdef57-4bc2-4b2d-b2b4-5c2e94c2c074",
+                            ConcurrencyStamp = "308828a9-cb43-4718-bbce-af6578d2bf68",
                             Email = "david@rfr.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAECGClpxa4/MlGP5fKo5Dh6bJiVOEqqzT954mMXqGy4oouFbddn5Nd+7GhE8yZAnOKA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBi6yN/mlfnYJt+1RUL9EgPLEuJr0gCwkJYhLvUoxJQkMAK0RkZ9MO6lY7pxJxe10A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b081b707-e043-4cd3-bd6e-e389082c626a",
-                            TwoFactorEnabled = false,
-                            UserName = "dwbartek"
+                            SecurityStamp = "16191260-0aee-40c6-8d1d-16ca870db8f3",
+                            TwoFactorEnabled = false
                         });
                 });
 

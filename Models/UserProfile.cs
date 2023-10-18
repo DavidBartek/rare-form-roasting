@@ -31,11 +31,6 @@ public class UserProfile
     public string Email { get; set; }
 
     [NotMapped]
-    [MinLength(1, ErrorMessage = "Username must be at least 1 character")]
-    [MaxLength(50, ErrorMessage = "Username must be 50 characters or less")]
-    public string UserName { get; set; }
-
-    [NotMapped]
     public List<string> Roles { get; set; }
 
     public string IdentityUserId { get; set; }
@@ -44,5 +39,8 @@ public class UserProfile
     
     [Required]
     public bool IsActive { get; set; }
+
+    public List<Order> Orders { get; set; }
+    public List<ShippingAddress> ShippingAddresses { get; set; }
 
 }

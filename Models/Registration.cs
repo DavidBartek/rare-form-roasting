@@ -16,11 +16,6 @@ public class Registration
     public string Password { get; set; }
 
     [Required]
-    [MinLength(1, ErrorMessage = "Username must be at least 1 character")]
-    [MaxLength(50, ErrorMessage = "Username must be 50 characters or less")]
-    public string UserName { get; set; }
-
-    [Required]
     [NotNull]
     public string FirstName { get; set; }
 

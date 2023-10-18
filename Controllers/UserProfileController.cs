@@ -19,17 +19,17 @@ public class UserProfileController : ControllerBase
 
     // get all users
     [HttpGet]
-    // [Authorize(Roles = "Admin")]
-    public IActionResult Get()
+    [Authorize(Roles = "Admin")]
+    public IActionResult GetUser()
     {
         return Ok(_dbContext.UserProfiles.ToList());
     }
 
-    // get all users, roles included if specified
+    // get all users with their hidden properties which are mapped only in IdentityUser (email, roles)
     // a very inefficient way of retrieving this data, but without much complexity (relatively).
-    [HttpGet("withroles")]
+    [HttpGet("withrolesandemail")]
     // [Authorize(Roles = "Admin")]
-    public IActionResult GetWithRoles()
+    public IActionResult GetUsersWithRolesAndEmail()
     {
         return Ok(_dbContext.UserProfiles
         .Include(up => up.IdentityUser)
@@ -39,7 +39,6 @@ public class UserProfileController : ControllerBase
             FirstName = up.FirstName,
             LastName = up.LastName,
             Email = up.IdentityUser.Email,
-            UserName = up.IdentityUser.UserName,
             IdentityUserId = up.IdentityUserId,
             Roles = _dbContext.UserRoles
             .Where(ur => ur.UserId == up.IdentityUserId)
@@ -48,28 +47,81 @@ public class UserProfileController : ControllerBase
         }));
     }
 
-    // get all addresses (test)
-    [HttpGet("addresses")]
-    public IActionResult GetAllAddresses()
-    {
-        return Ok(_dbContext.ShippingAddresses.ToList());
-    }
-
-    // get all addresses associated with a user id
-    [HttpGet("{userId}/addresses")]
+    // get non-hidden details for a single user
+    [HttpGet("{id}")]
     // [Authorize]
-    public IActionResult GetUserAddresses(int userId)
+    public IActionResult GetUser(int id)
     {
-        List<ShippingAddress> foundAddresses = _dbContext.ShippingAddresses
-            .Where(sa => sa.UserProfileId == userId)
-            .ToList();
+        UserProfile foundUserProfile = _dbContext
+            .UserProfiles
+            .Include(up => up.Orders)
+            .Include(up => up.ShippingAddresses)
+            .SingleOrDefault(up => up.Id == id);
 
-        if (foundAddresses == null || !foundAddresses.Any())
+        if (foundUserProfile == null)
         {
-            return NotFound("No addresses found for this user.");
+            return NotFound();
         }
 
-        return Ok(foundAddresses);
+        return Ok(foundUserProfile);
+    }
+
+    // gets all details - hidden and non-hidden - for a single user
+    [HttpGet("{id}/withrolesandemail")]
+    // [Authorize]
+    public IActionResult GetUserWithRolesAndEmail(int id)
+    {
+        UserProfile foundUser = _dbContext.UserProfiles
+            .Include(up => up.IdentityUser)
+            .Include(up => up.Orders)
+            .Include(up => up.ShippingAddresses)
+            .Select(up => new UserProfile
+            {
+                Id = up.Id,
+                FirstName = up.FirstName,
+                LastName = up.LastName,
+                Email = up.IdentityUser.Email,
+                Orders = up.Orders,
+                ShippingAddresses = up.ShippingAddresses.Where(sa => sa.IsActive == true).ToList(),
+                IdentityUserId = up.IdentityUserId,
+                Roles = _dbContext.UserRoles
+                .Where(ur => ur.UserId == up.IdentityUserId)
+                .Select(ur => _dbContext.Roles.SingleOrDefault(r => r.Id == ur.RoleId).Name).ToList()
+            })
+            .SingleOrDefault(up => up.Id == id);
+
+        if (foundUser == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(foundUser);
+    }
+
+    [HttpPut("{userId}")]
+    // [Authorize]
+    public IActionResult ChangeUserDetails(
+        int userId, 
+        [FromQuery] string newFirst, 
+        [FromQuery] string newLast, 
+        [FromQuery] string newEmail)
+    {
+        UserProfile foundUserProfile = _dbContext.UserProfiles
+            .Include(up => up.IdentityUser)
+            .SingleOrDefault(up => up.Id == userId);
+
+        if (foundUserProfile == null)
+        {
+            return NotFound();
+        }
+
+        foundUserProfile.FirstName = newFirst;
+        foundUserProfile.LastName = newLast;
+        foundUserProfile.IdentityUser.Email = newEmail;
+
+        _dbContext.SaveChanges();
+
+        return NoContent();
     }
 
 }

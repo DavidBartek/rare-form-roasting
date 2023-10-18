@@ -9,14 +9,13 @@ UncontrolledDropdown,
 DropdownToggle,
 DropdownMenu,
 DropdownItem,
-Container,
 } from "reactstrap";
 import { logout } from "../../managers/authManager";
 import { BsPersonCircle, BsCart } from "react-icons/bs";
 
 export default function NavBarAuth ({ loggedInUser, setLoggedInUser, toggleNavbar, open, setOpen }) {
     return (
-        <Container>
+        <>
             <NavbarToggler onClick={toggleNavbar} />
             <Collapse isOpen={open} navbar>
                 <Nav navbar pills>
@@ -26,7 +25,7 @@ export default function NavBarAuth ({ loggedInUser, setLoggedInUser, toggleNavba
                         </NavLink>
                     </NavItem>
                     {loggedInUser.roles.includes("Admin") && (
-                        <Container>
+                        <>
                             <NavItem onClick={() => setOpen(false)}>
                                 <NavLink tag={RRNavLink} to="/inventorymanager">
                                     Inventory Manager
@@ -37,7 +36,7 @@ export default function NavBarAuth ({ loggedInUser, setLoggedInUser, toggleNavba
                                     Order Manager
                                 </NavLink>
                             </NavItem>
-                        </Container>
+                        </>
                     )}
                 </Nav>
             </Collapse>
@@ -69,6 +68,6 @@ export default function NavBarAuth ({ loggedInUser, setLoggedInUser, toggleNavba
                 </DropdownMenu>
             </UncontrolledDropdown>
             <BsCart />
-        </Container>
+        </>
     )
 }
