@@ -1,10 +1,15 @@
+import { useState } from "react";
 import { Button, Table } from "reactstrap";
+import ProfileAddressEdit from "./ProfileAddressEdit";
 
-export default function ProfileAddresses ({ loggedInUser, userDetails, renderUserDetails }) {
+export default function ProfileAddresses ({ userDetails, renderUserDetails }) {
+
+    const [editAddressView, setEditAddressView] = useState(false);
+    const [addressToEdit, setAddressToEdit] = useState({});
 
     const handleModifyAddress = (e) => {
         e.preventDefault();
-        console.log("modify address view")
+        setEditAddressView(!editAddressView);
     }
 
     const handleRemoveAddress = (e) => {
@@ -25,7 +30,10 @@ export default function ProfileAddresses ({ loggedInUser, userDetails, renderUse
                 </tr>
             </thead>
             {userDetails.shippingAddresses?.length > 0 ? (
-                <tbody>
+                editAddressView ? (
+                    <ProfileAddressEdit addressToEdit={addressToEdit} setEditAddressView={setEditAddressView} renderUserDetails={renderUserDetails}/>
+                ) : (
+                    <tbody>
                     {userDetails.shippingAddresses.map(a =>
                         <tr key={a.id}>
                             <td>
@@ -41,13 +49,16 @@ export default function ProfileAddresses ({ loggedInUser, userDetails, renderUse
                                 {a.city}, {a.stateCode} {a.zip}
                             </td>
                             <td>
-                                <Button onClick={(e) => handleModifyAddress(e)}>Modify</Button>
+                                <Button onClick={(e) => {
+                                    setAddressToEdit(a);
+                                    handleModifyAddress(e);}}>Modify</Button>
                             </td>
                             <td>
                                 <Button onClick={(e) => handleRemoveAddress(e)}>Remove</Button>
                             </td>
                         </tr>)}
                 </tbody>
+                )
             ) : (
                 <tbody>
                     <tr>

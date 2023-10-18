@@ -22,7 +22,7 @@ export default function Profile ({ loggedInUser }) {
     return (
         <Container>
             <ProfileDetails loggedInUser={loggedInUser} userDetails={userDetails} renderUserDetails={renderUserDetails} />
-            <ProfileAddresses loggedInUser={loggedInUser} userDetails={userDetails} renderUserDetails={renderUserDetails} />
+            <ProfileAddresses userDetails={userDetails} renderUserDetails={renderUserDetails} />
         </Container>
     )
 }

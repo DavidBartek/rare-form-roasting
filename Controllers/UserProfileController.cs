@@ -28,7 +28,7 @@ public class UserProfileController : ControllerBase
     // get all users with their hidden properties which are mapped only in IdentityUser (email, roles)
     // a very inefficient way of retrieving this data, but without much complexity (relatively).
     [HttpGet("withrolesandemail")]
-    // [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public IActionResult GetUsersWithRolesAndEmail()
     {
         return Ok(_dbContext.UserProfiles
@@ -49,7 +49,7 @@ public class UserProfileController : ControllerBase
 
     // get non-hidden details for a single user
     [HttpGet("{id}")]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetUser(int id)
     {
         UserProfile foundUserProfile = _dbContext
@@ -68,7 +68,7 @@ public class UserProfileController : ControllerBase
 
     // gets all details - hidden and non-hidden - for a single user
     [HttpGet("{id}/withrolesandemail")]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetUserWithRolesAndEmail(int id)
     {
         UserProfile foundUser = _dbContext.UserProfiles
@@ -99,7 +99,7 @@ public class UserProfileController : ControllerBase
     }
 
     [HttpPut("{userId}")]
-    // [Authorize]
+    [Authorize]
     public IActionResult ChangeUserDetails(
         int userId, 
         [FromQuery] string newFirst, 
