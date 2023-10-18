@@ -48,7 +48,6 @@ public class AuthController : ControllerBase
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                    new Claim(ClaimTypes.Name, user.UserName.ToString()),
                     new Claim(ClaimTypes.Email, user.Email)
 
                 };
@@ -101,7 +100,6 @@ public class AuthController : ControllerBase
         var roles = User.FindAll(ClaimTypes.Role).Select(r => r.Value).ToList();
         if (profile != null)
         {
-            profile.UserName = User.FindFirstValue(ClaimTypes.Name);
             profile.Email = User.FindFirstValue(ClaimTypes.Email);
             profile.Roles = roles;
             return Ok(profile);
@@ -114,7 +112,7 @@ public class AuthController : ControllerBase
     {
         var user = new IdentityUser
         {
-            UserName = registration.UserName,
+            UserName = registration.Email,
             Email = registration.Email
         };
 

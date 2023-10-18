@@ -416,12 +416,12 @@ namespace rare_form_roasting.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "5f8e314a-7f82-42de-bf0a-b245e7ce79f6", "Admin", "admin" });
+                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "d5434a2a-88c3-49dc-b53c-07e3a8ec257c", "Admin", "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "a1fdef57-4bc2-4b2d-b2b4-5c2e94c2c074", "david@rfr.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAECGClpxa4/MlGP5fKo5Dh6bJiVOEqqzT954mMXqGy4oouFbddn5Nd+7GhE8yZAnOKA==", null, false, "b081b707-e043-4cd3-bd6e-e389082c626a", false, "dwbartek" });
+                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "308828a9-cb43-4718-bbce-af6578d2bf68", "david@rfr.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEBi6yN/mlfnYJt+1RUL9EgPLEuJr0gCwkJYhLvUoxJQkMAK0RkZ9MO6lY7pxJxe10A==", null, false, "16191260-0aee-40c6-8d1d-16ca870db8f3", false, null });
 
             migrationBuilder.InsertData(
                 table: "Grinds",
