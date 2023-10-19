@@ -40,25 +40,48 @@ public class Order
             
             if (OrderProducts != null)
             {
-                List<OrderProduct> MatchingOrderProducts = OrderProducts.Where(op => op.OrderId == Id).ToList();
+                // List<OrderProduct> MatchingOrderProducts = OrderProducts.Where(op => op.OrderId == Id).ToList();
                 // more logic; account for quantity multiplier, weight multiplier
                 // loop through the above list, += to CalculatedPrice
 
-                foreach (OrderProduct op in MatchingOrderProducts)
+                foreach (OrderProduct op in OrderProducts)
                 {
-                    CalculatedPrice += op.Product.Price * op.Weight.PriceMultiplier * op.ProductQuantity;
+                    // CalculatedPrice += op.Product.Price * op.Weight.PriceMultiplier * op.ProductQuantity;
+                    if (op.Product != null && op.Weight != null && op.Grind != null)
+                    {
+                        CalculatedPrice += op.Product.Price * op.Weight.PriceMultiplier * op.ProductQuantity;
+                    }
                 }
 
-                return CalculatedPrice;
             }
-            else
-            {
-                return CalculatedPrice;
-            }
+
+            return CalculatedPrice;
 
         }
     }
-    // ^ make this a calculated getter property, referencing all related product.price through the OrderProduct join table
+
+    [NotMapped]
+    public string OrderStatus
+    {
+        get
+        {
+            if (IsCancelled)
+            {
+                return "Cancelled";
+            }
+            else if (DateShipped == null)
+            {
+                return "In process";
+            }
+            else if (DateShipped <= DateTime.Today)
+            {
+                return "Shipped";
+            }
+            
+            return "Unknown";
+            
+        }
+    }
 }
 
 

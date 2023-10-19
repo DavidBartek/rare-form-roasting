@@ -98,6 +98,8 @@ public class UserProfileController : ControllerBase
         return Ok(foundUser);
     }
 
+    // modify a given user's details
+
     [HttpPut("{userId}")]
     [Authorize]
     public IActionResult ChangeUserDetails(
@@ -122,6 +124,24 @@ public class UserProfileController : ControllerBase
         _dbContext.SaveChanges();
 
         return NoContent();
+    }
+
+    // get all orders for a given user
+
+    [HttpGet("orders/{userId}")]
+    // [Authorize]
+    public IActionResult GetUserOrders(int userId)
+    {
+        return Ok(_dbContext.Orders
+            .Include(o => o.ShippingAddress)
+            .Include(o => o.OrderProducts)
+                .ThenInclude(o => o.Product)
+            .Include(o => o.OrderProducts)
+                .ThenInclude(o => o.Weight)
+            .Include(o => o.OrderProducts)
+                .ThenInclude(o => o.Grind)
+            .Where(o => o.UserProfileId == userId)
+            .ToList());
     }
 
 }
