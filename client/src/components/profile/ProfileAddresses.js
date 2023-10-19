@@ -1,15 +1,21 @@
 import { useState } from "react";
 import { Button, Table } from "reactstrap";
 import ProfileAddressEdit from "./ProfileAddressEdit";
+import { getAddressDetails } from "../../managers/addressManager";
 
 export default function ProfileAddresses ({ userDetails, renderUserDetails }) {
 
     const [editAddressView, setEditAddressView] = useState(false);
     const [addressToEdit, setAddressToEdit] = useState({});
 
-    const handleModifyAddress = (e) => {
+    const handleModifyAddress = (e, a) => {
         e.preventDefault();
-        setEditAddressView(!editAddressView);
+        getAddressDetails(a.id)
+            .then(setAddressToEdit)
+            .then(() => setEditAddressView(!editAddressView));
+        // does this need to be a separate "get" fetch to get the individual fully-composed address obj?
+        // pass in 'a' obj; fetch based on id; .then set address to edit view
+        // setEditAddressView(!editAddressView);
     }
 
     const handleRemoveAddress = (e) => {
@@ -50,8 +56,7 @@ export default function ProfileAddresses ({ userDetails, renderUserDetails }) {
                             </td>
                             <td>
                                 <Button onClick={(e) => {
-                                    setAddressToEdit(a);
-                                    handleModifyAddress(e);}}>Modify</Button>
+                                    handleModifyAddress(e, a);}}>Modify</Button>
                             </td>
                             <td>
                                 <Button onClick={(e) => handleRemoveAddress(e)}>Remove</Button>

@@ -23,6 +23,22 @@ public class ShippingAddressController : ControllerBase
     {
         return Ok(_dbContext.ShippingAddresses.ToList());
     }
+
+    [HttpGet("{addressId}")]
+    // [Authorize]
+    public IActionResult GetAddressDetails(int addressId)
+    {
+        ShippingAddress foundAddress = _dbContext.ShippingAddresses
+            .Include(sa => sa.UserProfile)
+            .SingleOrDefault(sa => sa.Id == addressId);
+
+        if (foundAddress == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(foundAddress);
+    }
     
     // modify an existing address
     [HttpPut("{addressId}")]

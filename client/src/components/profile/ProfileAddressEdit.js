@@ -10,10 +10,10 @@ export default function ProfileAddressEdit ({ addressToEdit, setEditAddressView,
     const [stateCode, setStateCode] = useState(addressToEdit.stateCode);
     const [zip, setZip] = useState(addressToEdit.zip);
 
+    // console.log(`address id received by address edit module: ${addressToEdit.id} ${addressToEdit.address1}`);
 
     const handleSaveAddressChange = (e) => {
         // console.log(addressToEdit);
-
         // changes empty strings back to default values
         if (address1 === "") {
             setAddress1(addressToEdit.address1);
@@ -22,27 +22,41 @@ export default function ProfileAddressEdit ({ addressToEdit, setEditAddressView,
             setAddress2(addressToEdit.address2);
         }
         if (city === "") {
-            setCity(addressToEdit.addressc);
+            setCity(addressToEdit.city);
+        // no condition necessary for statecode, since user is picking from a defined list.
         }
         if (zip === "") {
             setZip(addressToEdit.zip);
         }
 
-        const changedAddress = {
-            id: addressToEdit.id,
-            userProfileId: addressToEdit.userProfileId,
-            address1: address1,
-            address2: address2,
-            city: city,
-            stateCode: stateCode,
-            zip: zip,
-            isActive: addressToEdit.isActive
-        }
+        const addressClone = structuredClone(addressToEdit);
+
+        addressClone.address1 = address1;
+        addressClone.address2 = address2 || null;
+        addressClone.city = city;
+        addressClone.stateCode = stateCode;
+        addressClone.zip = zip;
+
+        console.log(addressToEdit);
+        console.log(addressClone);
+
+        // const changedAddress = {
+        //     id: addressToEdit.id,
+        //     userProfileId: addressToEdit.userProfileId,
+        //     address1: address1,
+        //     address2: address2,
+        //     city: city,
+        //     stateCode: stateCode,
+        //     zip: zip,
+        //     isActive: addressToEdit.isActive
+        // }
 
         // console.log(addressToEdit.id)
-        // console.log(changedAddress.id)
+        // // console.log(changedAddress.id)
+        // console.log(`address received by module: ${addressToEdit.id}`)
+        // console.log(`address clone being passed to manager: ${addressClone.id}`);
 
-        updateAddressDetails(addressToEdit.id, changedAddress)
+        updateAddressDetails(addressClone)
             .then(() => renderUserDetails())
             .then(() => setEditAddressView(false))
 

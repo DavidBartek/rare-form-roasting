@@ -1,12 +1,15 @@
 const _apiUrl = "/api/shippingaddress";
 
-export const updateAddressDetails = (addressId, updatedAddress) => {
-    console.log(addressId)
-    console.log(updatedAddress);
-    
-    return fetch (`${_apiUrl}/${addressId}`, {
+export const getAddressDetails = (addressId) => {
+    return fetch(`${_apiUrl}/${addressId}`).then((res) => res.json());
+}
+
+export const updateAddressDetails = (updatedAddress) => {
+    return fetch(`${_apiUrl}/${updatedAddress.id}`, {
         method: "PUT",
-        headers: {"Content-Type": "application/json"},
+        headers: {
+            "Content-Type": "application/json"
+        },
         body: JSON.stringify(updatedAddress)
     });
 };
