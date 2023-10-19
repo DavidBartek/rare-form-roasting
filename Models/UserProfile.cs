@@ -28,19 +28,19 @@ public class UserProfile
     [NotMapped] // not mapped means that EF Core won't create column for this property in the db
     [EmailAddress]
     [MaxLength(100, ErrorMessage = "Email must be 100 characters or less")]
-    public string Email { get; set; }
+    public string? Email { get; set; }
 
     [NotMapped]
-    public List<string> Roles { get; set; }
+    public List<string>? Roles { get; set; }
 
     public string IdentityUserId { get; set; }
 
-    public IdentityUser IdentityUser { get; set; }
+    public IdentityUser? IdentityUser { get; set; }
     
     [Required]
     public bool IsActive { get; set; }
 
-    public List<Order> Orders { get; set; }
+    public List<Order>? Orders { get; set; }
     public List<ShippingAddress> ShippingAddresses { get; set; }
 
 }

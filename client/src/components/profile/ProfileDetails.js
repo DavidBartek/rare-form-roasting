@@ -10,6 +10,7 @@ export default function ProfileDetails ({ loggedInUser, userDetails, renderUserD
 
     const handleUserEdits = (e) => {
         e.preventDefault();
+        
         // changes empty strings back to default values
         if (firstName === "") {
             setFirstName(userDetails.firstName);

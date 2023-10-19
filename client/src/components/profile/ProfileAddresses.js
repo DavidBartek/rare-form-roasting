@@ -1,10 +1,21 @@
+import { useState } from "react";
 import { Button, Table } from "reactstrap";
+import ProfileAddressEdit from "./ProfileAddressEdit";
+import { getAddressDetails } from "../../managers/addressManager";
 
-export default function ProfileAddresses ({ loggedInUser, userDetails, renderUserDetails }) {
+export default function ProfileAddresses ({ userDetails, renderUserDetails }) {
 
-    const handleModifyAddress = (e) => {
+    const [editAddressView, setEditAddressView] = useState(false);
+    const [addressToEdit, setAddressToEdit] = useState({});
+
+    const handleModifyAddress = (e, a) => {
         e.preventDefault();
-        console.log("modify address view")
+        getAddressDetails(a.id)
+            .then(setAddressToEdit)
+            .then(() => setEditAddressView(!editAddressView));
+        // does this need to be a separate "get" fetch to get the individual fully-composed address obj?
+        // pass in 'a' obj; fetch based on id; .then set address to edit view
+        // setEditAddressView(!editAddressView);
     }
 
     const handleRemoveAddress = (e) => {
@@ -25,7 +36,10 @@ export default function ProfileAddresses ({ loggedInUser, userDetails, renderUse
                 </tr>
             </thead>
             {userDetails.shippingAddresses?.length > 0 ? (
-                <tbody>
+                editAddressView ? (
+                    <ProfileAddressEdit addressToEdit={addressToEdit} setEditAddressView={setEditAddressView} renderUserDetails={renderUserDetails}/>
+                ) : (
+                    <tbody>
                     {userDetails.shippingAddresses.map(a =>
                         <tr key={a.id}>
                             <td>
@@ -41,13 +55,15 @@ export default function ProfileAddresses ({ loggedInUser, userDetails, renderUse
                                 {a.city}, {a.stateCode} {a.zip}
                             </td>
                             <td>
-                                <Button onClick={(e) => handleModifyAddress(e)}>Modify</Button>
+                                <Button onClick={(e) => {
+                                    handleModifyAddress(e, a);}}>Modify</Button>
                             </td>
                             <td>
                                 <Button onClick={(e) => handleRemoveAddress(e)}>Remove</Button>
                             </td>
                         </tr>)}
                 </tbody>
+                )
             ) : (
                 <tbody>
                     <tr>
