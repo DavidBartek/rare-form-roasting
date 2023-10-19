@@ -24,8 +24,9 @@ public class ShippingAddressController : ControllerBase
         return Ok(_dbContext.ShippingAddresses.ToList());
     }
 
+    // get details by address id
     [HttpGet("{addressId}")]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetAddressDetails(int addressId)
     {
         ShippingAddress foundAddress = _dbContext.ShippingAddresses
@@ -42,7 +43,7 @@ public class ShippingAddressController : ControllerBase
     
     // modify an existing address
     [HttpPut("{addressId}")]
-    // [Authorize]
+    [Authorize]
     public IActionResult ModifyAddress(int addressId, [FromBody]ShippingAddress updatedAddress)
     {
         ShippingAddress foundAddress = _dbContext.ShippingAddresses.SingleOrDefault(sa => sa.Id == addressId);
@@ -61,6 +62,24 @@ public class ShippingAddressController : ControllerBase
         foundAddress.City = updatedAddress.City;
         foundAddress.StateCode = updatedAddress.StateCode;
         foundAddress.Zip = updatedAddress.Zip;
+
+        _dbContext.SaveChanges();
+        return NoContent();
+    }
+
+    // soft-delete address by id
+    [HttpDelete("{addressId}")]
+    [Authorize]
+    public IActionResult DeleteAddress(int addressId)
+    {
+        ShippingAddress foundAddress = _dbContext.ShippingAddresses.SingleOrDefault(sa => sa.Id == addressId);
+
+        if (foundAddress == null)
+        {
+            return NotFound();
+        }
+
+        foundAddress.IsActive = false;
 
         _dbContext.SaveChanges();
         return NoContent();
