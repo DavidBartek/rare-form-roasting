@@ -129,10 +129,11 @@ public class UserProfileController : ControllerBase
     // get all orders for a given user
 
     [HttpGet("orders/{userId}")]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetUserOrders(int userId)
     {
         return Ok(_dbContext.Orders
+            .Include(o => o.UserProfile)
             .Include(o => o.ShippingAddress)
             .Include(o => o.OrderProducts)
                 .ThenInclude(o => o.Product)
