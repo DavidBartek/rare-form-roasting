@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Form, FormGroup, Input, Label } from "reactstrap";
-import { stateCodes } from "./StateCodes";
 import { updateAddressDetails } from "../../managers/addressManager";
+import { stateCodes } from "../assets/StateCodes"
 
 export default function ProfileAddressEdit ({ addressToEdit, setEditAddressView, renderUserDetails }) {
     const [address1, setAddress1] = useState(addressToEdit.address1);
@@ -25,7 +25,7 @@ export default function ProfileAddressEdit ({ addressToEdit, setEditAddressView,
         if (zip === "") {
             setZip(addressToEdit.zip);
         }
-
+    
         const addressClone = structuredClone(addressToEdit);
 
         addressClone.address1 = address1;

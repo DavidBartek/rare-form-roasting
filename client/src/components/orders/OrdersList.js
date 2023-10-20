@@ -1,35 +1,25 @@
-import { Button, Container, Table } from "reactstrap";
+import { Button, Container, Offcanvas, Table } from "reactstrap";
 import { BsCaretRight } from "react-icons/bs"
 import { useEffect, useState } from "react";
 import { getUserOrders } from "../../managers/userProfileManager";
 import OrderDetails from "./OrderDetails";
+import { dateTimeConverter } from "../assets/exportFunctions"
 
 export default function OrdersList ({ loggedInUser }) {
     const [myOrders, setMyOrders] = useState([]);
-    const [orderDetailView, setOrderDetailView] = useState(false);
+    const [offCanvas, setOffCanvas] = useState(false);
     const [orderWithDetails, setOrderWithDetails] = useState({})
 
     useEffect(() => {
         getUserOrders(loggedInUser.id).then(setMyOrders);
     }, [])
 
-    const dateTimeConverter = (dateTimeString) => {
-        const array = dateTimeString.split("T");
-        const unformattedDateOnly = new Date(array[0]);
-        
-        const month = String(unformattedDateOnly.getMonth() + 1).padStart(2, "0");
-        const day = String(unformattedDateOnly.getDate()).padStart(2, "0");
-        const year = unformattedDateOnly.getFullYear();
+    const toggleOffCanvas = () => setOffCanvas(!offCanvas);
 
-        const formattedDate = `${month}/${day}/${year}`;
-
-        return formattedDate;
-    }
-
-    const navToOrderDetails = (e, order) => {
+    const viewOrderDetails = (e, order) => {
         e.preventDefault();
         setOrderWithDetails(order);
-        setOrderDetailView(true);
+        toggleOffCanvas();
     }
 
     if (myOrders.length === 0) {
@@ -37,9 +27,6 @@ export default function OrdersList ({ loggedInUser }) {
     }
     return (
     <>
-    {orderDetailView ? (
-        <OrderDetails orderWithDetails={orderWithDetails} setOrderDetailView={setOrderDetailView}  />
-    ) : (
         <Container>
             <h1>Order History</h1>
             <Table hover>
@@ -54,7 +41,7 @@ export default function OrdersList ({ loggedInUser }) {
                         </td>
                         <td>
                             <br />
-                            <Button onClick={(e) => navToOrderDetails(e, o)}>
+                            <Button onClick={(e) => viewOrderDetails(e, o)}>
                                 View Details
                                 <BsCaretRight />
                             </Button>
@@ -64,10 +51,9 @@ export default function OrdersList ({ loggedInUser }) {
                 </tbody>
             </Table>
         </Container>
-    )
-    }
+        <Offcanvas direction="end" isOpen={offCanvas} toggle={() => toggleOffCanvas()}>
+            <OrderDetails order={orderWithDetails} toggleOffCanvas={toggleOffCanvas} />
+        </Offcanvas>
     </>
-    
-    
     )
 }
