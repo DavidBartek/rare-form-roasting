@@ -1,22 +1,66 @@
 import { useEffect, useState } from "react";
 import { getAllLiveProducts } from "../../managers/productManager";
-import { Card, CardBody, CardSubtitle, CardText, CardTitle, Container } from "reactstrap";
+import { Card, CardBody, CardSubtitle, CardText, CardTitle, Col, Container, Form, FormGroup, Input, Label, Row } from "reactstrap";
 import { priceFormatter } from "../assets/exportFunctions";
 
 export default function CoffeeList () {
     const [products, setProducts] = useState([]);
+    const [sortByString, setSortByString] = useState("");
+
+    const renderProductList = () => {
+        getAllLiveProducts(sortByString).then(setProducts);
+    }
 
     useEffect(() => {
-        getAllLiveProducts().then(setProducts);
-    }, []);
+        renderProductList();
+    }, [sortByString]);
     
+    const handleSort = (selection) => {
+        setSortByString(selection);
+    }
+
     if (products.length === 0) {
         return null;
     }
     return (
         <Container>
             <h1>Our current offering of single-origin coffees.</h1>
-            <p>Sort by: select dropdown here</p>
+            <Form>
+                <Row className="row-cols-lg-auto g-3 align-items-center">
+                    <Col>
+                        <Label for="sortSelect">
+                            Sort by:
+                        </Label>
+                    </Col>
+                    <Col>
+                        <Input
+                            id="sortSelect"
+                            name="sortSelect"
+                            type="select"
+                            onChange={(e) => handleSort(e.target.value)}
+                        >
+                            <option value={""}>
+                                Select below
+                            </option>
+                            <option value={"featured"}>
+                                Featured
+                            </option >
+                            <option value={"alphabeticalaz"}>
+                                Alphabetically, A-Z
+                            </option>
+                            <option value={"alphabeticalza"}>
+                                Alphabetically, Z-A
+                            </option>
+                            <option value={"pricelowhigh"}>
+                                Price, $-$$$
+                            </option>
+                            <option value={"pricehighlow"}>
+                                Price, $$$-$
+                            </option>
+                        </Input>
+                    </Col>
+                </Row>
+            </Form>
             <div>
                 {products.map(p =>
                     <Card 

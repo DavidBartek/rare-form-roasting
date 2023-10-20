@@ -32,6 +32,10 @@ public class ProductController : ControllerBase
         {
             return Ok(AllLiveProducts);
         }
+        else if (sort == "featured")
+        {
+            return Ok(AllLiveProducts.Where(p => p.IsFeatured == true));
+        }
         else if (sort == "alphabeticalaz")
         {
             return Ok(AllLiveProducts.OrderBy(p => p.DisplayName));
@@ -47,10 +51,6 @@ public class ProductController : ControllerBase
         else if (sort == "pricehighlow")
         {
             return Ok(AllLiveProducts.OrderByDescending(p => p.Price));
-        }
-        else if (sort == "featured")
-        {
-            return Ok(AllLiveProducts.Where(p => p.IsFeatured == true));
         }
         else
         {
