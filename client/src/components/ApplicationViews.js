@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Link, Route, Routes } from "react-router-dom";
 import { AuthorizedRoute } from "./auth/AuthorizedRoute";
 import Login from "./auth/Login";
 import Register from "./auth/Register";
@@ -75,7 +75,11 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
           element={<Register setLoggedInUser={setLoggedInUser} />}
         />
       </Route>
-      <Route path="*" element={<p>Page not found</p>} />
+      <Route path="*" element={
+      <>
+        <h1>404: Page not found</h1>
+        <Link to="/">Return home...</Link>
+      </>} />
     </Routes>
   );
 }
