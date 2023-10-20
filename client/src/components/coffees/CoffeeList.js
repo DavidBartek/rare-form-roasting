@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getAllProducts } from "../../managers/productManager";
+import { getAllLiveProducts } from "../../managers/productManager";
 import { Card, CardBody, CardSubtitle, CardText, CardTitle, Container } from "reactstrap";
 import { priceFormatter } from "../assets/exportFunctions";
 
@@ -7,7 +7,7 @@ export default function CoffeeList () {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        getAllProducts().then(setProducts);
+        getAllLiveProducts().then(setProducts);
     }, []);
     
     if (products.length === 0) {

@@ -18,13 +18,45 @@ public class ProductController : ControllerBase
     }
 
     // gets all **live** products
+    // accepts params to sort/filter
 
     [HttpGet]
-    public IActionResult GetAllLiveProducts()
+    public IActionResult GetAllLiveProducts(
+        [FromQuery] string? sort)
     {
-        return Ok(_dbContext.Products
+        List<Product> AllLiveProducts = _dbContext.Products
             .Where(p => p.IsLive == true)
-            .ToList());
+            .ToList();
+
+        if (sort == null)
+        {
+            return Ok(AllLiveProducts);
+        }
+        else if (sort == "alphabeticalaz")
+        {
+            return Ok(AllLiveProducts.OrderBy(p => p.DisplayName));
+        }
+        else if (sort == "alphabeticalza")
+        {
+            return Ok(AllLiveProducts.OrderByDescending(p => p.DisplayName));
+        }
+        else if (sort == "pricelowhigh")
+        {
+            return Ok(AllLiveProducts.OrderBy(p => p.Price));
+        }
+        else if (sort == "pricehighlow")
+        {
+            return Ok(AllLiveProducts.OrderByDescending(p => p.Price));
+        }
+        else if (sort == "featured")
+        {
+            return Ok(AllLiveProducts.Where(p => p.IsFeatured == true));
+        }
+        else
+        {
+            return Ok(AllLiveProducts);
+        }
+
     }
 
 }
