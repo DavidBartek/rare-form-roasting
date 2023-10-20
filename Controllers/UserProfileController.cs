@@ -126,8 +126,7 @@ public class UserProfileController : ControllerBase
         return NoContent();
     }
 
-    // get all orders for a given user
-
+    // get all orders & related data for a given logged-in user
     [HttpGet("orders/{userId}")]
     [Authorize]
     public IActionResult GetUserOrders(int userId)
