@@ -10,3 +10,8 @@ export const dateTimeConverter = (dateTimeString) => {
 
     return formattedDate;
 }
+
+export const priceFormatter = (priceString) => {
+    const formattedNumber = priceString.toFixed(2);
+    return formattedNumber;
+}
