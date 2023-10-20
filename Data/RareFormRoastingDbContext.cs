@@ -161,7 +161,7 @@ public class RareFormRoastingDbContext : IdentityDbContext<IdentityUser>
                 ElevationRangeMASL = "1300-1500", 
                 DateAdded = new DateTime(2023, 10, 1), 
                 TastingNotes = "Chocolate, peach, vanilla, almond, golden raisin", 
-                DescriptionString = "Deliciously fruited. Has a spiced-fruit scent, the dry fragrance perfumed with spiced tropical bunch and a cherry accent. Accents of naval orange, lemon custard, orange marmalade, tart fresh squeezed lemon, and a dusting of all-spice and cardamom. Light and bright.", 
+                DescriptionString = "Finca La Bastilla is a tropical paradise founded on deep, favorable volcanic soils, creating the perfect environment for world-renowned coffees. This wonderful, bright, medium-bodied coffee has intense notes of chocolate, peach, vanilla, almond, and golden raisin.", 
                 ImageLocation = "", 
                 IsFeatured = true, 
                 IsLive = true

@@ -416,12 +416,12 @@ namespace rare_form_roasting.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "d5434a2a-88c3-49dc-b53c-07e3a8ec257c", "Admin", "admin" });
+                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "babcb7a2-fb40-4060-95c2-fe933c63749e", "Admin", "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "308828a9-cb43-4718-bbce-af6578d2bf68", "david@rfr.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEBi6yN/mlfnYJt+1RUL9EgPLEuJr0gCwkJYhLvUoxJQkMAK0RkZ9MO6lY7pxJxe10A==", null, false, "16191260-0aee-40c6-8d1d-16ca870db8f3", false, null });
+                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "72ce7bf2-a125-4727-b868-4bb5994afd7e", "david@rfr.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEL3mWcv6YDqmbRVxfIag6sEp2fqDYRqDJ23Q7LSSKDpBrCQJ0TYFS+eWGFroWq3K1w==", null, false, "f41e6b3f-66f3-4a0d-9a96-a4f02924c92c", false, null });
 
             migrationBuilder.InsertData(
                 table: "Grinds",
@@ -444,7 +444,7 @@ namespace rare_form_roasting.Migrations
                     { 1, "Ethiopia", new DateTime(2023, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Fruit-forward and aromatic, this Ethiopian arrival expresses fruit flavors like strawberry hard candy, blueberry, nectarine, cranberry, and tart golden plum that are very clean for a dry process coffee.", "Ethiopia Hambela Buliye", "2170", "Hambela Buliye", "", false, true, "Buliye Kebele, Shakiso, Guji", 22.00m, "Dry Process (Natural)", "Strawberry, blueberry, nectarine, cranberry, tart golden plum", "Heirloom" },
                     { 2, "Colombia", new DateTime(2023, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "A regional blend of high scoring coffees from Inza, Cuaca. The cup sweetness is honeyed, with substantial fruit flavors that are slightly winey as you move through the cup. Red apple, tangy golden plum, dried apricots, and juicy acidic impression like stone fruits.", "Colombia Inza Las Estrellas", "1500-2000", "Las Estrellas", "", false, true, "San Antonio and San Rafael, Inza, Cauca", 18.00m, "Wet Process (Washed)", "Red apple, tangy golden plum, dried apricot, stone fruit, wine", "Caturra, Typica, Hybrid" },
                     { 3, "Kenya", new DateTime(2023, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Deliciously fruited. Has a spiced-fruit scent, the dry fragrance perfumed with spiced tropical bunch and a cherry accent. Accents of naval orange, lemon custard, orange marmalade, tart fresh squeezed lemon, and a dusting of all-spice and cardamom. Light and bright.", "Kenya Kirinyaga Kamwangi Peaberry", "1800-2000", "Kamwangi Factory", "", false, true, "Kirinyaga", 21.00m, "Wet Process (Washed)", "Naval orange, lemon custard, orange marmalade, tart fresh squeezed lemon, all-spice, cardamom", "Bourbon (SL-28, SL-34, Ruiru-11) peaberry" },
-                    { 4, "Nicaragua", new DateTime(2023, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Deliciously fruited. Has a spiced-fruit scent, the dry fragrance perfumed with spiced tropical bunch and a cherry accent. Accents of naval orange, lemon custard, orange marmalade, tart fresh squeezed lemon, and a dusting of all-spice and cardamom. Light and bright.", "Nicaragua La Bastilla Centroamericano", "1300-1500", "La Bastilla Coffee Estates", "", true, true, "Jinotega", 20.00m, "Wet Process (Washed)", "Chocolate, peach, vanilla, almond, golden raisin", "Centroamericano" }
+                    { 4, "Nicaragua", new DateTime(2023, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Finca La Bastilla is a tropical paradise founded on deep, favorable volcanic soils, creating the perfect environment for world-renowned coffees. This wonderful, bright, medium-bodied coffee has intense notes of chocolate, peach, vanilla, almond, and golden raisin.", "Nicaragua La Bastilla Centroamericano", "1300-1500", "La Bastilla Coffee Estates", "", true, true, "Jinotega", 20.00m, "Wet Process (Washed)", "Chocolate, peach, vanilla, almond, golden raisin", "Centroamericano" }
                 });
 
             migrationBuilder.InsertData(

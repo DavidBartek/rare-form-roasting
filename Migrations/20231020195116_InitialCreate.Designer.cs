@@ -12,7 +12,7 @@ using RareFormRoasting.Data;
 namespace rare_form_roasting.Migrations
 {
     [DbContext(typeof(RareFormRoastingDbContext))]
-    [Migration("20231018154602_InitialCreate")]
+    [Migration("20231020195116_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,7 +53,7 @@ namespace rare_form_roasting.Migrations
                         new
                         {
                             Id = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
-                            ConcurrencyStamp = "d5434a2a-88c3-49dc-b53c-07e3a8ec257c",
+                            ConcurrencyStamp = "babcb7a2-fb40-4060-95c2-fe933c63749e",
                             Name = "Admin",
                             NormalizedName = "admin"
                         });
@@ -152,13 +152,13 @@ namespace rare_form_roasting.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "308828a9-cb43-4718-bbce-af6578d2bf68",
+                            ConcurrencyStamp = "72ce7bf2-a125-4727-b868-4bb5994afd7e",
                             Email = "david@rfr.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEBi6yN/mlfnYJt+1RUL9EgPLEuJr0gCwkJYhLvUoxJQkMAK0RkZ9MO6lY7pxJxe10A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEL3mWcv6YDqmbRVxfIag6sEp2fqDYRqDJ23Q7LSSKDpBrCQJ0TYFS+eWGFroWq3K1w==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "16191260-0aee-40c6-8d1d-16ca870db8f3",
+                            SecurityStamp = "f41e6b3f-66f3-4a0d-9a96-a4f02924c92c",
                             TwoFactorEnabled = false
                         });
                 });
@@ -572,7 +572,7 @@ namespace rare_form_roasting.Migrations
                             Id = 4,
                             Country = "Nicaragua",
                             DateAdded = new DateTime(2023, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DescriptionString = "Deliciously fruited. Has a spiced-fruit scent, the dry fragrance perfumed with spiced tropical bunch and a cherry accent. Accents of naval orange, lemon custard, orange marmalade, tart fresh squeezed lemon, and a dusting of all-spice and cardamom. Light and bright.",
+                            DescriptionString = "Finca La Bastilla is a tropical paradise founded on deep, favorable volcanic soils, creating the perfect environment for world-renowned coffees. This wonderful, bright, medium-bodied coffee has intense notes of chocolate, peach, vanilla, almond, and golden raisin.",
                             DisplayName = "Nicaragua La Bastilla Centroamericano",
                             ElevationRangeMASL = "1300-1500",
                             FarmString = "La Bastilla Coffee Estates",
@@ -874,7 +874,7 @@ namespace rare_form_roasting.Migrations
                         .HasForeignKey("SubscriptionId");
 
                     b.HasOne("RareFormRoasting.Models.UserProfile", "UserProfile")
-                        .WithMany()
+                        .WithMany("Orders")
                         .HasForeignKey("UserProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -924,7 +924,7 @@ namespace rare_form_roasting.Migrations
             modelBuilder.Entity("RareFormRoasting.Models.ShippingAddress", b =>
                 {
                     b.HasOne("RareFormRoasting.Models.UserProfile", "UserProfile")
-                        .WithMany()
+                        .WithMany("ShippingAddresses")
                         .HasForeignKey("UserProfileId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -1000,6 +1000,13 @@ namespace rare_form_roasting.Migrations
             modelBuilder.Entity("RareFormRoasting.Models.Order", b =>
                 {
                     b.Navigation("OrderProducts");
+                });
+
+            modelBuilder.Entity("RareFormRoasting.Models.UserProfile", b =>
+                {
+                    b.Navigation("Orders");
+
+                    b.Navigation("ShippingAddresses");
                 });
 #pragma warning restore 612, 618
         }

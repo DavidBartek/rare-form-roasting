@@ -2,10 +2,12 @@ import { useEffect, useState } from "react";
 import { getAllLiveProducts } from "../../managers/productManager";
 import { Card, CardBody, CardSubtitle, CardText, CardTitle, Col, Container, Form, FormGroup, Input, Label, Row } from "reactstrap";
 import { priceFormatter } from "../assets/exportFunctions";
+import { useNavigate } from "react-router-dom"
 
 export default function CoffeeList () {
     const [products, setProducts] = useState([]);
     const [sortByString, setSortByString] = useState("");
+    const navigate = useNavigate();
 
     const renderProductList = () => {
         getAllLiveProducts(sortByString).then(setProducts);
@@ -19,12 +21,18 @@ export default function CoffeeList () {
         setSortByString(selection);
     }
 
+    const navToCoffeeDetail = (e, productId) => {
+        e.preventDefault();
+        navigate(`${productId}`);
+    }
+
     if (products.length === 0) {
         return null;
     }
     return (
         <Container>
-            <h1>Our current offering of single-origin coffees.</h1>
+            <h1>Coffees</h1>
+            <h5>Our current offering of single-origin coffees.</h5>
             <Form>
                 <Row className="row-cols-lg-auto g-3 align-items-center">
                     <Col>
@@ -65,7 +73,8 @@ export default function CoffeeList () {
                 {products.map(p =>
                     <Card 
                         key={p.id}
-                        style={{width: '22rem'}}
+                        style={{width: '23rem'}}
+                        onClick={(e) => navToCoffeeDetail(e, p.id)}
                     >
                         <img
                             alt="sample"
@@ -85,7 +94,7 @@ export default function CoffeeList () {
                                 {p.tastingNotes}
                             </CardText>
                         </CardBody>
-                    </Card>    
+                    </Card>
                 )}
             </div>
         </Container>

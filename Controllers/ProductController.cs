@@ -17,9 +17,22 @@ public class ProductController : ControllerBase
         _dbContext = context;
     }
 
+    // get all weight configurations
+    [HttpGet("weights")]
+    public IActionResult GetAllWeights()
+    {
+        return Ok(_dbContext.Weights.ToList());
+    }
+
+    // get all grind configurations
+    [HttpGet("grinds")]
+    public IActionResult GetAllGrinds()
+    {
+        return Ok(_dbContext.Grinds.ToList());
+    }
+    
     // gets all **live** products
     // accepts params to sort/filter
-
     [HttpGet]
     public IActionResult GetAllLiveProducts(
         [FromQuery] string? sort)
@@ -58,5 +71,20 @@ public class ProductController : ControllerBase
         }
 
     }
+
+    [HttpGet("{productId}")]
+    public IActionResult GetProductDetails(int productId)
+    {
+        Product foundProduct = _dbContext.Products.SingleOrDefault(p => p.Id == productId);
+
+        if (foundProduct == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(foundProduct);        
+    }
+
+
 
 }

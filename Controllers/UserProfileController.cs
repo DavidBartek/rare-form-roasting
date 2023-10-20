@@ -17,7 +17,7 @@ public class UserProfileController : ControllerBase
         _dbContext = context;
     }
 
-    // get all users
+    // get all users (admin only)
     [HttpGet]
     [Authorize(Roles = "Admin")]
     public IActionResult GetUser()
