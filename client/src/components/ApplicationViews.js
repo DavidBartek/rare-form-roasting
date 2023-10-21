@@ -42,7 +42,7 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
             <CoffeeList />
           } />
             <Route path=":id" element={
-              <CoffeeDetails />
+              <CoffeeDetails loggedInUser={loggedInUser}/>
           } />
         </Route>
           

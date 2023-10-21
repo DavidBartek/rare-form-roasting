@@ -12,6 +12,13 @@ export const dateTimeConverter = (dateTimeString) => {
 }
 
 export const priceFormatter = (priceString) => {
-    const formattedNumber = priceString.toFixed(2);
-    return formattedNumber;
+    if (priceString) {
+        const formattedNumber = priceString.toFixed(2);
+        return formattedNumber;
+    }
+}
+
+export const priceCalculator = (productObj, sizeObj, quantity) => {
+    const calcPrice = priceFormatter(productObj.price * sizeObj.priceMultiplier * quantity);
+    return calcPrice;
 }

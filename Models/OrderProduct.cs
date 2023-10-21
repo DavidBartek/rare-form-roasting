@@ -28,7 +28,7 @@ public class OrderProduct
     public Grind Grind { get; set; }
 
     [Required]
-    [Range(1, 60)]
+    [Range(1, 6)]
     public int ProductQuantity { get; set; }
 
     [NotMapped]
