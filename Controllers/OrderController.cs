@@ -17,6 +17,12 @@ public class OrderController : ControllerBase
         _dbContext = context;
     }
 
+    [HttpGet]
+    public IActionResult GetAllOrders()
+    {
+        return Ok(_dbContext.Orders.ToList());
+    }
+
     // get all orders - admin only
 
 }

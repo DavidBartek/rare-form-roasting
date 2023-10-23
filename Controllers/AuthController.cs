@@ -60,9 +60,43 @@ public class AuthController : ControllerBase
 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
+                //
+                //
+                // checks if there is an "in-process"/not-yet-checked-out order associated with this user.
+                // if not, a new Order with IsCurrent == true is created.
+
+                // first finds the associated user profile:
+                // var identityUserId = User.FindFirstValue(ClaimTypes.NameIdentifier); // user.Id
+                var identityUserId = user.Id;
+                var profile = _dbContext.UserProfiles.SingleOrDefault(up => up.IdentityUserId == identityUserId);
+
+                // carries on only if profile is not null
+                if (profile != null)
+                {
+                    // sees if any orders associated with profile.id contain IsCurrent == true.
+                    bool hasCurrentOrder = _dbContext.Orders.Where(o => o.UserProfileId == profile.Id).Any(o => o.IsCurrent);
+
+                    // if hasCurrentOrder == false: new order object is created and added to database
+                    if (!hasCurrentOrder)
+                    {
+                        _dbContext.Orders.Add(new Order
+                        {
+                            UserProfileId = profile.Id,
+                            IsCurrent = true,
+                            IsCancelled = false
+                        });
+                        _dbContext.SaveChanges();
+                    }
+                }
+
+                //
+                //
+
                 HttpContext.SignInAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme,
                 new ClaimsPrincipal(claimsIdentity)).Wait();
+
+                
 
                 return Ok();
             }

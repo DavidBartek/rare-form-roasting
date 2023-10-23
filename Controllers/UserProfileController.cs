@@ -126,7 +126,7 @@ public class UserProfileController : ControllerBase
         return NoContent();
     }
 
-    // get all orders & related data for a given logged-in user
+    // get all orders & related data for a given logged-in user, excluding any order that is not yet finalized
     [HttpGet("orders/{userId}")]
     [Authorize]
     public IActionResult GetUserOrders(int userId)
@@ -140,6 +140,7 @@ public class UserProfileController : ControllerBase
                 .ThenInclude(o => o.Weight)
             .Include(o => o.OrderProducts)
                 .ThenInclude(o => o.Grind)
+            .Where(o => o.IsCurrent == false)
             .Where(o => o.UserProfileId == userId)
             .ToList());
     }
