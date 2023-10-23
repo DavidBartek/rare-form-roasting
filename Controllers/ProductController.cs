@@ -24,6 +24,19 @@ public class ProductController : ControllerBase
         return Ok(_dbContext.Weights.ToList());
     }
 
+    [HttpGet("weights/{weightId}")]
+    public IActionResult GetWeightById(int weightId)
+    {
+        Weight foundWeight = _dbContext.Weights.SingleOrDefault(w => w.Id == weightId);
+
+        if (foundWeight == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(foundWeight);
+    }
+
     // get all grind configurations
     [HttpGet("grinds")]
     public IActionResult GetAllGrinds()
