@@ -120,9 +120,18 @@ export default function CoffeeDetails ({ loggedInUser }) {
                 </FormGroup>
             </Form>
 
-            <CoffeeDetailsCalcPrice coffeeDetails={coffeeDetails} selectedWeightObj={selectedWeightObj} selectedQuantity={selectedQuantity} />
+            <CoffeeDetailsCalcPrice 
+                coffeeDetails={coffeeDetails}
+                selectedWeightId={selectedWeightId}
+                selectedWeightObj={selectedWeightObj} 
+                selectedQuantity={selectedQuantity} />
 
-            <CoffeeDetailsCartAdd />
+            <CoffeeDetailsCartAdd 
+                loggedInUser={loggedInUser}
+                coffeeDetails={coffeeDetails}
+                selectedWeightId={selectedWeightId}
+                selectedGrindId={selectedGrindId}
+                selectedQuantity={selectedQuantity} />
 
             <div>
                 <strong>Origin: </strong>{coffeeDetails.locationString}, {coffeeDetails.country} - {coffeeDetails.farmString}<br />
