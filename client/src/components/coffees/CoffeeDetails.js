@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom"
-import { getGrinds, getProductDetails, getWeights } from "../../managers/productManager";
+import { getGrinds, getProductDetails, getWeightById, getWeights } from "../../managers/productManager";
 import { Button, Card, Container, Form, FormGroup, Input, Label } from "reactstrap";
-import { priceCalculator, priceFormatter } from "../assets/exportFunctions";
+import CoffeeDetailsCalcPrice from "./CoffeeDetailsCalcPrice";
+import CoffeeDetailsCartAdd from "./CoffeeDetailsCartAdd";
 
 export default function CoffeeDetails ({ loggedInUser }) {
     const params = useParams();
@@ -10,8 +11,9 @@ export default function CoffeeDetails ({ loggedInUser }) {
     const [coffeeDetails, setCoffeeDetails] = useState({});
     const [grindSettings, setGrindSettings] = useState([]);
     const [weightSettings, setWeightSettings] = useState([]);
-    const [selectedSize, setSelectedSize] = useState({});
-    const [selectedGrind, setSelectedGrind] = useState({});
+    const [selectedWeightId, setselectedWeightId] = useState("");
+    const [selectedWeightObj, setSelectedWeightObj] = useState({})
+    const [selectedGrindId, setSelectedGrindId] = useState("");
     const [selectedQuantity, setSelectedQuantity] = useState("");
 
     useEffect(() => {
@@ -19,19 +21,13 @@ export default function CoffeeDetails ({ loggedInUser }) {
         getGrinds().then(setGrindSettings);
         getWeights().then(setWeightSettings);
     }, [])
-    
-    const calculatePrice = () => {
-        if (coffeeDetails && selectedSize && selectedQuantity) {
-            const price = priceCalculator(coffeeDetails, selectedSize, selectedQuantity)
-            return price;
-        } else {
-            return `From $${priceFormatter(coffeeDetails.price)}`
-        }
-    }
 
-    const addToCartHandler = (e) => {
-        e.preventDefault();
-        console.log("added to cart");
+    useEffect(() => {
+        getWeightById(selectedWeightId).then(setSelectedWeightObj)
+    }, [selectedWeightId]);
+
+    const handleWeightSelect = (e) => {
+        setselectedWeightId(e.target.value);
     }
 
     if (!coffeeDetails) {
@@ -44,6 +40,7 @@ export default function CoffeeDetails ({ loggedInUser }) {
                 {' > '} 
                 {coffeeDetails.displayName}
             </h1>
+
             <Card
                 style={{width: '23rem'}}
             >
@@ -53,16 +50,17 @@ export default function CoffeeDetails ({ loggedInUser }) {
                     width="100%"
                 />
             </Card>
+
             <Form>
                 <FormGroup>
-                    <Label for="sizeSelect">
+                    <Label for="weightSelect">
                         <h4>Size:</h4>
                     </Label>
                     <Input
-                        id="sizeSelect"
-                        name="sizeSelect"
+                        id="weightSelect"
+                        name="weightSelect"
                         type="select"
-                        onChange={(e) => setSelectedSize(e.target.value)}
+                        onChange={(e) => handleWeightSelect(e)}
                     >
                         <option
                             value="">
@@ -71,7 +69,7 @@ export default function CoffeeDetails ({ loggedInUser }) {
                         {weightSettings.map(w =>
                         <option
                             key={w.id}
-                            value={w}>
+                            value={w.id}>
                             {w.weightOz} oz
                         </option>    
                         )}
@@ -85,7 +83,7 @@ export default function CoffeeDetails ({ loggedInUser }) {
                         id="grindSelect"
                         name="grindSelect"
                         type="select"
-                        onChange={(e) => setSelectedGrind(e.target.value)}
+                        onChange={(e) => setSelectedGrindId(e.target.value)}
                     >
                         <option
                             value="">
@@ -94,7 +92,7 @@ export default function CoffeeDetails ({ loggedInUser }) {
                         {grindSettings.map(g =>
                         <option
                             key={g.id}
-                            value={g}>
+                            value={g.id}>
                             {g.grindSetting}
                         </option>    
                         )}
@@ -121,12 +119,11 @@ export default function CoffeeDetails ({ loggedInUser }) {
                     </Input>
                 </FormGroup>
             </Form>
-            
-            {/* <h4>${priceFormatter(coffeeDetails.price)}</h4> */}
-            <h4>{calculatePrice()}</h4>
-            <Button onClick={(e) => addToCartHandler(e)}>
-                Add To Cart
-            </Button>
+
+            <CoffeeDetailsCalcPrice coffeeDetails={coffeeDetails} selectedWeightObj={selectedWeightObj} selectedQuantity={selectedQuantity} />
+
+            <CoffeeDetailsCartAdd />
+
             <div>
                 <strong>Origin: </strong>{coffeeDetails.locationString}, {coffeeDetails.country} - {coffeeDetails.farmString}<br />
                 <strong>Tasting Notes: </strong>{coffeeDetails.tastingNotes}<br />

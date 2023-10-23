@@ -20,3 +20,7 @@ export const getGrinds = () => {
 export const getWeights = () => {
     return fetch(`${_apiUrl}/weights`).then((res) => res.json());
 }
+
+export const getWeightById = (weightId) => {
+    return fetch(`${_apiUrl}/weights/${weightId}`).then((res) => res.json());
+}
