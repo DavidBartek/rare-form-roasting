@@ -6,4 +6,4 @@
 - Supports UI login functionality via ASP.NET Core Identity, with different views and privileges available depending on the logged-in user's role
 - Managed development using agile methodology; created an ERD, wireframe, and user stories; planned sprints; managed tasks via GitHub Issue Tracker & Projects tool.
 
-**This app is scheduled to be completed by 10/27/23. If you are interested in a brief live presentation, you can RSVP to my "demo day" on 11/3/23 [here](https://docs.google.com/forms/d/e/1FAIpQLSfTweDYRlwqDkXb1EKN7Z49oIy_b4mnzC5q6-f_m7JTWWMXXw/viewform). Watch me build, and stay tuned!**
+**This app is scheduled to be completed by 10/27/23. If you are interested in joining me for a brief live presentation, you can RSVP to my "demo day" on 11/3/23 [here](https://docs.google.com/forms/d/e/1FAIpQLSfTweDYRlwqDkXb1EKN7Z49oIy_b4mnzC5q6-f_m7JTWWMXXw/viewform). Watch me build, and stay tuned!**
