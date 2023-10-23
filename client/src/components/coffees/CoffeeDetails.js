@@ -134,15 +134,7 @@ export default function CoffeeDetails ({ loggedInUser }) {
             </div>
             
         </Container>
-        // back button navigating to coffees list
-        // dropdowns to control weight, grind, quantity
-        // updated calculated property
-        // add to cart button - conditionally rendered based on logged in status
-        // details
 
         
     )
 }
-
-
-// add condition for "out of stock" if isLive === false
