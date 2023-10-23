@@ -65,9 +65,8 @@ public class RareFormRoastingDbContext : IdentityDbContext<IdentityUser>
         });
         modelBuilder.Entity<Weight>().HasData(new Weight[]
         {
-            new Weight {Id = 1, WeightOz = 6, PriceMultiplier = .75M},
-            new Weight {Id = 2, WeightOz = 12, PriceMultiplier = 1M},
-            new Weight {Id = 3, WeightOz = 24, PriceMultiplier = 2M}
+            new Weight {Id = 1, WeightOz = 12, PriceMultiplier = 1M},
+            new Weight {Id = 2, WeightOz = 24, PriceMultiplier = 1.95M}
         });
         modelBuilder.Entity<ShippingAddress>().HasData(new ShippingAddress[]
         {
@@ -175,7 +174,8 @@ public class RareFormRoastingDbContext : IdentityDbContext<IdentityUser>
                 UserProfileId = 1, 
                 ShippingAddressId = 1, 
                 DatePlaced = new DateTime(2023, 10, 10), 
-                DateShipped = new DateTime(2023, 10, 12), 
+                DateShipped = new DateTime(2023, 10, 12),
+                IsCurrent = false,
                 IsCancelled = false
             },
             new Order // sample: placed, not shipped 
@@ -183,7 +183,8 @@ public class RareFormRoastingDbContext : IdentityDbContext<IdentityUser>
                 Id = 2, 
                 UserProfileId = 1, 
                 ShippingAddressId = 2, 
-                DatePlaced = new DateTime(2023, 10, 11), 
+                DatePlaced = new DateTime(2023, 10, 11),
+                IsCurrent = false,
                 IsCancelled = false
             },
             new Order // sample: placed, cancelled
@@ -192,11 +193,13 @@ public class RareFormRoastingDbContext : IdentityDbContext<IdentityUser>
                 UserProfileId = 1, 
                 ShippingAddressId = 1, 
                 DatePlaced = new DateTime(2023, 10, 12), 
+                IsCurrent = false, 
                 IsCancelled = true
             },
         });
         modelBuilder.Entity<OrderProduct>().HasData(new OrderProduct[]
         {
+            // order 1
             new OrderProduct
             {
                 Id = 1,
@@ -211,10 +214,11 @@ public class RareFormRoastingDbContext : IdentityDbContext<IdentityUser>
                 Id = 2,
                 OrderId = 1,
                 ProductId = 2,
-                WeightId = 3,
+                WeightId = 1,
                 GrindId = 1,
                 ProductQuantity = 1
             },
+            // order 2
             new OrderProduct
             {
                 Id = 3,
@@ -224,6 +228,7 @@ public class RareFormRoastingDbContext : IdentityDbContext<IdentityUser>
                 GrindId = 6,
                 ProductQuantity = 1
             },
+            // order 3
             new OrderProduct
             {
                 Id = 4,

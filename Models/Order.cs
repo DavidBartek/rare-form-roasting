@@ -17,14 +17,15 @@ public class Order
     
     public ShippingAddress ShippingAddress { get; set; }
     
-    [Required]
-    public DateTime DatePlaced { get; set; }
+    public DateTime? DatePlaced { get; set; }
     
     public DateTime? DateShipped { get; set; }
     
     public int? SubscriptionId { get; set; }
     
-    public Subscription? Subscription { get; set; }
+    
+    [Required]
+    public bool IsCurrent { get; set; }
     
     [Required]
     public bool IsCancelled { get; set; }
