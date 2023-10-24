@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react";
-import { BsCart } from "react-icons/bs";
+import { BsCart, BsArrowRightShort } from "react-icons/bs";
 import { getCurrentOrder } from "../../managers/orderManager";
-import { Popover, PopoverBody } from "reactstrap";
+import { Button, Popover, PopoverBody, Table } from "reactstrap";
+import { Link } from "react-router-dom";
+import { priceFormatter } from "../assets/exportFunctions";
 
 // this component will be conditionally rendered
 
@@ -19,8 +21,6 @@ export default function Cart ({ loggedInUser }) {
     const [cart, setCart] = useState([]);
     const [popover, setPopover] = useState(false);
 
-    console.log(loggedInUser);
-
     useEffect(() => {
         // may need to add error handling if user is not logged in
         if (!loggedInUser) {
@@ -28,11 +28,11 @@ export default function Cart ({ loggedInUser }) {
         } else {
             getCurrentOrder(loggedInUser.id).then(setCart);
         }
-    }, []);
+    }, [cart]);
     
     const togglePopover = () => {
         setPopover(!popover);
-    }
+    };
     
     if (!loggedInUser) {
         return (
@@ -47,7 +47,9 @@ export default function Cart ({ loggedInUser }) {
                     isOpen={popover}
                     toggle={() => togglePopover()}>
                     <PopoverBody>
-                        Log in to view cart
+                        <Link to="/login">
+                            Log in to view cart
+                        </Link>
                     </PopoverBody>
                 </Popover>
             </>
@@ -83,7 +85,36 @@ export default function Cart ({ loggedInUser }) {
                 isOpen={popover}
                 toggle={() => togglePopover()}>
                 <PopoverBody>
-                    Cart populates with items here
+                    <h5>Cart</h5>
+                    <Table borderless>
+                        <tbody>
+                            {cart.orderProducts.map(op =>
+                            <tr key={op.id}>
+                                <th>
+                                    image
+                                </th>
+                                <td>
+                                    {op.product.displayName}<br />
+                                    <i>Qty: {op.productQuantity}</i><br />
+                                    <i>Size: {op.weight.weightOz} oz</i><br />
+                                    <i>Grind: {op.grind.grindSetting}</i><br />
+
+                                </td>
+                            </tr>
+                            )}
+                            <tr>
+                                <th>
+                                    Total
+                                </th>
+                                <td>
+                                    <strong>${priceFormatter(cart.totalPrice)}</strong>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </Table>
+                    <Button>
+                        Check Out <BsArrowRightShort />
+                    </Button>
                 </PopoverBody>
             </Popover>
         </>

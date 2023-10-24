@@ -42,6 +42,7 @@ export default function UserOrderDetails ({ order, toggleOffCanvas }) {
                     {order.orderProducts.map(op =>
                     <tr key={op.id}>
                         <th>
+                            image
                         </th>
                         <td>
                             {op.product.displayName}<br />

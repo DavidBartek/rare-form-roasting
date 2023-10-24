@@ -9,14 +9,8 @@ import NavBarUnauth from "./NavBarUnauth";
 
 export default function NavBar({ loggedInUser, setLoggedInUser }) {
 const [open, setOpen] = useState(false);
-// const [currentCart, setCurrentCart]
 
 const toggleNavbar = () => setOpen(!open);
-
-// to do:
-// flesh out remaining ternary statement with corresponding navbar view
-
-// console.log(loggedInUser)
 
 return (
     <div>
