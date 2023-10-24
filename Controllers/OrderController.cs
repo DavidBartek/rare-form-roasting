@@ -59,7 +59,7 @@ public class OrderController : ControllerBase
 
     // Read by the cart. Finds the single currently-open Order for a given logged in user.
     [HttpGet("current/{userId}")]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetCurrentUserOrder(int userId)
     {
         return Ok(_dbContext.Orders
@@ -73,6 +73,42 @@ public class OrderController : ControllerBase
                 .ThenInclude(o => o.Grind)
             .Where(o => o.UserProfileId == userId)
             .SingleOrDefault(o => o.IsCurrent == true));
+    }
+
+    // subtracts 1 from the quantity of an OrderProduct object
+    [HttpDelete("subtract/{opId}")]
+    [Authorize]
+    public IActionResult SubtractOne(int opId)
+    {
+        OrderProduct orderProductToChange = _dbContext.OrderProducts.SingleOrDefault(op => op.Id == opId);
+
+        if (orderProductToChange == null)
+        {
+            return NotFound();
+        }
+
+        orderProductToChange.ProductQuantity -= 1;
+        _dbContext.SaveChanges();
+
+        return NoContent();
+    }
+
+    // adds 1 to the quantity of an OrderProduct object
+    [HttpDelete("add/{opId}")]
+    [Authorize]
+    public IActionResult AddOne(int opId)
+    {
+        OrderProduct orderProductToChange = _dbContext.OrderProducts.SingleOrDefault(op => op.Id == opId);
+
+        if (orderProductToChange == null)
+        {
+            return NotFound();
+        }
+
+        orderProductToChange.ProductQuantity += 1;
+        _dbContext.SaveChanges();
+
+        return NoContent();
     }
 
 }
