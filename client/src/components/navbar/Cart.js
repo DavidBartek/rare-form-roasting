@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { BsCart, BsArrowRightShort } from "react-icons/bs";
 import { deleteOrderProduct, getCurrentOrder } from "../../managers/orderManager";
 import { Button, Popover, PopoverBody, Table } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { priceFormatter } from "../assets/exportFunctions";
 import CartQuantityEdit from "./CartQuantityEdit";
 
@@ -10,6 +10,7 @@ export default function Cart ({ loggedInUser }) {
     const [cart, setCart] = useState([]);
     const [popover, setPopover] = useState(false);
     const [deleteConfirmById, setDeleteConfirmById] = useState("");
+    const navigate = useNavigate();
 
     useEffect(() => {
         // may need to add error handling if user is not logged in
@@ -32,6 +33,11 @@ export default function Cart ({ loggedInUser }) {
     const handleDeleteConfirm = (e, opId) => {
         e.preventDefault();
         deleteOrderProduct(opId).then(() => setDeleteConfirmById(""));
+    }
+
+    const handleNavToCheckout = (e) => {
+        e.preventDefault();
+        navigate("checkout");
     }
     
     if (!loggedInUser || !cart) {
@@ -121,7 +127,7 @@ export default function Cart ({ loggedInUser }) {
                             </tr>
                         </tbody>
                     </Table>
-                    <Button >
+                    <Button onClick={(e) => handleNavToCheckout(e)}>
                         Check Out <BsArrowRightShort />
                     </Button>
                 </PopoverBody>

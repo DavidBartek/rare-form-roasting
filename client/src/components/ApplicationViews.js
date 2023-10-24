@@ -45,7 +45,18 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
               <CoffeeDetails loggedInUser={loggedInUser}/>
           } />
         </Route>
-          
+        
+        <Route path="checkout">
+          <Route index element={
+            <AuthorizedRoute loggedInUser={loggedInUser}>
+              
+            </AuthorizedRoute>
+
+          }
+        </Route>
+
+
+        {/* Admin views */}
         <Route path="inventorymanager">
           <Route index element={
             <AuthorizedRoute loggedInUser={loggedInUser} roles={["Admin"]}>
