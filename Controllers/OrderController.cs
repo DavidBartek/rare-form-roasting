@@ -111,4 +111,23 @@ public class OrderController : ControllerBase
         return NoContent();
     }
 
+    // hard delete - deletes OrderProduct obj by id
+    [HttpDelete("delete/{opId}")]
+    [Authorize]
+    public IActionResult DeleteOrderProduct(int opId)
+    {
+        OrderProduct orderProductToDelete = _dbContext.OrderProducts.SingleOrDefault(op => op.Id == opId);
+
+        if (orderProductToDelete == null)
+        {
+            return NotFound();
+        }
+
+        _dbContext.OrderProducts.Remove(orderProductToDelete);
+        _dbContext.SaveChanges();
+
+        return NoContent();
+    }
+
+
 }
