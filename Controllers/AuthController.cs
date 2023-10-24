@@ -60,7 +60,7 @@ public class AuthController : ControllerBase
 
                 var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
 
-                //
+                // added:
                 //
                 // checks if there is an "in-process"/not-yet-checked-out order associated with this user.
                 // if not, a new Order with IsCurrent == true is created.

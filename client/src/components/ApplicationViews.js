@@ -8,7 +8,7 @@ import CoffeeDetails from "./coffees/CoffeeDetails";
 import InventoryManagerList from "./inventorymanager/InventoryManagerList";
 import OrderManagerList from "./ordermanager/OrderManagerList";
 import Profile from "./profile/Profile";
-import OrdersList from "./orders/OrdersList";
+import UserOrdersList from "./userOrders/UserOrdersList";
 
 // note on auth...
 // should each component that is viewable by logged in and non logged in user contain a ternary in the "element" prop?
@@ -32,7 +32,7 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
         <Route path="orders">
           <Route index element={
             <AuthorizedRoute loggedInUser={loggedInUser}>
-              <OrdersList loggedInUser={loggedInUser}/>
+              <UserOrdersList loggedInUser={loggedInUser}/>
             </AuthorizedRoute>
           } />
         </Route>

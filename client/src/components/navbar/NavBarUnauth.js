@@ -10,7 +10,8 @@ DropdownToggle,
 DropdownMenu,
 DropdownItem
 } from "reactstrap";
-import { BsPersonCircle, BsCart } from "react-icons/bs";
+import { BsPersonCircle } from "react-icons/bs";
+import Cart from "./Cart";
 
 export default function NavBarUnauth ({ toggleNavbar, open, setOpen }) {
     return (
@@ -37,7 +38,7 @@ export default function NavBarUnauth ({ toggleNavbar, open, setOpen }) {
                     </DropdownItem>
                 </DropdownMenu>
             </UncontrolledDropdown>
-            <BsCart />
+            <Cart />
         </>
     )
 }

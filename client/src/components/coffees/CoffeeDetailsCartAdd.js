@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Popover, PopoverBody } from "reactstrap";
+import { addToCart } from "../../managers/orderManager";
 
 export default function CoffeeDetailsCartAdd ({ loggedInUser, coffeeDetails, selectedWeightId, selectedGrindId, selectedQuantity }) {
     const navigate = useNavigate();
@@ -30,17 +31,9 @@ export default function CoffeeDetailsCartAdd ({ loggedInUser, coffeeDetails, sel
         }
         console.log("added to cart");
         console.log(newCartObject);
-        // construct object, console log for debugging
-        // ask Josh or Greg how to approach this. Client-side state or backend?
-        // client side:
-        // // objects are stored in a kind of "application state" which components reference throughout order process. This is added to, modified, deleted from, etc. ...
-        // // ... essentially, internal CRUD operations
-        // // would be cleared on logout
-
-        // server side:
-        // // new order object would need to be created on **first** execution of "add to cart", but not on further ones
-        // // new OrderProduct objects POST to database, referencing this ^ orderId
-        // // would be saved ? after logout
+        console.log("user id");
+        console.log(loggedInUser.id);
+        addToCart(newCartObject, loggedInUser.id);
     }
     
     if (!loggedInUser) {

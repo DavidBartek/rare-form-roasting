@@ -2,8 +2,7 @@ import { OffcanvasBody, OffcanvasHeader, Table } from "reactstrap";
 import { dateTimeConverter, priceFormatter } from "../assets/exportFunctions";
 import { Link } from "react-router-dom";
 
-// breadcrumbs at top Order Histroy > Order # x
-export default function OrderDetails ({ order, toggleOffCanvas }) {
+export default function UserOrderDetails ({ order, toggleOffCanvas }) {
     
     const linkGenerator = (idString) => {
         return `/coffees/${idString}`

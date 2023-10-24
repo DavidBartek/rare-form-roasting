@@ -11,7 +11,8 @@ DropdownMenu,
 DropdownItem,
 } from "reactstrap";
 import { logout } from "../../managers/authManager";
-import { BsPersonCircle, BsCart } from "react-icons/bs";
+import { BsPersonCircle } from "react-icons/bs";
+import Cart from "./Cart";
 
 export default function NavBarAuth ({ loggedInUser, setLoggedInUser, toggleNavbar, open, setOpen }) {
     return (
@@ -67,7 +68,7 @@ export default function NavBarAuth ({ loggedInUser, setLoggedInUser, toggleNavba
                     
                 </DropdownMenu>
             </UncontrolledDropdown>
-            <BsCart />
+            <Cart />
         </>
     )
 }
