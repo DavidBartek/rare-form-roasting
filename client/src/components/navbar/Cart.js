@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { BsCart, BsArrowRightShort, BsPlusLg, BsDashLg } from "react-icons/bs";
+import { BsCart, BsArrowRightShort } from "react-icons/bs";
 import { deleteOrderProduct, getCurrentOrder } from "../../managers/orderManager";
 import { Button, Popover, PopoverBody, Table } from "reactstrap";
 import { Link } from "react-router-dom";
@@ -18,7 +18,7 @@ export default function Cart ({ loggedInUser }) {
         } else {
             getCurrentOrder(loggedInUser.id).then(setCart);
         }
-    }, [cart]);
+    }, [cart, loggedInUser]);
     
     const togglePopover = () => {
         setPopover(!popover);
@@ -63,7 +63,7 @@ export default function Cart ({ loggedInUser }) {
                 <Popover
                     target="cartIcon"
                     placement="bottom"
-                    trigger="focus"
+                    trigger="click"
                     isOpen={popover}
                     toggle={() => togglePopover()}>
                     <PopoverBody>
