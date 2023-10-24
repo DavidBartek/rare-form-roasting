@@ -1,11 +1,11 @@
 import { Button, Container, Offcanvas, Table } from "reactstrap";
 import { BsCaretRight } from "react-icons/bs"
 import { useEffect, useState } from "react";
-import { getUserOrders } from "../../managers/userProfileManager";
-import OrderDetails from "./OrderDetails";
+import { getUserOrders } from "../../managers/orderManager";
 import { dateTimeConverter } from "../assets/exportFunctions"
+import UserOrderDetails from "./UserOrderDetails";
 
-export default function OrdersList ({ loggedInUser }) {
+export default function UserOrdersList ({ loggedInUser }) {
     const [myOrders, setMyOrders] = useState([]);
     const [offCanvas, setOffCanvas] = useState(false);
     const [orderWithDetails, setOrderWithDetails] = useState({})
@@ -52,7 +52,7 @@ export default function OrdersList ({ loggedInUser }) {
             </Table>
         </Container>
         <Offcanvas direction="end" isOpen={offCanvas} toggle={() => toggleOffCanvas()}>
-            <OrderDetails order={orderWithDetails} toggleOffCanvas={toggleOffCanvas} />
+            <UserOrderDetails order={orderWithDetails} toggleOffCanvas={toggleOffCanvas} />
         </Offcanvas>
     </>
     )

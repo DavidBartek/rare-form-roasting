@@ -22,7 +22,3 @@ export const updateUserDetails = (userId, userFirst, userLast, userEmail) => {
         headers: {"Content-Type": "application/json"}
     });
 };
-
-export const getUserOrders = (userId) => {
-    return fetch(`${_apiUrl}/orders/${userId}`).then((res) => res.json());
-};

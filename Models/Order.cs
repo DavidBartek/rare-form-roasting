@@ -10,19 +10,17 @@ public class Order
     [Required]
     public int UserProfileId { get; set; }
     
-    public UserProfile UserProfile { get; set; }
+    public UserProfile? UserProfile { get; set; }
     
-    [Required]
-    public int ShippingAddressId { get; set; }
+    public int? ShippingAddressId { get; set; }
     
-    public ShippingAddress ShippingAddress { get; set; }
+    public ShippingAddress? ShippingAddress { get; set; }
     
     public DateTime? DatePlaced { get; set; }
     
     public DateTime? DateShipped { get; set; }
     
     public int? SubscriptionId { get; set; }
-    
     
     [Required]
     public bool IsCurrent { get; set; }
@@ -33,7 +31,7 @@ public class Order
     public List<OrderProduct>? OrderProducts { get; set; }
 
     [NotMapped]
-    public decimal TotalPrice
+    public decimal? TotalPrice
     {
         get
         {
@@ -62,7 +60,7 @@ public class Order
     }
 
     [NotMapped]
-    public string OrderStatus
+    public string? OrderStatus
     {
         get
         {
@@ -70,9 +68,13 @@ public class Order
             {
                 return "Cancelled";
             }
+            else if (IsCurrent == true)
+            {
+                return "Being created by user";
+            }
             else if (DateShipped == null)
             {
-                return "In process";
+                return "Processing";
             }
             else if (DateShipped <= DateTime.Today)
             {

@@ -303,10 +303,11 @@ namespace rare_form_roasting.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     UserProfileId = table.Column<int>(type: "integer", nullable: false),
-                    ShippingAddressId = table.Column<int>(type: "integer", nullable: false),
-                    DatePlaced = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    ShippingAddressId = table.Column<int>(type: "integer", nullable: true),
+                    DatePlaced = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     DateShipped = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     SubscriptionId = table.Column<int>(type: "integer", nullable: true),
+                    IsCurrent = table.Column<bool>(type: "boolean", nullable: false),
                     IsCancelled = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
@@ -316,12 +317,6 @@ namespace rare_form_roasting.Migrations
                         name: "FK_Orders_ShippingAddresses_ShippingAddressId",
                         column: x => x.ShippingAddressId,
                         principalTable: "ShippingAddresses",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Orders_Subscriptions_SubscriptionId",
-                        column: x => x.SubscriptionId,
-                        principalTable: "Subscriptions",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Orders_UserProfiles_UserProfileId",
@@ -416,12 +411,12 @@ namespace rare_form_roasting.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "babcb7a2-fb40-4060-95c2-fe933c63749e", "Admin", "admin" });
+                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "a54e0366-280c-4123-8223-4515a56417c9", "Admin", "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "72ce7bf2-a125-4727-b868-4bb5994afd7e", "david@rfr.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEL3mWcv6YDqmbRVxfIag6sEp2fqDYRqDJ23Q7LSSKDpBrCQJ0TYFS+eWGFroWq3K1w==", null, false, "f41e6b3f-66f3-4a0d-9a96-a4f02924c92c", false, null });
+                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "bb086a49-6842-49ab-aba7-c26c22a77231", "david@rfr.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEAZc/zduTGh6C/IG22IrrnFbKCP9iRRcq1J/vJv/4ZB/74tMnYS8/jfs/VSgnhmO4g==", null, false, "d6bcca11-5ce6-443f-8e3f-931d801a674a", false, null });
 
             migrationBuilder.InsertData(
                 table: "Grinds",
@@ -452,9 +447,8 @@ namespace rare_form_roasting.Migrations
                 columns: new[] { "Id", "PriceMultiplier", "WeightOz" },
                 values: new object[,]
                 {
-                    { 1, 0.75m, 6 },
-                    { 2, 1m, 12 },
-                    { 3, 2m, 24 }
+                    { 1, 1m, 12 },
+                    { 2, 1.95m, 24 }
                 });
 
             migrationBuilder.InsertData(
@@ -478,12 +472,12 @@ namespace rare_form_roasting.Migrations
 
             migrationBuilder.InsertData(
                 table: "Orders",
-                columns: new[] { "Id", "DatePlaced", "DateShipped", "IsCancelled", "ShippingAddressId", "SubscriptionId", "UserProfileId" },
+                columns: new[] { "Id", "DatePlaced", "DateShipped", "IsCancelled", "IsCurrent", "ShippingAddressId", "SubscriptionId", "UserProfileId" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2023, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), false, 1, null, 1 },
-                    { 2, new DateTime(2023, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, 2, null, 1 },
-                    { 3, new DateTime(2023, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), null, true, 1, null, 1 }
+                    { 1, new DateTime(2023, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2023, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), false, false, 1, null, 1 },
+                    { 2, new DateTime(2023, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified), null, false, false, 2, null, 1 },
+                    { 3, new DateTime(2023, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified), null, true, false, 1, null, 1 }
                 });
 
             migrationBuilder.InsertData(
@@ -492,7 +486,7 @@ namespace rare_form_roasting.Migrations
                 values: new object[,]
                 {
                     { 1, 1, 1, 1, 1, 2 },
-                    { 2, 1, 1, 2, 1, 3 },
+                    { 2, 1, 1, 2, 1, 1 },
                     { 3, 6, 2, 3, 1, 2 },
                     { 4, 3, 3, 4, 2, 1 }
                 });
@@ -558,11 +552,6 @@ namespace rare_form_roasting.Migrations
                 name: "IX_Orders_ShippingAddressId",
                 table: "Orders",
                 column: "ShippingAddressId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Orders_SubscriptionId",
-                table: "Orders",
-                column: "SubscriptionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Orders_UserProfileId",
@@ -634,6 +623,9 @@ namespace rare_form_roasting.Migrations
                 name: "SubscriptionProducts");
 
             migrationBuilder.DropTable(
+                name: "Subscriptions");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
@@ -649,13 +641,10 @@ namespace rare_form_roasting.Migrations
                 name: "Weights");
 
             migrationBuilder.DropTable(
-                name: "ShippingAddresses");
-
-            migrationBuilder.DropTable(
-                name: "Subscriptions");
-
-            migrationBuilder.DropTable(
                 name: "SubscriptionTypes");
+
+            migrationBuilder.DropTable(
+                name: "ShippingAddresses");
 
             migrationBuilder.DropTable(
                 name: "UserProfiles");

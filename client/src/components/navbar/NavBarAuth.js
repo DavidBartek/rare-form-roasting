@@ -5,15 +5,21 @@ Nav,
 NavLink,
 NavItem,
 NavbarToggler,
-UncontrolledDropdown,
-DropdownToggle,
-DropdownMenu,
-DropdownItem,
+Popover,
+PopoverBody,
 } from "reactstrap";
 import { logout } from "../../managers/authManager";
-import { BsPersonCircle, BsCart } from "react-icons/bs";
+import { BsPersonCircle } from "react-icons/bs";
+import Cart from "./Cart";
+import { useState } from "react";
 
 export default function NavBarAuth ({ loggedInUser, setLoggedInUser, toggleNavbar, open, setOpen }) {
+    const [popover, setPopover] = useState(false);
+
+    const togglePopover = () => {
+        setPopover(!popover);
+    };
+    
     return (
         <>
             <NavbarToggler onClick={toggleNavbar} />
@@ -40,34 +46,38 @@ export default function NavBarAuth ({ loggedInUser, setLoggedInUser, toggleNavba
                     )}
                 </Nav>
             </Collapse>
-            <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                    <BsPersonCircle />
-                </DropdownToggle>
-                <DropdownMenu>
-                    <DropdownItem header>Hi, {loggedInUser.firstName}</DropdownItem>
-                    <DropdownItem
+            <BsPersonCircle id="profileIcon"/>
+            <Popover
+                target="profileIcon"
+                placement="bottom"
+                trigger="focus"
+                isOpen={popover}
+                toggle={() => togglePopover()}>
+                <PopoverBody>
+                    <h5>
+                        Hi, {loggedInUser.firstName}
+                    </h5>
+                    <div
                         onClick={() => {
                             logout().then(() => {
                             setLoggedInUser(null);
                             });
                         }}
-                    >Sign out</DropdownItem>
-                    <DropdownItem divider/>
-                    <DropdownItem>
+                        >Sign out
+                    </div>
+                    <div>
                         <NavLink tag={RRNavLink} to="/orders">
                             My Orders
                         </NavLink>
-                    </DropdownItem>
-                    <DropdownItem>
+                    </div>
+                    <div>
                         <NavLink tag={RRNavLink} to="/profile">
                             Profile
                         </NavLink>
-                    </DropdownItem>
-                    
-                </DropdownMenu>
-            </UncontrolledDropdown>
-            <BsCart />
+                    </div>
+                </PopoverBody>
+            </Popover>
+            <Cart loggedInUser={loggedInUser}/>
         </>
     )
 }

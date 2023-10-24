@@ -126,22 +126,4 @@ public class UserProfileController : ControllerBase
         return NoContent();
     }
 
-    // get all orders & related data for a given logged-in user
-    [HttpGet("orders/{userId}")]
-    [Authorize]
-    public IActionResult GetUserOrders(int userId)
-    {
-        return Ok(_dbContext.Orders
-            .Include(o => o.UserProfile)
-            .Include(o => o.ShippingAddress)
-            .Include(o => o.OrderProducts)
-                .ThenInclude(o => o.Product)
-            .Include(o => o.OrderProducts)
-                .ThenInclude(o => o.Weight)
-            .Include(o => o.OrderProducts)
-                .ThenInclude(o => o.Grind)
-            .Where(o => o.UserProfileId == userId)
-            .ToList());
-    }
-
 }

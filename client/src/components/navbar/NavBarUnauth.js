@@ -5,14 +5,20 @@ Nav,
 NavLink,
 NavItem,
 NavbarToggler,
-UncontrolledDropdown,
-DropdownToggle,
-DropdownMenu,
-DropdownItem
+Popover,
+PopoverBody
 } from "reactstrap";
-import { BsPersonCircle, BsCart } from "react-icons/bs";
+import { BsPersonCircle } from "react-icons/bs";
+import Cart from "./Cart";
+import { useState } from "react";
 
 export default function NavBarUnauth ({ toggleNavbar, open, setOpen }) {
+    const [popover, setPopover] = useState(false);
+
+    const togglePopover = () => {
+        setPopover(!popover);
+    };
+    
     return (
         <>
             <NavbarToggler onClick={toggleNavbar} />
@@ -25,19 +31,22 @@ export default function NavBarUnauth ({ toggleNavbar, open, setOpen }) {
                     </NavItem>
                 </Nav>
             </Collapse>
-            <UncontrolledDropdown nav inNavbar>
-                <DropdownToggle nav caret>
-                    <BsPersonCircle />
-                </DropdownToggle>
-                <DropdownMenu>
-                    <DropdownItem>
+            <BsPersonCircle id="profileIcon"/>
+            <Popover
+                target="profileIcon"
+                placement="bottom"
+                trigger="focus"
+                isOpen={popover}
+                toggle={() => togglePopover()}>
+                <PopoverBody>
+                    <div>
                         <NavLink tag={RRNavLink} to="/login">
                             Login/Create Account
                         </NavLink>
-                    </DropdownItem>
-                </DropdownMenu>
-            </UncontrolledDropdown>
-            <BsCart />
+                    </div>
+                </PopoverBody>        
+            </Popover>
+            <Cart />
         </>
     )
 }

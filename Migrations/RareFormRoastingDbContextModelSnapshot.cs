@@ -51,7 +51,7 @@ namespace rare_form_roasting.Migrations
                         new
                         {
                             Id = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
-                            ConcurrencyStamp = "babcb7a2-fb40-4060-95c2-fe933c63749e",
+                            ConcurrencyStamp = "a54e0366-280c-4123-8223-4515a56417c9",
                             Name = "Admin",
                             NormalizedName = "admin"
                         });
@@ -150,13 +150,13 @@ namespace rare_form_roasting.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "72ce7bf2-a125-4727-b868-4bb5994afd7e",
+                            ConcurrencyStamp = "bb086a49-6842-49ab-aba7-c26c22a77231",
                             Email = "david@rfr.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEL3mWcv6YDqmbRVxfIag6sEp2fqDYRqDJ23Q7LSSKDpBrCQJ0TYFS+eWGFroWq3K1w==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEAZc/zduTGh6C/IG22IrrnFbKCP9iRRcq1J/vJv/4ZB/74tMnYS8/jfs/VSgnhmO4g==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "f41e6b3f-66f3-4a0d-9a96-a4f02924c92c",
+                            SecurityStamp = "d6bcca11-5ce6-443f-8e3f-931d801a674a",
                             TwoFactorEnabled = false
                         });
                 });
@@ -307,7 +307,7 @@ namespace rare_form_roasting.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("DatePlaced")
+                    b.Property<DateTime?>("DatePlaced")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime?>("DateShipped")
@@ -316,7 +316,10 @@ namespace rare_form_roasting.Migrations
                     b.Property<bool>("IsCancelled")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("ShippingAddressId")
+                    b.Property<bool>("IsCurrent")
+                        .HasColumnType("boolean");
+
+                    b.Property<int?>("ShippingAddressId")
                         .HasColumnType("integer");
 
                     b.Property<int?>("SubscriptionId")
@@ -329,8 +332,6 @@ namespace rare_form_roasting.Migrations
 
                     b.HasIndex("ShippingAddressId");
 
-                    b.HasIndex("SubscriptionId");
-
                     b.HasIndex("UserProfileId");
 
                     b.ToTable("Orders");
@@ -342,6 +343,7 @@ namespace rare_form_roasting.Migrations
                             DatePlaced = new DateTime(2023, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DateShipped = new DateTime(2023, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
+                            IsCurrent = false,
                             ShippingAddressId = 1,
                             UserProfileId = 1
                         },
@@ -350,6 +352,7 @@ namespace rare_form_roasting.Migrations
                             Id = 2,
                             DatePlaced = new DateTime(2023, 10, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = false,
+                            IsCurrent = false,
                             ShippingAddressId = 2,
                             UserProfileId = 1
                         },
@@ -358,6 +361,7 @@ namespace rare_form_roasting.Migrations
                             Id = 3,
                             DatePlaced = new DateTime(2023, 10, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsCancelled = true,
+                            IsCurrent = false,
                             ShippingAddressId = 1,
                             UserProfileId = 1
                         });
@@ -415,7 +419,7 @@ namespace rare_form_roasting.Migrations
                             OrderId = 1,
                             ProductId = 2,
                             ProductQuantity = 1,
-                            WeightId = 3
+                            WeightId = 1
                         },
                         new
                         {
@@ -791,19 +795,13 @@ namespace rare_form_roasting.Migrations
                         new
                         {
                             Id = 1,
-                            PriceMultiplier = 0.75m,
-                            WeightOz = 6
-                        },
-                        new
-                        {
-                            Id = 2,
                             PriceMultiplier = 1m,
                             WeightOz = 12
                         },
                         new
                         {
-                            Id = 3,
-                            PriceMultiplier = 2m,
+                            Id = 2,
+                            PriceMultiplier = 1.95m,
                             WeightOz = 24
                         });
                 });
@@ -863,13 +861,7 @@ namespace rare_form_roasting.Migrations
                 {
                     b.HasOne("RareFormRoasting.Models.ShippingAddress", "ShippingAddress")
                         .WithMany()
-                        .HasForeignKey("ShippingAddressId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RareFormRoasting.Models.Subscription", "Subscription")
-                        .WithMany()
-                        .HasForeignKey("SubscriptionId");
+                        .HasForeignKey("ShippingAddressId");
 
                     b.HasOne("RareFormRoasting.Models.UserProfile", "UserProfile")
                         .WithMany("Orders")
@@ -878,8 +870,6 @@ namespace rare_form_roasting.Migrations
                         .IsRequired();
 
                     b.Navigation("ShippingAddress");
-
-                    b.Navigation("Subscription");
 
                     b.Navigation("UserProfile");
                 });

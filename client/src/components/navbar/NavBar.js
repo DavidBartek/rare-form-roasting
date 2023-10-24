@@ -12,16 +12,11 @@ const [open, setOpen] = useState(false);
 
 const toggleNavbar = () => setOpen(!open);
 
-// to do:
-// flesh out remaining ternary statement with corresponding navbar view
-
-// console.log(loggedInUser)
-
 return (
     <div>
     <Navbar color="light" light fixed="true" expand="lg">
         <NavbarBrand className="mr-auto" tag={RRNavLink} to="/">
-        Rare Form Roasting Logo
+        RFR Logo
         </NavbarBrand>
         {loggedInUser ? (
             <NavBarAuth 
