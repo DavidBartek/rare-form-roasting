@@ -1,4 +1,7 @@
+import { useEffect, useState } from "react";
 import { BsCart } from "react-icons/bs";
+import { getCurrentOrder } from "../../managers/orderManager";
+import { Popover, PopoverBody } from "reactstrap";
 
 // this component will be conditionally rendered
 
@@ -13,11 +16,76 @@ import { BsCart } from "react-icons/bs";
 // useEffect which watches cart items triggers this Popover; does not disappear with timeout
 
 export default function Cart ({ loggedInUser }) {
-    // getCurrentOrder
+    const [cart, setCart] = useState([]);
+    const [popover, setPopover] = useState(false);
+
+    console.log(loggedInUser);
+
+    useEffect(() => {
+        // may need to add error handling if user is not logged in
+        if (!loggedInUser) {
+            return;
+        } else {
+            getCurrentOrder(loggedInUser.id).then(setCart);
+        }
+    }, []);
     
+    const togglePopover = () => {
+        setPopover(!popover);
+    }
+    
+    if (!loggedInUser) {
+        return (
+            <>
+                <BsCart 
+                    id="cartIcon"
+                />
+                <Popover
+                    target="cartIcon"
+                    placement="bottom"
+                    trigger="focus"
+                    isOpen={popover}
+                    toggle={() => togglePopover()}>
+                    <PopoverBody>
+                        Log in to view cart
+                    </PopoverBody>
+                </Popover>
+            </>
+        )
+    } else if (cart.length === 0) {
+        return (
+            <>
+                <BsCart 
+                    id="cartIcon"
+                />
+                <Popover
+                    target="cartIcon"
+                    placement="bottom"
+                    trigger="focus"
+                    isOpen={popover}
+                    toggle={() => togglePopover()}>
+                    <PopoverBody>
+                        Cart is empty.
+                    </PopoverBody>
+                </Popover>
+            </>
+        )
+    }
     return (
         <>
-        <BsCart />
+            <BsCart 
+                id="cartIcon"
+            />
+            <Popover
+                target="cartIcon"
+                placement="bottom"
+                trigger="focus"
+                isOpen={popover}
+                toggle={() => togglePopover()}>
+                <PopoverBody>
+                    Cart populates with items here
+                </PopoverBody>
+            </Popover>
         </>
     )
 }

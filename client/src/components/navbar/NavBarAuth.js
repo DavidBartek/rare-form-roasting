@@ -68,7 +68,7 @@ export default function NavBarAuth ({ loggedInUser, setLoggedInUser, toggleNavba
                     
                 </DropdownMenu>
             </UncontrolledDropdown>
-            <Cart />
+            <Cart loggedInUser={loggedInUser}/>
         </>
     )
 }

@@ -59,7 +59,6 @@ export default function CoffeeDetailsCartAdd ({ loggedInUser, coffeeDetails, sel
                     Add To Cart
                 </Button>
                 <Popover
-                    flip
                     target="addToCartButton"
                     isOpen={popover}
                     toggle={() => togglePopover()}>
