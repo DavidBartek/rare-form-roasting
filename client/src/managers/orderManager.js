@@ -32,3 +32,9 @@ export const addOne = (opId) => {
         method: "DELETE"
     });
 };
+
+export const deleteOrderProduct = (opId) => {
+    return fetch(`${_apiUrl}/delete/${opId}`, {
+        method: "DELETE"
+    });
+};

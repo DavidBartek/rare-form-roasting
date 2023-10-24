@@ -30,7 +30,6 @@ export default function CartQuantityEdit ({ op, quantity }) {
             ) : (
                 <BsPlusLg onClick={() => handleAdd()}/>
             )}
-            
         </h6>
     )
 }
