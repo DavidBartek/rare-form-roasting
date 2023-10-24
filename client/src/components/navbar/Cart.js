@@ -1,21 +1,10 @@
 import { useEffect, useState } from "react";
-import { BsCart, BsArrowRightShort } from "react-icons/bs";
+import { BsCart, BsArrowRightShort, BsPlusLg, BsDashLg } from "react-icons/bs";
 import { getCurrentOrder } from "../../managers/orderManager";
 import { Button, Popover, PopoverBody, Table } from "reactstrap";
 import { Link } from "react-router-dom";
 import { priceFormatter } from "../assets/exportFunctions";
-
-// this component will be conditionally rendered
-
-// if logged in:
-// // empty cart: "Cart is empty"
-// // cart with items: display in simple list akin to UserOrderList. Bottom: "Checkout" button
-// add reactstrap badge to display how many items are in cart, if any (if 0: no badge)
-
-// if not logged in:
-// "log in to view cart and place an order"
-
-// useEffect which watches cart items triggers this Popover; does not disappear with timeout
+import CartQuantityEdit from "./CartQuantityEdit";
 
 export default function Cart ({ loggedInUser }) {
     const [cart, setCart] = useState([]);
@@ -81,7 +70,7 @@ export default function Cart ({ loggedInUser }) {
             <Popover
                 target="cartIcon"
                 placement="bottom"
-                trigger="focus"
+                trigger="click"
                 isOpen={popover}
                 toggle={() => togglePopover()}>
                 <PopoverBody>
@@ -94,11 +83,11 @@ export default function Cart ({ loggedInUser }) {
                                     image
                                 </th>
                                 <td>
-                                    {op.product.displayName}<br />
-                                    <i>Qty: {op.productQuantity}</i><br />
-                                    <i>Size: {op.weight.weightOz} oz</i><br />
-                                    <i>Grind: {op.grind.grindSetting}</i><br />
-
+                                    <h5>{op.product.displayName}</h5>
+                                    Size: {op.weight.weightOz} oz<br />
+                                    Grind: {op.grind.grindSetting}<br />
+                                    <CartQuantityEdit op={op} quantity={op.productQuantity}/><br />
+                                    {/* // delete from cart here */}
                                 </td>
                             </tr>
                             )}
@@ -112,7 +101,7 @@ export default function Cart ({ loggedInUser }) {
                             </tr>
                         </tbody>
                     </Table>
-                    <Button>
+                    <Button >
                         Check Out <BsArrowRightShort />
                     </Button>
                 </PopoverBody>
