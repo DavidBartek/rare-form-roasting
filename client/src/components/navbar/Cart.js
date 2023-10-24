@@ -31,11 +31,10 @@ export default function Cart ({ loggedInUser }) {
 
     const handleDeleteConfirm = (e, opId) => {
         e.preventDefault();
-        console.log(`Deleted op id ${opId}`)
         deleteOrderProduct(opId).then(() => setDeleteConfirmById(""));
     }
     
-    if (!loggedInUser) {
+    if (!loggedInUser || !cart) {
         return (
             <>
                 <BsCart 
@@ -55,7 +54,7 @@ export default function Cart ({ loggedInUser }) {
                 </Popover>
             </>
         )
-    } else if (cart.length === 0) {
+    } else if (cart.totalPrice === 0) {
         return (
             <>
                 <BsCart 
@@ -89,7 +88,7 @@ export default function Cart ({ loggedInUser }) {
                     <h5>Cart</h5>
                     <Table borderless>
                         <tbody>
-                            {cart.orderProducts.map(op =>
+                            {cart.orderProducts?.map(op =>
                             <tr key={op.id}>
                                 <th>
                                     image

@@ -59,7 +59,7 @@ public class OrderController : ControllerBase
 
     // Read by the cart. Finds the single currently-open Order for a given logged in user.
     [HttpGet("current/{userId}")]
-    [Authorize]
+    // [Authorize]
     public IActionResult GetCurrentUserOrder(int userId)
     {
         return Ok(_dbContext.Orders

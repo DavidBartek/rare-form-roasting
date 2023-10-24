@@ -29,10 +29,7 @@ export default function CoffeeDetailsCartAdd ({ loggedInUser, coffeeDetails, sel
             grindId: parseInt(selectedGrindId),
             productQuantity: parseInt(selectedQuantity)
         }
-        console.log("added to cart");
-        console.log(newCartObject);
-        console.log("user id");
-        console.log(loggedInUser.id);
+
         addToCart(newCartObject, loggedInUser.id);
     }
     
