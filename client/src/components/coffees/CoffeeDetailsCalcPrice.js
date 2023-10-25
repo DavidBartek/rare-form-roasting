@@ -4,25 +4,6 @@ import { getWeightById } from "../../managers/productManager";
 
 export default function CoffeeDetailsCalcPrice ({ coffeeDetails, selectedWeightId, selectedWeightObj, selectedQuantity }) {
     
-    
-    // useEffect(() => {
-    //     if (!selectedWeightId && selectedWeightId !== "") {
-    //         getWeightById(selectedWeightId).then(setWeightObj);
-    //     }
-    // }, [selectedWeightId]);
-
-    // console.log(weightSettings);
-    // console.log(selectedWeightId);
-
-    // if (!selectedWeightId && selectedWeightId !== "") {
-    //     // console.log(selectedWeightId)
-    //     setWeightObj(weightSettings.find(w => w.id === selectedWeightId));
-        
-    // }
-
-    // console.log(coffeeDetails)
-    // console.log(weightObj)
-    // console.log(selectedQuantity)
     return <>
     <h4>Price</h4>
         {selectedWeightId && selectedQuantity ? (

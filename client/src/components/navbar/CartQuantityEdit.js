@@ -5,12 +5,10 @@ export default function CartQuantityEdit ({ op, quantity }) {
     
     const handleAdd = () => {
         addOne(op.id)
-        console.log("added 1");
     }
 
     const handleMinus = () => {
         subtractOne(op.id);
-        console.log("removed 1");
     }
     
     return (

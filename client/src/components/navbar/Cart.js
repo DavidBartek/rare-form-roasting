@@ -1,24 +1,24 @@
 import { useEffect, useState } from "react";
-import { BsCart, BsArrowRightShort, BsPlusLg, BsDashLg } from "react-icons/bs";
+import { BsCart, BsArrowRightShort } from "react-icons/bs";
 import { deleteOrderProduct, getCurrentOrder } from "../../managers/orderManager";
 import { Button, Popover, PopoverBody, Table } from "reactstrap";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { priceFormatter } from "../assets/exportFunctions";
 import CartQuantityEdit from "./CartQuantityEdit";
 
 export default function Cart ({ loggedInUser }) {
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState({});
     const [popover, setPopover] = useState(false);
     const [deleteConfirmById, setDeleteConfirmById] = useState("");
+    const navigate = useNavigate();
 
     useEffect(() => {
-        // may need to add error handling if user is not logged in
         if (!loggedInUser) {
             return;
         } else {
             getCurrentOrder(loggedInUser.id).then(setCart);
         }
-    }, [cart]);
+    }, [cart, loggedInUser]);
     
     const togglePopover = () => {
         setPopover(!popover);
@@ -31,11 +31,16 @@ export default function Cart ({ loggedInUser }) {
 
     const handleDeleteConfirm = (e, opId) => {
         e.preventDefault();
-        console.log(`Deleted op id ${opId}`)
         deleteOrderProduct(opId).then(() => setDeleteConfirmById(""));
     }
+
+    const handleNavToCheckout = (e) => {
+        e.preventDefault();
+        togglePopover();
+        navigate("checkout");
+    }
     
-    if (!loggedInUser) {
+    if (!loggedInUser || !cart) {
         return (
             <>
                 <BsCart 
@@ -55,7 +60,7 @@ export default function Cart ({ loggedInUser }) {
                 </Popover>
             </>
         )
-    } else if (cart.length === 0) {
+    } else if (cart.totalPrice === 0) {
         return (
             <>
                 <BsCart 
@@ -64,7 +69,7 @@ export default function Cart ({ loggedInUser }) {
                 <Popover
                     target="cartIcon"
                     placement="bottom"
-                    trigger="focus"
+                    trigger="click"
                     isOpen={popover}
                     toggle={() => togglePopover()}>
                     <PopoverBody>
@@ -89,7 +94,7 @@ export default function Cart ({ loggedInUser }) {
                     <h5>Cart</h5>
                     <Table borderless>
                         <tbody>
-                            {cart.orderProducts.map(op =>
+                            {cart.orderProducts?.map(op =>
                             <tr key={op.id}>
                                 <th>
                                     image
@@ -122,7 +127,7 @@ export default function Cart ({ loggedInUser }) {
                             </tr>
                         </tbody>
                     </Table>
-                    <Button >
+                    <Button onClick={(e) => handleNavToCheckout(e)}>
                         Check Out <BsArrowRightShort />
                     </Button>
                 </PopoverBody>
