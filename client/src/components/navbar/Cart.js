@@ -7,13 +7,12 @@ import { priceFormatter } from "../assets/exportFunctions";
 import CartQuantityEdit from "./CartQuantityEdit";
 
 export default function Cart ({ loggedInUser }) {
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState({});
     const [popover, setPopover] = useState(false);
     const [deleteConfirmById, setDeleteConfirmById] = useState("");
     const navigate = useNavigate();
 
     useEffect(() => {
-        // may need to add error handling if user is not logged in
         if (!loggedInUser) {
             return;
         } else {
@@ -37,6 +36,7 @@ export default function Cart ({ loggedInUser }) {
 
     const handleNavToCheckout = (e) => {
         e.preventDefault();
+        togglePopover();
         navigate("checkout");
     }
     
