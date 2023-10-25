@@ -1,5 +1,7 @@
 const _apiUrl = "/api/shippingaddress";
 
+export const createNewAddress = 
+
 export const getAddressDetails = (addressId) => {
     return fetch(`${_apiUrl}/${addressId}`).then((res) => res.json());
 };

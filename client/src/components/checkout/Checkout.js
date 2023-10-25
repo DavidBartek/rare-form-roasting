@@ -43,12 +43,15 @@ export default function Checkout ({ loggedInUser }) {
 
     const handlePurchase = (e) => {
         if (newAddress1 === "" || newCity === "" || newStateCode === "" || newZip === "") {
-            console.log("please fill in all required fields")
+            console.log("please fill in all required fields - make this a modal")
         } else {
             console.log("purchased");
             console.log("if new address is selected: FIRST posts this address, .then receives its ID in response")
+            // fetch for new address: will require an address POST (pass in address obj)
+            // // then: receive response with address id; pass to second order POST with userdetails.id, cart id
+            // fetch for existing address: will require just one order POST (can format as delete)
             console.log("takes order id (cart id) and address Id and modifies fields in backend:")
-            console.log("ShippingAddressId; DatePlaced (now); IsCurrent = false")
+            console.log("DatePlaced (now); IsCurrent = false")
             console.log("finally: navigates user to confirmation page summarizing order")
         }
         
