@@ -38,3 +38,4 @@ export const deleteOrderProduct = (opId) => {
         method: "DELETE"
     });
 };
+export const placeOrder = (addressObj)

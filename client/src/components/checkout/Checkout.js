@@ -34,14 +34,27 @@ export default function Checkout ({ loggedInUser }) {
         setNewAddressView(true);
         setNewAddressIsSelected(true);
         console.log("new address fields set as address, to be posted & then id assigned to order obj")
+        console.log(newAddress1);
+    }
+    
+    const handleNewAddressPost = () => {
+        console.log("post new address logic here")
     }
 
     const handlePurchase = (e) => {
-        console.log("purchased");
-        console.log("if new address is selected: FIRST posts this address, .then receives its ID in response")
-        console.log("takes order id (cart id) and address Id and modifies fields in backend:")
-        console.log("ShippingAddressId; DatePlaced (now); IsCurrent = false")
-        console.log("finally: navigates user to confirmation page summarizing order")
+        if (newAddress1 === "" || newCity === "" || newStateCode === "" || newZip === "") {
+            console.log("please fill in all required fields - make this a modal")
+        } else {
+            console.log("purchased");
+            console.log("if new address is selected: FIRST posts this address, .then receives its ID in response")
+            // fetch for new address: will require an address POST (pass in address obj)
+            // // then: receive response with address id; pass to second order POST with userdetails.id, cart id
+            // fetch for existing address: will require just one order POST (can format as delete)
+            console.log("takes order id (cart id) and address Id and modifies fields in backend:")
+            console.log("DatePlaced (now); IsCurrent = false")
+            console.log("finally: navigates user to confirmation page summarizing order")
+        }
+        
     }
 
     if (!userDetails || !cart) {
@@ -54,28 +67,28 @@ export default function Checkout ({ loggedInUser }) {
         <strong>Shipping Address: </strong><br />
         <Form>
             <FormGroup tag="fieldset">
-            {userDetails.shippingAddresses?.length > 0 ? (
-                userDetails.shippingAddresses.map(a => 
-                <FormGroup check key={a.id}>
-                    <Input
-                        name="addressRadio"
-                        type="radio"
-                        onChange={() => handleAddressSelect(a)}
-                    />
-                    <Label check>
-                    {a.address1}<br />
-                    {a.address2 ? (
-                        <div>
-                            {a.address2}
-                            <br />
-                        </div>
-                        ) : (
-                        ""
-                        )}
-                    {a.city}, {a.stateCode} {a.zip}
-                    </Label>
-                </FormGroup>
-                )
+                {userDetails.shippingAddresses?.length > 0 ? (
+                    userDetails.shippingAddresses.map(a => (
+                        <FormGroup check key={a.id}>
+                            <Input
+                                name="addressRadio"
+                                type="radio"
+                                onChange={() => handleAddressSelect(a)}
+                            />
+                            <Label check>
+                                {a.address1}<br />
+                                {a.address2 ? (
+                                    <div>
+                                        {a.address2}
+                                        <br />
+                                    </div>
+                                ) : (
+                                    ""
+                                )}
+                                {a.city}, {a.stateCode} {a.zip}
+                            </Label>
+                        </FormGroup>
+                    ))
                 ) : (
                     ""
                 )}
@@ -83,9 +96,7 @@ export default function Checkout ({ loggedInUser }) {
                     <Input
                         name="addressRadio"
                         type="radio"
-                        onChange={() => 
-                            handleNewAddressSelect()
-                        }
+                        onChange={() => handleNewAddressSelect()}
                     />
                     <Label check>
                         <>
@@ -96,74 +107,85 @@ export default function Checkout ({ loggedInUser }) {
                     </Label>
                 </FormGroup>
                 {newAddressView ? (
-                <FormGroup>
-                    <Label for="address1">
-                        Address 1
-                    </Label>
-                    <Input
-                        id="address1"
-                        name="address1"
-                        type="text"
-                        value={newAddress1 ?? ""}
-                        onChange={(e) => {
-                            setNewAddress1(e.target.value)
-                        }}
-                    />
-                    <Label for="address2">
-                        Address 2
-                    </Label>
-                    <Input
-                        id="address2"
-                        name="address2"
-                        type="text"
-                        value={newAddress2 ?? ""}
-                        onChange={(e) => {
-                            setNewAddress2(e.target.value)
-                        }}
-                    />
-                    <Label for="city">
-                        City
-                    </Label>
-                    <Input
-                        id="city"
-                        name="city"
-                        type="text"
-                        value={newCity ?? ""}
-                        onChange={(e) => {
-                            setNewCity(e.target.value)
-                        }}
-                    />
-                    <Label for="stateCode">
-                        State
-                    </Label>
-                    <Input
-                        id="stateCode"
-                        name="stateCode"
-                        type="select"
-                        placeholder="Select state below"
-                        value={newStateCode ?? ""}
-                        onChange={(e) => {
-                            setNewStateCode(e.target.value)
-                        }}>
-                    {stateCodes.map(s =>
-                        <option key={s}>
-                            {s}
-                        </option>
-                    )}
-                    </Input>
-                    <Label for="zip">
-                        Zip
-                    </Label>
-                    <Input
-                        id="zip"
-                        name="zip"
-                        type="text"
-                        value={newZip ?? ""}
-                        onChange={(e) => {
-                            setNewZip(e.target.value)
-                        }}
-                    />
-                </FormGroup>    
+                    <FormGroup>
+                        <FormGroup>
+                            <Label for="address1">
+                                Address 1
+                            </Label>
+                            <Input
+                                id="address1"
+                                name="address1"
+                                type="text"
+                                value={newAddress1 ?? ""}
+                                required
+                                onChange={(e) => {
+                                    setNewAddress1(e.target.value)
+                                }}
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="address2">
+                                Address 2
+                            </Label>
+                            <Input
+                                id="address2"
+                                name="address2"
+                                type="text"
+                                value={newAddress2 ?? ""}
+                                onChange={(e) => {
+                                    setNewAddress2(e.target.value)
+                                }}
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="city">
+                                City
+                            </Label>
+                            <Input
+                                id="city"
+                                name="city"
+                                type="text"
+                                value={newCity ?? ""}
+                                onChange={(e) => {
+                                    setNewCity(e.target.value)
+                                }}
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="stateCode">
+                                State
+                            </Label>
+                            <Input
+                                id="stateCode"
+                                name="stateCode"
+                                type="select"
+                                value={newStateCode ?? ""}
+                                onChange={(e) => {
+                                    setNewStateCode(e.target.value)
+                                }}
+                            >
+                                {stateCodes.map(s =>
+                                    <option key={s}>
+                                        {s}
+                                    </option>
+                                )}
+                            </Input>
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="zip">
+                                Zip
+                            </Label>
+                            <Input
+                                id="zip"
+                                name="zip"
+                                type="text"
+                                value={newZip ?? ""}
+                                onChange={(e) => {
+                                    setNewZip(e.target.value)
+                                }}
+                            />
+                        </FormGroup>
+                    </FormGroup>    
                 ) : (
                     ""
                 )}
@@ -172,20 +194,20 @@ export default function Checkout ({ loggedInUser }) {
         <h5>Cart</h5>
         <Table borderless>
             <tbody>
-                {cart.orderProducts?.map(op =>
-                <tr key={op.id}>
-                    <th>
-                        image
-                    </th>
-                    <td>
-                        <h5>{op.product.displayName}</h5>
-                        Size: {op.weight.weightOz} oz<br />
-                        Grind: {op.grind.grindSetting}<br />
-                        Quantity: {op.productQuantity}<br />
-                        <h6>${priceFormatter(op.subtotal)}</h6>
-                    </td>
-                </tr>
-                )}
+                {cart.orderProducts?.map(op => (
+                    <tr key={op.id}>
+                        <th>
+                            image
+                        </th>
+                        <td>
+                            <h5>{op.product.displayName}</h5>
+                            Size: {op.weight.weightOz} oz<br />
+                            Grind: {op.grind.grindSetting}<br />
+                            Quantity: {op.productQuantity}<br />
+                            <h6>${priceFormatter(op.subtotal)}</h6>
+                        </td>
+                    </tr>
+                ))}
                 <tr>
                     <th>
                         Total
@@ -198,6 +220,7 @@ export default function Checkout ({ loggedInUser }) {
         </Table>
         <Button onClick={(e) => handlePurchase(e)}>Purchase</Button>
     </Container>
+
     )
 }
 
