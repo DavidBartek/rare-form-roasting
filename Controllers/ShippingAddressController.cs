@@ -18,11 +18,11 @@ public class ShippingAddressController : ControllerBase
     }
 
     // get all addresses (for debugging)
-    [HttpGet]
-    public IActionResult GetAddresses()
-    {
-        return Ok(_dbContext.ShippingAddresses.ToList());
-    }
+    // [HttpGet]
+    // public IActionResult GetAddresses()
+    // {
+    //     return Ok(_dbContext.ShippingAddresses.ToList());
+    // }
 
     // get details by address id
     [HttpGet("{addressId}")]
@@ -83,6 +83,17 @@ public class ShippingAddressController : ControllerBase
 
         _dbContext.SaveChanges();
         return NoContent();
+    }
+
+    // create a new address tied to a particular user
+    [HttpPost()]
+    // [Authorize]
+    public IActionResult CreateAddress(ShippingAddress newAddress)
+    {
+        newAddress.IsActive = true;
+        _dbContext.ShippingAddresses.Add(newAddress);
+        _dbContext.SaveChanges();
+        return Created($"/api/shippingaddress/{newAddress.Id}", newAddress);
     }
     
 }

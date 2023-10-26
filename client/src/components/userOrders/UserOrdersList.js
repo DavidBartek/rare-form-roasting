@@ -2,7 +2,7 @@ import { Button, Container, Offcanvas, Table } from "reactstrap";
 import { BsCaretRight } from "react-icons/bs"
 import { useEffect, useState } from "react";
 import { getUserOrders } from "../../managers/orderManager";
-import { dateTimeConverter } from "../assets/exportFunctions"
+import { dateTimeConverter, priceFormatter } from "../assets/exportFunctions"
 import UserOrderDetails from "./UserOrderDetails";
 
 export default function UserOrdersList ({ loggedInUser }) {
@@ -36,7 +36,7 @@ export default function UserOrdersList ({ loggedInUser }) {
                         <td>
                             Order # {o.id}<br />
                             Placed {dateTimeConverter(o.datePlaced)}<br />
-                            Total: ${o.totalPrice}<br />
+                            Total: ${priceFormatter(o.totalPrice)}<br />
                             Status: {o.orderStatus}<br />
                         </td>
                         <td>

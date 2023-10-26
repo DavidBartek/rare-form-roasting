@@ -10,6 +10,7 @@ import OrderManagerList from "./ordermanager/OrderManagerList";
 import Profile from "./profile/Profile";
 import UserOrdersList from "./userOrders/UserOrdersList";
 import Checkout from "./checkout/Checkout";
+import CheckoutConfirm from "./checkout/CheckoutConfirm";
 
 // note on auth...
 // should each component that is viewable by logged in and non logged in user contain a ternary in the "element" prop?
@@ -53,6 +54,11 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
               <Checkout loggedInUser={loggedInUser}/>
             </AuthorizedRoute>
           } />
+            <Route path="confirm" element={
+              <AuthorizedRoute loggedInUser={loggedInUser}>
+                <CheckoutConfirm loggedInUser={loggedInUser}/>
+              </AuthorizedRoute>
+            } />
         </Route>
 
 

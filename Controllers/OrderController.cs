@@ -129,5 +129,33 @@ public class OrderController : ControllerBase
         return NoContent();
     }
 
+    // final order submission - really just changes a few props on a mostly-complete order object
+    [HttpDelete("submit/{orderId}")]
+    [Authorize]
+    public IActionResult SubmitOrder(int orderId, [FromQuery] int addressId)
+    {
+        Order foundOrder = _dbContext.Orders.SingleOrDefault(o => o.Id == orderId);
+        
+        if (foundOrder == null)
+        {
+            return NotFound();
+        }
 
+        // 'closes out' this order
+        foundOrder.ShippingAddressId = addressId;
+        foundOrder.DatePlaced = DateTime.Today;
+        foundOrder.IsCurrent = false;
+
+        // creates a new empty order object so the system doesn't break
+        _dbContext.Orders.Add(new Order
+        {
+            UserProfileId = foundOrder.UserProfileId,
+            IsCurrent = true,
+            IsCancelled = false
+        });
+
+        _dbContext.SaveChanges();
+
+        return NoContent();
+    }
 }
