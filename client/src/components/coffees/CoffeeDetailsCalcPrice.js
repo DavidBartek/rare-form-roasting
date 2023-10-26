@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
 import { priceFormatter } from "../assets/exportFunctions"
-import { getWeightById } from "../../managers/productManager";
 
 export default function CoffeeDetailsCalcPrice ({ coffeeDetails, selectedWeightId, selectedWeightObj, selectedQuantity }) {
     

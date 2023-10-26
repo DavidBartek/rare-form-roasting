@@ -16,7 +16,7 @@ export const addToCart = (newOrderProduct, userId) => {
     }).then((res) => res.json());
 };
 
-// if exists, gets the current in-process order for a logged-in user
+// gets the current in-process order for a logged-in user
 export const getCurrentOrder = (userId) => {
     return fetch(`${_apiUrl}/current/${userId}`).then((res) => res.json());
 };
@@ -38,4 +38,15 @@ export const deleteOrderProduct = (opId) => {
         method: "DELETE"
     });
 };
-export const placeOrder = (addressObj)
+export const placeOrder = (orderId, addressId) => {
+    return fetch(`${_apiUrl}/submit/${orderId}?addressId=${addressId}`, {
+        method: "DELETE"
+    });
+};
+
+// export const updateUserDetails = (userId, userFirst, userLast, userEmail) => {
+//     return fetch (`${_apiUrl}/${userId}?newFirst=${userFirst}&newLast=${userLast}&newEmail=${userEmail}`, {
+//         method: "PUT",
+//         headers: {"Content-Type": "application/json"}
+//     });
+// };

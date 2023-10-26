@@ -10,13 +10,12 @@ public class ShippingAddress
 
     public int UserProfileId { get; set; }
 
-    public UserProfile UserProfile { get; set; }
+    public UserProfile? UserProfile { get; set; }
 
     [Required]
     [MinLength(1, ErrorMessage = "Address line 1 must be at least 1 character")]
     public string Address1 { get; set; }
 
-    [MinLength(1, ErrorMessage = "Address line 2 must be at least 1 character")]
     public string? Address2 { get; set; }
 
     [Required]
