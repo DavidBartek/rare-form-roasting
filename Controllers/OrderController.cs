@@ -75,6 +75,33 @@ public class OrderController : ControllerBase
             .SingleOrDefault(o => o.IsCurrent == true));
     }
 
+    // Read by order confirmed placed page. Gets single just-placed order - find by userId
+    [HttpGet("complete/{userId}")]
+    // [Authorize]
+    public IActionResult GetCompletedOrder(int userId)
+    {
+        Order mostRecentOrder = _dbContext.Orders
+            .Include(o => o.UserProfile)
+            .Include(o => o.ShippingAddress)
+            .Include(o => o.OrderProducts)
+                .ThenInclude(o => o.Product)
+            .Include(o => o.OrderProducts)
+                .ThenInclude(o => o.Weight)
+            .Include(o => o.OrderProducts)
+                .ThenInclude(o => o.Grind)
+            .Where(o => o.UserProfileId == userId)
+            .Where(o => o.IsCurrent == false)
+            .OrderByDescending(o => o.Id) // finds the most recent by highest ID in database (cannot use DatePlaced if multiple orders placed in same day)
+            .FirstOrDefault();
+
+        if (mostRecentOrder == null)
+        {
+            return NotFound();
+        }
+
+        return Ok(mostRecentOrder);
+    }
+
     // subtracts 1 from the quantity of an OrderProduct object
     [HttpDelete("subtract/{opId}")]
     [Authorize]
@@ -158,4 +185,6 @@ public class OrderController : ControllerBase
 
         return NoContent();
     }
+
+    // get all related OrderProducts for a just-placed order
 }
