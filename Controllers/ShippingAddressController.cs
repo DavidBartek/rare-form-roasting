@@ -87,7 +87,7 @@ public class ShippingAddressController : ControllerBase
 
     // create a new address tied to a particular user
     [HttpPost()]
-    // [Authorize]
+    [Authorize]
     public IActionResult CreateAddress(ShippingAddress newAddress)
     {
         newAddress.IsActive = true;

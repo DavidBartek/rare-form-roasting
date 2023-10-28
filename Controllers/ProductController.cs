@@ -24,6 +24,7 @@ public class ProductController : ControllerBase
         return Ok(_dbContext.Weights.ToList());
     }
 
+    // gets a particular weight obj by id
     [HttpGet("weights/{weightId}")]
     public IActionResult GetWeightById(int weightId)
     {
@@ -43,8 +44,8 @@ public class ProductController : ControllerBase
     {
         return Ok(_dbContext.Grinds.ToList());
     }
-    
-    // gets all **live** products
+
+    // gets all **live** products. For Product view.
     // accepts params to sort/filter
     [HttpGet]
     public IActionResult GetAllLiveProducts(
@@ -85,6 +86,7 @@ public class ProductController : ControllerBase
 
     }
 
+    // gets single product info by id
     [HttpGet("{productId}")]
     public IActionResult GetProductDetails(int productId)
     {
@@ -98,6 +100,28 @@ public class ProductController : ControllerBase
         return Ok(foundProduct);        
     }
 
+    // Admin-only
+    // gets ALL products; query can specify live only
+    [HttpGet("admin")]
+    [Authorize(Roles = "Admin")]
+    public IActionResult GetAllProductsAdmin([FromQuery] string? sort)
+    {
+        List<Product> allProducts = _dbContext.Products
+            .ToList();
 
+        if (sort == null)
+        {
+            return Ok(allProducts);
+        }
+        else if (sort == "live")
+        {
+            return Ok(allProducts.Where(p => p.IsLive == true).ToList());
+        }
+        else
+        {
+            return BadRequest("Invalid 'sort' parameter.");
+        }
+
+    }
 
 }
