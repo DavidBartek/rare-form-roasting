@@ -24,3 +24,13 @@ export const getWeights = () => {
 export const getWeightById = (weightId) => {
     return fetch(`${_apiUrl}/weights/${weightId}`).then((res) => res.json());
 }
+
+// admin-specific fetch calls
+export const getAllProductsAdmin = (params) => {
+    if (params) {
+        return fetch(`${_apiUrl}/admin?sort=${params}`).then((res) => res.json());
+    }
+    else {
+        return fetch(`${_apiUrl}/admin`).then((res) => res.json());
+    }
+};

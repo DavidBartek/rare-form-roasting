@@ -59,7 +59,7 @@ public class OrderController : ControllerBase
 
     // Read by the cart. Finds the single currently-open Order for a given logged in user.
     [HttpGet("current/{userId}")]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetCurrentUserOrder(int userId)
     {
         return Ok(_dbContext.Orders
@@ -77,7 +77,7 @@ public class OrderController : ControllerBase
 
     // Read by order confirmed placed page. Gets single just-placed order - find by userId
     [HttpGet("complete/{userId}")]
-    // [Authorize]
+    [Authorize]
     public IActionResult GetCompletedOrder(int userId)
     {
         Order mostRecentOrder = _dbContext.Orders
@@ -185,6 +185,4 @@ public class OrderController : ControllerBase
 
         return NoContent();
     }
-
-    // get all related OrderProducts for a just-placed order
 }
