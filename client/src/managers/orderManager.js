@@ -48,3 +48,14 @@ export const placeOrder = (orderId, addressId) => {
 export const getJustPlacedOrder = (userId) => {
     return fetch(`${_apiUrl}/complete/${userId}`).then((res) => res.json());
 }
+
+// admin-only
+
+export const getAllOrders = (params) => {
+    if (params) {
+        return fetch(`${_apiUrl}/admin?sort=${params}`).then((res) => res.json());
+    }
+    else {
+        return fetch(`${_apiUrl}/admin`).then((res) => res.json());
+    }
+};

@@ -70,7 +70,7 @@ export default function UserOrderDetails ({ order, toggleOffCanvas }) {
                             {order.userProfile.fullName}<br />
                             {order.shippingAddress.address1}<br />
                             {order.shippingAddress.address2 ? (
-                                <>order.shippingAddress.address2 <br /></>
+                                <>{order.shippingAddress.address2} <br /></>
                             ) : "" }
                             {order.shippingAddress.city}, {order.shippingAddress.stateCode} {order.shippingAddress.zip}
                         </td>
