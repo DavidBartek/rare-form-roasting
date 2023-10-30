@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import { getAllProductsAdmin } from "../../managers/productManager";
-import { Container, Col, Form, Input, Label, Row, Table } from "reactstrap";
+import { Container, Col, Form, Input, Label, Row, Table, Button } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import { priceFormatter } from "../assets/exportFunctions";
 
@@ -16,7 +16,12 @@ export default function InventoryManagerList () {
     useEffect(() => {
         renderInventoryList();
     }, [sortByString]);
-    
+
+    const handleNavCreateCoffee = (e) => {
+        e.preventDefault(e);
+        navigate("create");
+    }
+
     const handleSort = (selection) => {
         setSortByString(selection);
     }
@@ -28,7 +33,10 @@ export default function InventoryManagerList () {
 
     return (
         <Container>
-            <h1>Manage Products</h1>
+            <h1>Manage Coffees</h1>
+            <Button onClick={(e) => handleNavCreateCoffee(e)}>
+                Add new coffee
+            </Button>
             <Form>
                 <Row className="row-cols-lg-auto g-3 align-items-center">
                     <Col>

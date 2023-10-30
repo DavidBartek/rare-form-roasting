@@ -16,7 +16,8 @@ export default function CartQuantityEdit ({ op, quantity }) {
             Qty:
             {' '}
             {quantity === 1 ? (
-                <BsDashLg />
+                // <BsDashLg />
+                '\u00A0 \u00A0'
             ) : (
                 <BsDashLg onClick={() => handleMinus()} />
             )}
@@ -24,7 +25,8 @@ export default function CartQuantityEdit ({ op, quantity }) {
             {quantity}
             {' '}
             {quantity === 6 ? (
-                <BsPlusLg />
+                // <BsPlusLg />
+                ""
             ) : (
                 <BsPlusLg onClick={() => handleAdd()}/>
             )}
