@@ -44,3 +44,15 @@ export const createNewProductAdmin = (newProductObj) => {
         body: JSON.stringify(newProductObj)
     }).then((res) => res.json());
 };
+
+export const removeProductAdmin = (productId) => {
+    return fetch(`${_apiUrl}/admin/setnotlive/${productId}`, {
+        method: "DELETE"
+    });
+};
+
+export const addProductToShopAdmin = (productId) => {
+    return fetch(`${_apiUrl}/admin/setlive/${productId}`, {
+        method: "DELETE"
+    });
+};

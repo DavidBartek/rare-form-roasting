@@ -117,6 +117,10 @@ public class ProductController : ControllerBase
         {
             return Ok(allProducts.Where(p => p.IsLive == true).ToList());
         }
+        else if (sort == "notlive")
+        {
+            return Ok(allProducts.Where(p => p.IsLive == false).ToList());
+        }
         else
         {
             return BadRequest("Invalid 'sort' parameter.");
@@ -135,5 +139,43 @@ public class ProductController : ControllerBase
         _dbContext.Add(newProduct);
         _dbContext.SaveChanges();
         return Created($"/api/product/admin/add/{newProduct.Id}", newProduct);
+    }
+
+    // Admin-only
+    // removes a coffee from customers' shop view (sets IsLive = false)
+    [HttpDelete("admin/setnotlive/{productId}")]
+    [Authorize(Roles = "Admin")]
+    public IActionResult RemoveProductFromShop(int productId)
+    {
+        Product foundProduct = _dbContext.Products.SingleOrDefault(p => p.Id == productId);
+
+        if (foundProduct == null)
+        {
+            return NotFound();
+        }
+
+        foundProduct.IsLive = false;
+
+        _dbContext.SaveChanges();
+        return NoContent();
+    }
+
+    // Admin-only
+    // adds a coffee to customers' shop view (sets IsLive = true)
+    [HttpDelete("admin/setlive/{productId}")]
+    [Authorize(Roles = "Admin")]
+    public IActionResult AddProductToShop(int productId)
+    {
+        Product foundProduct = _dbContext.Products.SingleOrDefault(p => p.Id == productId);
+
+        if (foundProduct == null)
+        {
+            return NotFound();
+        }
+
+        foundProduct.IsLive = true;
+
+        _dbContext.SaveChanges();
+        return NoContent();
     }
 }
