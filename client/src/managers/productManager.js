@@ -34,3 +34,13 @@ export const getAllProductsAdmin = (params) => {
         return fetch(`${_apiUrl}/admin`).then((res) => res.json());
     }
 };
+
+export const createNewProductAdmin = (newProductObj) => {
+    return fetch(`${_apiUrl}/admin/add`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newProductObj)
+    }).then((res) => res.json());
+};

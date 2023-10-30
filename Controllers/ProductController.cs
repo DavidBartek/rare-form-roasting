@@ -121,7 +121,19 @@ public class ProductController : ControllerBase
         {
             return BadRequest("Invalid 'sort' parameter.");
         }
-
     }
 
+    // Admin-only
+    // posts a new product
+    [HttpPost("admin/add")]
+    [Authorize(Roles = "Admin")]
+    public IActionResult AddNewProduct(Product newProduct)
+    {
+        newProduct.DateAdded = DateTime.Today;
+        newProduct.IsLive = true;
+
+        _dbContext.Add(newProduct);
+        _dbContext.SaveChanges();
+        return Created($"/api/product/admin/add/{newProduct.Id}", newProduct);
+    }
 }
