@@ -17,11 +17,12 @@ public class OrderController : ControllerBase
         _dbContext = context;
     }
 
-    [HttpGet]
-    public IActionResult GetAllOrders()
-    {
-        return Ok(_dbContext.Orders.ToList());
-    }
+    // for debugging - get all orders
+    // [HttpGet]
+    // public IActionResult GetAllOrders()
+    // {
+    //     return Ok(_dbContext.Orders.ToList());
+    // }
 
     // gets all non-current (submitted) orders, expanded to spec, for a given user.
     [HttpGet("noncurrent/{userId}")]
@@ -184,5 +185,58 @@ public class OrderController : ControllerBase
         _dbContext.SaveChanges();
 
         return NoContent();
+    }
+
+
+    // Admin-only endpoints
+    
+    // Admin-only
+    // Get all orders - filterable/orderable: 
+    // - all (newest to oldest),
+    // - all (oldest to newest), 
+    // - unfulfilled (oldest to newest), 
+    // - completed (newest to oldest)
+    // - cancelled (newest to oldest)
+    // note: no filter will show "being created" orders
+    [HttpGet("admin")]
+    [Authorize(Roles = "Admin")]
+    public IActionResult GetAllOrdersAdmin([FromQuery] string? sort)
+    {
+        List<Order> allOrders = _dbContext.Orders
+            .Include(o => o.UserProfile)
+            .Include(o => o.ShippingAddress)
+            .Include(o => o.OrderProducts)
+                .ThenInclude(o => o.Product)
+            .Include(o => o.OrderProducts)
+                .ThenInclude(o => o.Weight)
+            .Include(o => o.OrderProducts)
+                .ThenInclude(o => o.Grind)
+            .Where(o => o.IsCurrent == false)
+            .ToList();
+
+        if (sort == null || sort == "allnewtoold")
+        {
+            return Ok(allOrders.OrderByDescending(o => o.Id));
+        }
+        else if (sort == "alloldtonew")
+        {
+            return Ok(allOrders.OrderBy(o => o.Id));
+        }
+        else if (sort == "unfulfilled")
+        {
+            return Ok(allOrders.OrderBy(o => o.Id).Where(o => o.OrderStatus == "Processing"));
+        }
+        else if (sort == "fulfilled")
+        {
+            return Ok(allOrders.OrderByDescending(o => o.Id).Where(o => o.OrderStatus == "Shipped"));
+        }
+        else if (sort == "cancelled")
+        {
+            return Ok(allOrders.OrderByDescending(o => o.Id).Where(o => o.OrderStatus == "Cancelled"));
+        }
+        else
+        {
+            return BadRequest("Invalid 'sort' parameter.");
+        }
     }
 }
