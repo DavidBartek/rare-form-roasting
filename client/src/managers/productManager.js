@@ -56,3 +56,13 @@ export const addProductToShopAdmin = (productId) => {
         method: "DELETE"
     });
 };
+
+export const modifyProductAdmin = (productObj) => {
+    return fetch(`${_apiUrl}/admin/modify/${productObj.id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(productObj)
+    });
+};

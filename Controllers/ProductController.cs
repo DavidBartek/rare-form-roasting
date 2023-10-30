@@ -143,6 +143,7 @@ public class ProductController : ControllerBase
 
     // Admin-only
     // removes a coffee from customers' shop view (sets IsLive = false)
+    // also: if coffee is featured, sets to false
     [HttpDelete("admin/setnotlive/{productId}")]
     [Authorize(Roles = "Admin")]
     public IActionResult RemoveProductFromShop(int productId)
@@ -155,6 +156,7 @@ public class ProductController : ControllerBase
         }
 
         foundProduct.IsLive = false;
+        foundProduct.IsFeatured = false;
 
         _dbContext.SaveChanges();
         return NoContent();
@@ -174,6 +176,42 @@ public class ProductController : ControllerBase
         }
 
         foundProduct.IsLive = true;
+
+        _dbContext.SaveChanges();
+        return NoContent();
+    }
+
+    // Admin-only
+    // modifies a given coffee
+    [HttpPut("admin/modify/{productId}")]
+    [Authorize]
+    public IActionResult ModifyProduct(int productId, [FromBody]Product updatedProduct)
+    {
+        Product foundProduct = _dbContext.Products.SingleOrDefault(p => p.Id == productId);
+
+        if (foundProduct == null)
+        {
+            return NotFound();
+        }
+        else if (productId != foundProduct.Id)
+        {
+            return BadRequest();
+        }
+
+        foundProduct.DisplayName = updatedProduct.DisplayName;
+        foundProduct.Price = updatedProduct.Price;
+        foundProduct.Country = updatedProduct.Country;
+        foundProduct.LocationString = updatedProduct.LocationString;
+        foundProduct.FarmString = updatedProduct.FarmString;
+        foundProduct.Process = updatedProduct.Process;
+        foundProduct.Varietal = updatedProduct.Varietal;
+        foundProduct.ElevationRangeMASL = updatedProduct.ElevationRangeMASL;
+        foundProduct.TastingNotes = updatedProduct.TastingNotes;
+        foundProduct.DescriptionString = updatedProduct.DescriptionString;
+        foundProduct.ImageLocation = updatedProduct.ImageLocation;
+        foundProduct.IsFeatured = updatedProduct.IsFeatured;
+
+        // after this, compare with address edit form to make sure defaults return
 
         _dbContext.SaveChanges();
         return NoContent();

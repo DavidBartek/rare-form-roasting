@@ -32,7 +32,7 @@ export default function InventoryManagerList () {
 
     const handleUpdateCoffee = (e, productId) => {
         e.preventDefault();
-        console.log(`navigate to coffee ${productId}`)
+        navigate(`modify/${productId}`);
     }
 
     const toggleDeleteModal = () => setDeleteModal(!deleteModal);
