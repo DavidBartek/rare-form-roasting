@@ -12,6 +12,7 @@ import UserOrdersList from "./userOrders/UserOrdersList";
 import Checkout from "./checkout/Checkout";
 import CheckoutConfirm from "./checkout/CheckoutConfirm";
 import CreateCoffee from "./inventorymanager/CreateCoffee";
+import ModifyCoffee from "./inventorymanager/ModifyCoffee";
 
 // note on auth...
 // should each component that is viewable by logged in and non logged in user contain a ternary in the "element" prop?
@@ -73,6 +74,11 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
             <Route path="create" element={
               <AuthorizedRoute loggedInUser={loggedInUser} roles={["Admin"]}>
                 <CreateCoffee loggedInUser={loggedInUser} roles={["Admin"]}/>
+              </AuthorizedRoute>
+            } />
+            <Route path="modify/:id" element={
+              <AuthorizedRoute loggedInUser={loggedInUser} roles={["Admin"]}>
+                <ModifyCoffee loggedInUser={loggedInUser} roles={["Admin"]}/>
               </AuthorizedRoute>
             } />
         </Route>

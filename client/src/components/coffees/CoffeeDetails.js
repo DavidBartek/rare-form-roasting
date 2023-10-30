@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom"
 import { getGrinds, getProductDetails, getWeightById, getWeights } from "../../managers/productManager";
-import { Button, Card, Container, Form, FormGroup, Input, Label } from "reactstrap";
+import { Card, Container, Form, FormGroup, Input, Label } from "reactstrap";
 import CoffeeDetailsCalcPrice from "./CoffeeDetailsCalcPrice";
 import CoffeeDetailsCartAdd from "./CoffeeDetailsCartAdd";
 
