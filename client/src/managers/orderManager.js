@@ -59,3 +59,15 @@ export const getAllOrders = (params) => {
         return fetch(`${_apiUrl}/admin`).then((res) => res.json());
     }
 };
+
+export const markOrderFulfilled = (orderId) => {
+    return fetch(`${_apiUrl}/admin/fulfill/${orderId}`, {
+        method: "DELETE"
+    });
+};
+
+export const markOrderCancelled = (orderId) => {
+    return fetch(`${_apiUrl}/admin/cancel/${orderId}`, {
+        method: "DELETE"
+    });
+};
