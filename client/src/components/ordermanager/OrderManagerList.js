@@ -1,15 +1,20 @@
-import { Button, Col, Container, Form, Input, Label, Offcanvas, Row, Table } from "reactstrap";
-import { BsCaretRight } from "react-icons/bs";
-import { getAllOrders } from "../../managers/orderManager";
+import { Button, Col, Container, Form, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader, Offcanvas, Row, Table } from "reactstrap";
+import { getAllOrders, markOrderCancelled, markOrderFulfilled } from "../../managers/orderManager";
 import { useEffect, useState } from "react";
 import { dateTimeConverter, priceFormatter } from "../assets/exportFunctions";
 import OrderManagerDetailView from "./OrderManagerDetailView";
+import OrderManagerButtons from "./OrderManagerButtons";
 
 export default function OrderManagerList () {
     const [orders, setOrders] = useState([]);
     const [sortByString, setSortByString] = useState("");
+    const [orderWithDetails, setOrderWithDetails] = useState({});
+    const [orderIdToFulfill, setOrderIdToFulfill] = useState(null);
+    const [orderIdToCancel, setOrderIdToCancel] = useState(null);
     const [offCanvas, setOffCanvas] = useState(false);
-    const [orderWithDetails, setOrderWithDetails] = useState({})
+    const [fulfillModal, setFulfillModal] = useState(false);
+    const [cancelModal, setCancelModal] = useState(false);
+    
 
     const renderOrderList = () => {
         getAllOrders(sortByString).then(setOrders);
@@ -29,6 +34,37 @@ export default function OrderManagerList () {
         e.preventDefault();
         setOrderWithDetails(order);
         toggleOffCanvas();
+    }
+
+    const toggleFulfillModal = () => setFulfillModal(!fulfillModal);
+
+    const handleConfirmFulfill = (e, orderId) => {
+        e.preventDefault();
+        setOrderIdToFulfill(orderId);
+        toggleFulfillModal();
+    }
+
+    const handleFulfill = (e) => {
+        e.preventDefault();
+        console.log(orderIdToFulfill);
+        markOrderFulfilled(orderIdToFulfill)
+            .then(() => toggleFulfillModal())
+            .then(() => renderOrderList());
+    }
+
+    const toggleCancelModal = () => setCancelModal(!cancelModal);
+
+    const handleConfirmCancel = (e, orderId) => {
+        e.preventDefault();
+        setOrderIdToCancel(orderId);
+        toggleCancelModal();
+    }
+
+    const handleCancel = (e) => {
+        e.preventDefault();
+        markOrderCancelled(orderIdToCancel)
+            .then(() => toggleCancelModal())
+            .then(() => renderOrderList());
     }
 
     if (orders.length === 0) {
@@ -85,13 +121,12 @@ export default function OrderManagerList () {
                                 Status: {o.orderStatus}<br />
                                 Total: ${priceFormatter(o.totalPrice)}<br />
                             </td>
-                            <td>
-                                <br />
-                                <Button onClick={(e) => viewOrderDetails(e, o)}>
-                                    View Details
-                                    <BsCaretRight />
-                                </Button>
-                            </td>
+                            <OrderManagerButtons 
+                                o={o} 
+                                viewOrderDetails={viewOrderDetails}
+                                handleConfirmFulfill={handleConfirmFulfill}
+                                handleConfirmCancel={handleConfirmCancel}
+                            />
                         </tr>    
                     )}    
                     </tbody>
@@ -100,6 +135,44 @@ export default function OrderManagerList () {
             <Offcanvas direction="end" isOpen={offCanvas} toggle={() => toggleOffCanvas()}>
                 <OrderManagerDetailView order={orderWithDetails} toggleOffCanvas={toggleOffCanvas} />
             </Offcanvas>
+            <Modal isOpen={fulfillModal} toggle={toggleFulfillModal}>
+                <ModalHeader>
+                    Fulfill order #{orderIdToFulfill}?
+                </ModalHeader>
+                <ModalFooter>
+                    <Button onClick={(e) => {
+                        e.preventDefault();
+                        setOrderIdToFulfill(null);
+                        toggleFulfillModal();
+                    }}>
+                        Go Back
+                    </Button>
+                    <Button onClick={(e) => {
+                        handleFulfill(e);
+                    }}>
+                        Fulfill
+                    </Button>
+                </ModalFooter>
+            </Modal>
+            <Modal isOpen={cancelModal} toggle={toggleCancelModal}>
+                <ModalHeader>
+                    Cancel order #{orderIdToCancel}?
+                </ModalHeader>
+                <ModalFooter>
+                    <Button onClick={(e) => {
+                        e.preventDefault();
+                        setOrderIdToCancel(null);
+                        toggleCancelModal();
+                    }}>
+                        Go Back
+                    </Button>
+                    <Button onClick={(e) => {
+                        handleCancel(e);
+                    }}>
+                        Cancel
+                    </Button>
+                </ModalFooter>
+            </Modal>
         </>
     )
 }

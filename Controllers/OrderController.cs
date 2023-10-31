@@ -239,4 +239,44 @@ public class OrderController : ControllerBase
             return BadRequest("Invalid 'sort' parameter.");
         }
     }
+
+    // Admin-only
+    // marks an order as fulfilled/shipped by id
+    [HttpDelete("admin/fulfill/{orderId}")]
+    [Authorize(Roles = "Admin")]
+    public IActionResult MarkOrderFulfilled(int orderId)
+    {
+        Order foundOrder = _dbContext.Orders.SingleOrDefault(o => o.Id == orderId);
+
+        if (foundOrder == null)
+        {
+            return NotFound();
+        }
+
+        foundOrder.DateShipped = DateTime.Today;
+
+        _dbContext.SaveChanges();
+
+        return NoContent();
+    }
+
+    // Admin-only
+    // marks an order as cancelled by id
+    [HttpDelete("admin/cancel/{orderId}")]
+    [Authorize(Roles = "Admin")]
+    public IActionResult MarkOrderCancelled(int orderId)
+    {
+        Order foundOrder = _dbContext.Orders.SingleOrDefault(o => o.Id == orderId);
+
+        if (foundOrder == null)
+        {
+            return NotFound();
+        }
+
+        foundOrder.IsCancelled = true;
+
+        _dbContext.SaveChanges();
+
+        return NoContent();
+    }
 }
