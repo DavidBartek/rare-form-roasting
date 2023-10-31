@@ -68,7 +68,7 @@ export default function InventoryManagerList () {
     return (
         <>
             <Container>
-                <h1>Manage Coffees</h1>
+                <h1>manage coffees</h1>
                 <Button onClick={(e) => handleNavCreateCoffee(e)}>
                     Add new coffee
                 </Button>

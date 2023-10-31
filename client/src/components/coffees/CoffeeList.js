@@ -32,7 +32,6 @@ export default function CoffeeList () {
     return (
         <Container>
             <h1>Coffees</h1>
-            <h5>Our current offering of single-origin coffees.</h5>
             <Form>
                 <Row className="row-cols-lg-auto g-3 align-items-center">
                     <Col>

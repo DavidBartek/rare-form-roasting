@@ -6,7 +6,8 @@ NavLink,
 NavItem,
 NavbarToggler,
 Popover,
-PopoverBody
+PopoverBody,
+NavbarBrand
 } from "reactstrap";
 import { BsPersonCircle } from "react-icons/bs";
 import Cart from "./Cart";
@@ -23,7 +24,7 @@ export default function NavBarUnauth ({ toggleNavbar, open, setOpen }) {
         <>
             <NavbarToggler onClick={toggleNavbar} />
             <Collapse isOpen={open} navbar>
-                <Nav navbar pills>
+                <Nav navbar>
                     <NavItem onClick={() => setOpen(false)}>
                         <NavLink tag={RRNavLink} to="/coffees">
                             Coffees
@@ -31,6 +32,11 @@ export default function NavBarUnauth ({ toggleNavbar, open, setOpen }) {
                     </NavItem>
                 </Nav>
             </Collapse>
+            <NavbarBrand tag={RRNavLink} to="/">
+                <img src="images/Logo_Thin_500x100.svg" style={{
+                    height: "50px"
+                }}/>
+            </NavbarBrand>
             <BsPersonCircle id="profileIcon"/>
             <Popover
                 target="profileIcon"

@@ -40,7 +40,7 @@ export default function ProfileDetails ({ loggedInUser, userDetails, renderUserD
     return (
     <>
         <Form>
-            <h1>Edit Profile Details</h1>
+            <h1>edit profile details</h1>
             <FormGroup>
                 <Label for="firstName">
                     First Name
