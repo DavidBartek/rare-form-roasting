@@ -22,37 +22,43 @@ export default function NavBarUnauth ({ toggleNavbar, open, setOpen }) {
     
     return (
         <>
-            <NavbarToggler onClick={toggleNavbar} />
+            <NavbarBrand tag={RRNavLink} to="/">
+                <img className="navbar-logo" src="images/Logo_Thin_500x100.svg" />
+            </NavbarBrand>
+            <div className="togglerContainerUnauth">
+                <NavbarToggler onClick={toggleNavbar} />
+            </div>
             <Collapse isOpen={open} navbar>
                 <Nav navbar>
                     <NavItem onClick={() => setOpen(false)}>
-                        <NavLink tag={RRNavLink} to="/coffees">
+                        <NavLink tag={RRNavLink} to="/coffees" style={{
+                                    fontWeight: "900",
+                                    textAlign: "center",
+                                    fontSize: "larger"
+                                }}>
                             Coffees
                         </NavLink>
                     </NavItem>
                 </Nav>
             </Collapse>
-            <NavbarBrand tag={RRNavLink} to="/">
-                <img src="images/Logo_Thin_500x100.svg" style={{
-                    height: "50px"
-                }}/>
-            </NavbarBrand>
-            <BsPersonCircle id="profileIcon"/>
-            <Popover
-                target="profileIcon"
-                placement="bottom"
-                trigger="focus"
-                isOpen={popover}
-                toggle={() => togglePopover()}>
-                <PopoverBody>
-                    <div>
-                        <NavLink tag={RRNavLink} to="/login">
-                            Login/Create Account
-                        </NavLink>
-                    </div>
-                </PopoverBody>        
-            </Popover>
-            <Cart />
+            <div className="navbar-icons">
+                <BsPersonCircle id="profileIcon"/>
+                <Popover
+                    target="profileIcon"
+                    placement="bottom"
+                    trigger="focus"
+                    isOpen={popover}
+                    toggle={() => togglePopover()}>
+                    <PopoverBody>
+                        <div>
+                            <NavLink tag={RRNavLink} to="/login">
+                                Login/Create Account
+                            </NavLink>
+                        </div>
+                    </PopoverBody>        
+                </Popover>
+                <Cart className="cartIcon"/>
+            </div>
         </>
     )
 }

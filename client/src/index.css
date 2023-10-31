@@ -31,6 +31,7 @@ code {
 .container-fluid,
 .navbar-toggler,
 .togglerContainer,
+.togglerContainerUnauth,
 .collapse,
 .nav-item,
 .navbar-toggler-icon,
@@ -55,6 +56,10 @@ code {
   margin-right: 15%;
 }
 
+.togglerContainerUnauth {
+  margin-right: 30%;
+}
+
 .nav-item {
   padding-left: 20px;
   padding-right: 20px;
@@ -71,7 +76,8 @@ code {
 }
 
 @media (max-width: 992px) {
-  .togglerContainer {
+  .togglerContainer,
+  .togglerContainerUnauth {
     order: 1;
     margin-right: 10px;
     padding-right: 0px;
