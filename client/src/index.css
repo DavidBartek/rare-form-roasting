@@ -1,13 +1,195 @@
-body {
+/* secondary logo font */
+@import url('https://fonts.cdnfonts.com/css/baron-neue'); 
+@import url('https://fonts.cdnfonts.com/css/darker-grotesque');
+                
+
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Darker Grotesque', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
+  font-size: large;
+  background-color: #FEF5ED;
+  animation: fadeIn .7s ease-in-out;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3 {
+  font-family: 'Darker Grotesque', sans-serif;
+  font-weight: 900;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
+}
+
+/* navbar components */
+
+.navbar,
+.container-fluid,
+.navbar-toggler,
+.togglerContainer,
+.togglerContainerUnauth,
+.collapse,
+.nav-item,
+.navbar-toggler-icon,
+.navbar-brand,
+.navbar-logo,
+.navbar-icons,
+#profileIcon,
+#cartIcon {
+  background-color: #75BCFA;
+}
+
+.container-fluid {
+  display: flex;
+  justify-content: space-between;
+}
+
+.navbar-logo {
+  height: 50px;
+  transition: .25s
+}
+
+.navbar-logo:hover {
+  height: 52px;
+}
+
+.togglerContainer {
+  margin-right: 15%;
+}
+
+.togglerContainerUnauth {
+  margin-right: 30%;
+}
+
+.nav-item {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.nav-link {
+  transition: .25s
+}
+
+.nav-link:hover {
+  font-weight: 900;
+  text-shadow: #FEF5ED 1px 1px 1px;
+}
+
+#profileIcon,
+#cartIcon {
+  margin: 10px;
+  font-size: 25px;
+  transition: .25s
+}
+
+#profileIcon:hover,
+#cartIcon:hover {
+  font-size: 28px;
+}
+
+
+
+@media (max-width: 992px) {
+  .togglerContainer,
+  .togglerContainerUnauth {
+    order: 1;
+    margin-right: 10px;
+    padding-right: 0px;
+  }
+  .navbar-brand {
+    order: 2;
+  }
+  .navbar-icons {
+    order: 3;
+  }
+}
+
+@media (max-width: 844px) {
+  .navbar-logo {
+    height: 42px;
+  }
+  #profileIcon {
+    margin: 5px;
+    font-size: 20px;
+  }
+  #cartIcon {
+    margin: 7px;
+    font-size: 20px;
+  }
+}
+
+/* Coffee List Components */
+
+.coffeeListHeaderGroup {
+  display: flex;
+  justify-content: space-between;
+}
+
+.coffeeListHeader {
+  padding-bottom: 15px;
+}
+
+.coffeeListSort {
+  padding-top: 15px;
+}
+
+#sortSelect,
+.sortLabel,
+.sortDropdown {
+  background-color: #FEF5ED;
+  border: none;
+}
+
+.sortLabel {
+  padding-top: 8px;
+}
+
+@media (max-width: 992px) {
+  .coffeeListHeaderGroup {
+    justify-content: center;
+    flex-direction: column;
+  }
+  .coffeeListSort {
+    padding-top: 0px;
+  }
+}
+
+.coffeeCards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.card {
+  width: 20rem;
+  margin: 20px;
+  background-color: #FEF5ED;
+  border: 0;
+  transition: .25s
+}
+
+.card:hover {
+  width: 20.5rem;
+  cursor: pointer;
+}
+
+.card-body,
+.card-title,
+.mb-2,
+.card-text {
+  background-color: #FEF5ED;
+  text-align: center;
 }

@@ -74,7 +74,7 @@ export default function OrderManagerList () {
     return (
         <>
             <Container>
-                <h1>Manage Orders</h1>
+                <h1>manage orders</h1>
                 <Form>
                     <Row className="row-cols-lg-auto g-3 align-items-center">
                         <Col>
