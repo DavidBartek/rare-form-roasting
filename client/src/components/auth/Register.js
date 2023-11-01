@@ -34,8 +34,10 @@ export default function Register({ setLoggedInUser }) {
   };
 
   return (
-    <div className="container" style={{ maxWidth: "500px" }}>
-      <h3>Sign Up</h3>
+    <div className="container" style={{ 
+      maxWidth: "500px",
+      marginTop: "25px" }}>
+      <h1>Sign Up</h1>
       <FormGroup>
         <Label>First Name</Label>
         <Input
@@ -43,6 +45,10 @@ export default function Register({ setLoggedInUser }) {
           value={firstName}
           onChange={(e) => {
             setFirstName(e.target.value);
+          }}
+          style={{
+            borderRadius: 0,
+            border: "1px solid #021E36"
           }}
         />
       </FormGroup>
@@ -54,6 +60,10 @@ export default function Register({ setLoggedInUser }) {
           onChange={(e) => {
             setLastName(e.target.value);
           }}
+          style={{
+            borderRadius: 0,
+            border: "1px solid #021E36"
+          }}
         />
       </FormGroup>
       <FormGroup>
@@ -63,6 +73,10 @@ export default function Register({ setLoggedInUser }) {
           value={email}
           onChange={(e) => {
             setEmail(e.target.value);
+          }}
+          style={{
+            borderRadius: 0,
+            border: "1px solid #021E36"
           }}
         />
       </FormGroup>
@@ -76,6 +90,10 @@ export default function Register({ setLoggedInUser }) {
             setPasswordMismatch(false);
             setPassword(e.target.value);
           }}
+          style={{
+            borderRadius: 0,
+            border: "1px solid #021E36"
+          }}
         />
       </FormGroup>
       <FormGroup>
@@ -88,6 +106,10 @@ export default function Register({ setLoggedInUser }) {
             setPasswordMismatch(false);
             setConfirmPassword(e.target.value);
           }}
+          style={{
+            borderRadius: 0,
+            border: "1px solid #021E36"
+          }}
         />
         <FormFeedback>Passwords do not match!</FormFeedback>
       </FormGroup>
@@ -95,6 +117,14 @@ export default function Register({ setLoggedInUser }) {
         color="primary"
         onClick={handleSubmit}
         disabled={passwordMismatch}
+        className="button" style={{
+          backgroundColor: "#75BCFA",
+          color: "#021E36",
+          fontWeight: 800,
+          border: "none",
+          borderRadius: "0px",
+          transition: "box-shadow 0.1s"
+          }}
       >
         Register
       </Button>

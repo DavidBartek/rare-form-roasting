@@ -22,8 +22,12 @@ export default function Login({ loggedInUser, setLoggedInUser }) {
   };
 
   return loggedInUser ? <Navigate to="/" /> : ( // if manually typed in, user will automatically be redirected to home if already logged in.
-    <div className="container" style={{ maxWidth: "500px" }}>
-      <h3>Login</h3>
+    <div className="container" style={{ 
+        maxWidth: "500px",
+        marginTop: "25px" 
+    }}>
+      <h1>Login</h1>
+      <h5>(to place orders, see order history, etc.)</h5>
       <FormGroup>
         <Label>Email</Label>
         <Input
@@ -33,6 +37,10 @@ export default function Login({ loggedInUser, setLoggedInUser }) {
           onChange={(e) => {
             setFailedLogin(false);
             setEmail(e.target.value);
+          }}
+          style={{
+            borderRadius: 0,
+            border: "1px solid #021E36"
           }}
         />
       </FormGroup>
@@ -46,11 +54,22 @@ export default function Login({ loggedInUser, setLoggedInUser }) {
             setFailedLogin(false);
             setPassword(e.target.value);
           }}
+          style={{
+            borderRadius: 0,
+            border: "1px solid #021E36"
+          }}
         />
         <FormFeedback>Login failed.</FormFeedback>
       </FormGroup>
 
-      <Button color="primary" onClick={handleSubmit}>
+      <Button onClick={handleSubmit} className="button" style={{
+        backgroundColor: "#75BCFA",
+        color: "#021E36",
+        fontWeight: 800,
+        border: "none",
+        borderRadius: "0px",
+        transition: "box-shadow 0.1s"
+        }}>
         Login
       </Button>
       <p>

@@ -24,13 +24,16 @@ export default function NavBarAuth ({ loggedInUser, setLoggedInUser, toggleNavba
     return (
         <>
             <NavbarBrand tag={RRNavLink} to="/">
-                <img className="navbar-logo" src="images/Logo_Thin_500x100.svg" />
+                <img className="navbar-logo" src="/Logo_Thin_500x100.svg" alt="Logo"/>
             </NavbarBrand>
             <div className="togglerContainer">
                 <NavbarToggler onClick={toggleNavbar} />
             </div>
             <Collapse isOpen={open} navbar>
                 <Nav navbar>
+                    <NavItem>
+                    <img className="navlink-image" src="/Logo_Plane.svg" alt="Logo"/>
+                    </NavItem>
                     <NavItem onClick={() => setOpen(false)}>
                         <NavLink tag={RRNavLink} to="/coffees" style={{
                                     fontWeight: "700",
@@ -56,6 +59,9 @@ export default function NavBarAuth ({ loggedInUser, setLoggedInUser, toggleNavba
                                 }}>
                                     Order Manager
                                 </NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <img className="navlink-image" src="/Logo_Plane.svg" alt="Logo"/>
                             </NavItem>
                         </>
                     )}
