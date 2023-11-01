@@ -26,13 +26,13 @@ export default function NavBarUnauth ({ toggleNavbar, open, setOpen }) {
                 <img className="navbar-logo" src="images/Logo_Thin_500x100.svg" />
             </NavbarBrand>
             <div className="togglerContainerUnauth">
-                <NavbarToggler onClick={toggleNavbar} />
+                <NavbarToggler onClick={toggleNavbar} style={{color: "FEF5ED"}}/>
             </div>
             <Collapse isOpen={open} navbar>
                 <Nav navbar>
                     <NavItem onClick={() => setOpen(false)}>
                         <NavLink tag={RRNavLink} to="/coffees" style={{
-                                    fontWeight: "900",
+                                    fontWeight: "700",
                                     textAlign: "center",
                                     fontSize: "larger"
                                 }}>

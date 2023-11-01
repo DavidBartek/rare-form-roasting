@@ -9,8 +9,8 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Darker Grotesque', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   font-size: large;
-  color: #021E36;
   background-color: #FEF5ED;
+  animation: fadeIn .7s ease-in-out;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -23,6 +23,15 @@ h1, h2, h3 {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@keyframes fadeIn {
+  from {
+      opacity: 0;
+  }
+  to {
+      opacity: 1;
+  }
 }
 
 /* navbar components */
@@ -40,7 +49,7 @@ code {
 .navbar-icons,
 #profileIcon,
 #cartIcon {
-  background-color: #FAB375;
+  background-color: #75BCFA;
 }
 
 .container-fluid {
@@ -50,6 +59,11 @@ code {
 
 .navbar-logo {
   height: 50px;
+  transition: .25s
+}
+
+.navbar-logo:hover {
+  height: 52px;
 }
 
 .togglerContainer {
@@ -65,15 +79,28 @@ code {
   padding-right: 20px;
 }
 
-#profileIcon {
-  margin: 10px;
-  font-size: 25px;
+.nav-link {
+  transition: .25s
 }
 
+.nav-link:hover {
+  font-weight: 900;
+  text-shadow: #FEF5ED 1px 1px 1px;
+}
+
+#profileIcon,
 #cartIcon {
   margin: 10px;
   font-size: 25px;
+  transition: .25s
 }
+
+#profileIcon:hover,
+#cartIcon:hover {
+  font-size: 28px;
+}
+
+
 
 @media (max-width: 992px) {
   .togglerContainer,
@@ -104,3 +131,65 @@ code {
   }
 }
 
+/* Coffee List Components */
+
+.coffeeListHeaderGroup {
+  display: flex;
+  justify-content: space-between;
+}
+
+.coffeeListHeader {
+  padding-bottom: 15px;
+}
+
+.coffeeListSort {
+  padding-top: 15px;
+}
+
+#sortSelect,
+.sortLabel,
+.sortDropdown {
+  background-color: #FEF5ED;
+  border: none;
+}
+
+.sortLabel {
+  padding-top: 8px;
+}
+
+@media (max-width: 992px) {
+  .coffeeListHeaderGroup {
+    justify-content: center;
+    flex-direction: column;
+  }
+  .coffeeListSort {
+    padding-top: 0px;
+  }
+}
+
+.coffeeCards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.card {
+  width: 20rem;
+  margin: 20px;
+  background-color: #FEF5ED;
+  border: 0;
+  transition: .25s
+}
+
+.card:hover {
+  width: 20.5rem;
+  cursor: pointer;
+}
+
+.card-body,
+.card-title,
+.mb-2,
+.card-text {
+  background-color: #FEF5ED;
+  text-align: center;
+}

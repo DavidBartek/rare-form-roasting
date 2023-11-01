@@ -1,0 +1,26 @@
+{
+    "short_name": "Rare Form Roasting Co.",
+    "name": "Rare Form Roasting Co.",
+    "icons": [
+      {
+        "src": "images/Logo_Plane.svg",
+        "sizes": "64x64 32x32 24x24 16x16",
+        "type": "image/svg+xml"
+      },
+      {
+        "src": "images/Logo_Circle_1000x1000.svg",
+        "type": "image/svg+xml",
+        "sizes": "1000x1000"
+      },
+      {
+        "src": "images/Logo_Thin_500x100.svg",
+        "type": "image/png",
+        "sizes": "500x100"
+      }
+    ],
+    "start_url": ".",
+    "display": "standalone",
+    "theme_color": "#021E36",
+    "background_color": "#FEF5ED"
+  }
+  

@@ -31,53 +31,60 @@ export default function CoffeeList () {
     }
     return (
         <Container>
-            <h1>Coffees</h1>
-            <Form>
-                <Row className="row-cols-lg-auto g-3 align-items-center">
-                    <Col>
-                        <Label for="sortSelect">
-                            Sort by:
-                        </Label>
-                    </Col>
-                    <Col>
-                        <Input
-                            id="sortSelect"
-                            name="sortSelect"
-                            type="select"
-                            onChange={(e) => handleSort(e.target.value)}
-                        >
-                            <option value={""}>
-                                Select below
-                            </option>
-                            <option value={"featured"}>
-                                Featured
-                            </option >
-                            <option value={"alphabeticalaz"}>
-                                Alphabetically, A-Z
-                            </option>
-                            <option value={"alphabeticalza"}>
-                                Alphabetically, Z-A
-                            </option>
-                            <option value={"pricelowhigh"}>
-                                Price, $-$$$
-                            </option>
-                            <option value={"pricehighlow"}>
-                                Price, $$$-$
-                            </option>
-                        </Input>
-                    </Col>
-                </Row>
-            </Form>
-            <div>
+            <div className="coffeeListHeaderGroup">
+                <h1 className="coffeeListHeader">Single Origin Coffees</h1>
+                <Form className="coffeeListSort">
+                    <FormGroup>
+                        <Row className="row-cols-lg-auto g-3 align-items-center">
+                            <Col className="sortLabel">
+                                <Label for="sortSelect">
+                                    Sort by:
+                                </Label>
+                            </Col>
+                            <Col className="sortDropdown">
+                                <Input
+                                    id="sortSelect"
+                                    name="sortSelect"
+                                    type="select"
+                                    onChange={(e) => handleSort(e.target.value)}
+                                >
+                                    <option value={""}>
+                                        Select below
+                                    </option>
+                                    <option value={"featured"}>
+                                        Featured
+                                    </option >
+                                    <option value={"alphabeticalaz"}>
+                                        Alphabetically, A-Z
+                                    </option>
+                                    <option value={"alphabeticalza"}>
+                                        Alphabetically, Z-A
+                                    </option>
+                                    <option value={"pricelowhigh"}>
+                                        Price, $-$$$
+                                    </option>
+                                    <option value={"pricehighlow"}>
+                                        Price, $$$-$
+                                    </option>
+                                </Input>
+                            </Col>
+                        </Row>
+                    </FormGroup>
+                </Form>
+            </div>
+            <div className="coffeeCards">
                 {products.map(p =>
                     <Card 
                         key={p.id}
-                        style={{width: '23rem'}}
+                        style={{
+                            border: "none",
+                            backgroundColor: "#FEF5ED"}}
                         onClick={(e) => navToCoffeeDetail(e, p.id)}
                     >
                         <img
                             alt="sample"
-                            src="https://picsum.photos/1000"
+                            src={p.imageLocation}
+                            className="cardImage"
                             width="100%"
                         />
                         <CardBody>

@@ -51,7 +51,7 @@ namespace rare_form_roasting.Migrations
                         new
                         {
                             Id = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
-                            ConcurrencyStamp = "a54e0366-280c-4123-8223-4515a56417c9",
+                            ConcurrencyStamp = "bab3ddff-5d43-4b78-9650-aeb4064163e2",
                             Name = "Admin",
                             NormalizedName = "admin"
                         });
@@ -150,13 +150,13 @@ namespace rare_form_roasting.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "bb086a49-6842-49ab-aba7-c26c22a77231",
+                            ConcurrencyStamp = "b0d66908-4aba-43e2-8704-3f4ea7ae8abd",
                             Email = "david@rfr.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEAZc/zduTGh6C/IG22IrrnFbKCP9iRRcq1J/vJv/4ZB/74tMnYS8/jfs/VSgnhmO4g==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJ7w61qi3ESXr+xZ6TVw5YA0GMnyIx/WDwCTs/1sN66xl97BaoY/0GtTOmldBlUP7A==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "d6bcca11-5ce6-443f-8e3f-931d801a674a",
+                            SecurityStamp = "40c23fac-92cd-4e65-bd15-d0265507800b",
                             TwoFactorEnabled = false
                         });
                 });
@@ -524,7 +524,7 @@ namespace rare_form_roasting.Migrations
                             DisplayName = "Ethiopia Hambela Buliye",
                             ElevationRangeMASL = "2170",
                             FarmString = "Hambela Buliye",
-                            ImageLocation = "",
+                            ImageLocation = "https://res.cloudinary.com/dqi13ltdk/image/upload/v1698853881/Coffee%20Labels/Label_Web_Ethiopia-Hambela-Buliye_1000_x_1000_px_iacfun.png",
                             IsFeatured = false,
                             IsLive = true,
                             LocationString = "Buliye Kebele, Shakiso, Guji",
@@ -542,7 +542,7 @@ namespace rare_form_roasting.Migrations
                             DisplayName = "Colombia Inza Las Estrellas",
                             ElevationRangeMASL = "1500-2000",
                             FarmString = "Las Estrellas",
-                            ImageLocation = "",
+                            ImageLocation = "https://res.cloudinary.com/dqi13ltdk/image/upload/v1698853882/Coffee%20Labels/Label_Web_Colombia_Inza_Las_Estrellas_1000_x_1000_px_gmdoqp.png",
                             IsFeatured = false,
                             IsLive = true,
                             LocationString = "San Antonio and San Rafael, Inza, Cauca",
@@ -560,7 +560,7 @@ namespace rare_form_roasting.Migrations
                             DisplayName = "Kenya Kirinyaga Kamwangi Peaberry",
                             ElevationRangeMASL = "1800-2000",
                             FarmString = "Kamwangi Factory",
-                            ImageLocation = "",
+                            ImageLocation = "https://res.cloudinary.com/dqi13ltdk/image/upload/v1698853882/Coffee%20Labels/Label_Web_Kenya_Kirinyaga_Kamwangi_Peaberry_1000_x_1000_px_plnf5e.png",
                             IsFeatured = false,
                             IsLive = true,
                             LocationString = "Kirinyaga",
@@ -578,7 +578,7 @@ namespace rare_form_roasting.Migrations
                             DisplayName = "Nicaragua La Bastilla Centroamericano",
                             ElevationRangeMASL = "1300-1500",
                             FarmString = "La Bastilla Coffee Estates",
-                            ImageLocation = "",
+                            ImageLocation = "https://res.cloudinary.com/dqi13ltdk/image/upload/v1698853882/Coffee%20Labels/Label_Web_Nicaragua_La_Bastilla_Centroamericano_1000_x_1000_px_ffjizg.png",
                             IsFeatured = true,
                             IsLive = true,
                             LocationString = "Jinotega",

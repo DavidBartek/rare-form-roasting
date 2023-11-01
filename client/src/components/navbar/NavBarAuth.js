@@ -8,7 +8,6 @@ NavbarToggler,
 Popover,
 PopoverBody,
 NavbarBrand,
-Container,
 } from "reactstrap";
 import { logout } from "../../managers/authManager";
 import { BsPersonCircle } from "react-icons/bs";
@@ -34,7 +33,7 @@ export default function NavBarAuth ({ loggedInUser, setLoggedInUser, toggleNavba
                 <Nav navbar>
                     <NavItem onClick={() => setOpen(false)}>
                         <NavLink tag={RRNavLink} to="/coffees" style={{
-                                    fontWeight: "900",
+                                    fontWeight: "700",
                                     textAlign: "center"
                                 }}>
                             Coffees
@@ -44,7 +43,7 @@ export default function NavBarAuth ({ loggedInUser, setLoggedInUser, toggleNavba
                         <>
                             <NavItem onClick={() => setOpen(false)}>
                                 <NavLink tag={RRNavLink} to="/inventorymanager" style={{
-                                    fontWeight: "900",
+                                    fontWeight: "700",
                                     textAlign: "center"
                                 }}>
                                     Inventory Manager
@@ -52,7 +51,7 @@ export default function NavBarAuth ({ loggedInUser, setLoggedInUser, toggleNavba
                             </NavItem>
                             <NavItem onClick={() => setOpen(false)}>
                                 <NavLink tag={RRNavLink} to="/ordermanager" style={{
-                                    fontWeight: "900",
+                                    fontWeight: "700",
                                     textAlign: "center"
                                 }}>
                                     Order Manager
@@ -80,6 +79,9 @@ export default function NavBarAuth ({ loggedInUser, setLoggedInUser, toggleNavba
                                 setLoggedInUser(null);
                                 });
                             }}
+                            style={{
+                                fontWeight: "900",
+                                cursor: "pointer"}}
                             >Sign out
                         </div>
                         <div>

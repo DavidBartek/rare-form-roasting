@@ -107,7 +107,7 @@ public class RareFormRoastingDbContext : IdentityDbContext<IdentityUser>
                 DateAdded = new DateTime(2023, 7, 1), 
                 TastingNotes = "Strawberry, blueberry, nectarine, cranberry, tart golden plum", 
                 DescriptionString = "Fruit-forward and aromatic, this Ethiopian arrival expresses fruit flavors like strawberry hard candy, blueberry, nectarine, cranberry, and tart golden plum that are very clean for a dry process coffee.", 
-                ImageLocation = "", 
+                ImageLocation = "https://res.cloudinary.com/dqi13ltdk/image/upload/v1698853881/Coffee%20Labels/Label_Web_Ethiopia-Hambela-Buliye_1000_x_1000_px_iacfun.png", 
                 IsFeatured = false, 
                 IsLive = true
             },
@@ -125,7 +125,7 @@ public class RareFormRoastingDbContext : IdentityDbContext<IdentityUser>
                 DateAdded = new DateTime(2023, 5, 1), 
                 TastingNotes = "Red apple, tangy golden plum, dried apricot, stone fruit, wine", 
                 DescriptionString = "A regional blend of high scoring coffees from Inza, Cuaca. The cup sweetness is honeyed, with substantial fruit flavors that are slightly winey as you move through the cup. Red apple, tangy golden plum, dried apricots, and juicy acidic impression like stone fruits.", 
-                ImageLocation = "", 
+                ImageLocation = "https://res.cloudinary.com/dqi13ltdk/image/upload/v1698853882/Coffee%20Labels/Label_Web_Colombia_Inza_Las_Estrellas_1000_x_1000_px_gmdoqp.png", 
                 IsFeatured = false, 
                 IsLive = true
             },
@@ -143,7 +143,7 @@ public class RareFormRoastingDbContext : IdentityDbContext<IdentityUser>
                 DateAdded = new DateTime(2023, 6, 1), 
                 TastingNotes = "Naval orange, lemon custard, orange marmalade, tart fresh squeezed lemon, all-spice, cardamom", 
                 DescriptionString = "Deliciously fruited. Has a spiced-fruit scent, the dry fragrance perfumed with spiced tropical bunch and a cherry accent. Accents of naval orange, lemon custard, orange marmalade, tart fresh squeezed lemon, and a dusting of all-spice and cardamom. Light and bright.", 
-                ImageLocation = "", 
+                ImageLocation = "https://res.cloudinary.com/dqi13ltdk/image/upload/v1698853882/Coffee%20Labels/Label_Web_Kenya_Kirinyaga_Kamwangi_Peaberry_1000_x_1000_px_plnf5e.png", 
                 IsFeatured = false, 
                 IsLive = true
             },
@@ -161,7 +161,7 @@ public class RareFormRoastingDbContext : IdentityDbContext<IdentityUser>
                 DateAdded = new DateTime(2023, 10, 1), 
                 TastingNotes = "Chocolate, peach, vanilla, almond, golden raisin", 
                 DescriptionString = "Finca La Bastilla is a tropical paradise founded on deep, favorable volcanic soils, creating the perfect environment for world-renowned coffees. This wonderful, bright, medium-bodied coffee has intense notes of chocolate, peach, vanilla, almond, and golden raisin.", 
-                ImageLocation = "", 
+                ImageLocation = "https://res.cloudinary.com/dqi13ltdk/image/upload/v1698853882/Coffee%20Labels/Label_Web_Nicaragua_La_Bastilla_Centroamericano_1000_x_1000_px_ffjizg.png", 
                 IsFeatured = true, 
                 IsLive = true
             }
