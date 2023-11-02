@@ -46,7 +46,6 @@ export default function OrderManagerList () {
 
     const handleFulfill = (e) => {
         e.preventDefault();
-        console.log(orderIdToFulfill);
         markOrderFulfilled(orderIdToFulfill)
             .then(() => toggleFulfillModal())
             .then(() => renderOrderList());
@@ -74,48 +73,54 @@ export default function OrderManagerList () {
     return (
         <>
             <Container>
-                <h1>manage orders</h1>
-                <Form>
-                    <Row className="row-cols-lg-auto g-3 align-items-center">
-                        <Col>
-                            <Label for="sortSelect">
-                                Sort by:
-                            </Label>
-                        </Col>
-                        <Col>
-                            <Input
-                                id="sortSelect"
-                                name="sortSelect"
-                                type="select"
-                                onChange={(e) => handleSort(e.target.value)}
-                            >
-                                <option value={""}>
-                                    Select below
-                                </option>
-                                <option value={"allnewtoold"}>
-                                    All (new to old)
-                                </option >
-                                <option value={"alloldtonew"}>
-                                    All (old to new)
-                                </option>
-                                <option value={"unfulfilled"}>
-                                    Unfulfilled
-                                </option>
-                                <option value={"fulfilled"}>
-                                    Fulfilled
-                                </option>
-                                <option value={"cancelled"}>
-                                    Cancelled
-                                </option>
-                            </Input>
-                        </Col>
-                    </Row>
-                </Form>
+                <div className="inventoryListHeaderGroup">
+
+                    <h1 className="inventoryListHeader">Manage Orders</h1>
+
+                    <Form className="inventoryListSort">
+                        <Row className="row-cols-lg-auto g-3 align-items-center">
+                            <Col>
+                                <Label for="sortSelect" style={{fontSize: "larger", paddingTop: "8px"}}>
+                                    Sort by:
+                                </Label>
+                            </Col>
+                            <Col>
+                                <Input
+                                    id="sortSelect"
+                                    name="sortSelect"
+                                    type="select"
+                                    onChange={(e) => handleSort(e.target.value)}
+                                    style={{fontSize: "larger"}}
+                                >
+                                    <option value={""}>
+                                        Select below
+                                    </option>
+                                    <option value={"allnewtoold"}>
+                                        All (new to old)
+                                    </option >
+                                    <option value={"alloldtonew"}>
+                                        All (old to new)
+                                    </option>
+                                    <option value={"unfulfilled"}>
+                                        Unfulfilled
+                                    </option>
+                                    <option value={"fulfilled"}>
+                                        Fulfilled
+                                    </option>
+                                    <option value={"cancelled"}>
+                                        Cancelled
+                                    </option>
+                                </Input>
+                            </Col>
+                        </Row>
+                    </Form>
+                </div>
+
                 <Table hover>
-                    <tbody>
+                    <tbody style={{border: "5px #FDE6FE solid"}}>
                         {orders.map(o => 
                         <tr key={o.id}>
-                            <td>
+                            <td className="textDetailsInList">
                                 Order # {o.id}<br />
                                 Placed {dateTimeConverter(o.datePlaced)}<br />
                                 Status: {o.orderStatus}<br />
@@ -132,43 +137,80 @@ export default function OrderManagerList () {
                     </tbody>
                 </Table>
             </Container>
+
             <Offcanvas direction="end" isOpen={offCanvas} toggle={() => toggleOffCanvas()}>
                 <OrderManagerDetailView order={orderWithDetails} toggleOffCanvas={toggleOffCanvas} />
             </Offcanvas>
             <Modal isOpen={fulfillModal} toggle={toggleFulfillModal}>
-                <ModalHeader>
+                <ModalHeader className="textReset">
                     Fulfill order #{orderIdToFulfill}?
                 </ModalHeader>
-                <ModalFooter>
+                <ModalFooter className="textReset">
                     <Button onClick={(e) => {
                         e.preventDefault();
                         setOrderIdToFulfill(null);
                         toggleFulfillModal();
-                    }}>
+                    }}
+                        className="button" style={{
+                            backgroundColor: "#FDE6FE",
+                            color: "#021E36",
+                            fontWeight: 800,
+                            border: "none",
+                            borderRadius: "0px",
+                            transition: "box-shadow 0.1s",
+                            fontSize: "larger"
+                            }}>
                         Go Back
                     </Button>
                     <Button onClick={(e) => {
                         handleFulfill(e);
-                    }}>
+                    }}
+                        className="button" style={{
+                            backgroundColor: "#FAB375",
+                            color: "#021E36",
+                            fontWeight: 800,
+                            border: "none",
+                            borderRadius: "0px",
+                            transition: "box-shadow 0.1s",
+                            fontSize: "larger"
+                            }}>
                         Fulfill
                     </Button>
                 </ModalFooter>
             </Modal>
             <Modal isOpen={cancelModal} toggle={toggleCancelModal}>
-                <ModalHeader>
+                <ModalHeader className="textReset">
                     Cancel order #{orderIdToCancel}?
                 </ModalHeader>
-                <ModalFooter>
+                <ModalFooter className="textReset">
                     <Button onClick={(e) => {
                         e.preventDefault();
                         setOrderIdToCancel(null);
                         toggleCancelModal();
-                    }}>
+                    }}
+                        className="button" style={{
+                            backgroundColor: "#FDE6FE",
+                            color: "#021E36",
+                            fontWeight: 800,
+                            border: "none",
+                            borderRadius: "0px",
+                            transition: "box-shadow 0.1s",
+                            fontSize: "larger"
+                            }}>
                         Go Back
                     </Button>
                     <Button onClick={(e) => {
                         handleCancel(e);
-                    }}>
+                    }}
+                        className="button" style={{
+                            backgroundColor: "#FAB375",
+                            color: "#021E36",
+                            fontWeight: 800,
+                            border: "none",
+                            borderRadius: "0px",
+                            transition: "box-shadow 0.1s",
+                            fontSize: "larger"
+                            }}>
                         Cancel
                     </Button>
                 </ModalFooter>

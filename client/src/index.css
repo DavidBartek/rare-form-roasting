@@ -102,6 +102,13 @@ code {
   background-color: #FFF;
 }
 
+.offcanvas-header,
+.offcanvas-title,
+.offcanvas-body,
+.offcanvas-backdrop {
+  background-color: transparent;
+}
+
 @media (max-width: 992px) {
   .coffeeImageInList {
     width: 100px;
