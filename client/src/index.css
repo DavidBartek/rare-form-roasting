@@ -152,11 +152,11 @@ code {
 }
 
 .togglerContainer {
-  margin-right: 16.5%;
+  margin-right: 13.5%;
 }
 
 .togglerContainerUnauth {
-  margin-right: 25.5%;
+  margin-right: 23%;
 }
 
 .nav-item {
@@ -485,6 +485,57 @@ code {
   }
   .image-container {
     width: 300px;
+  }
+}
+
+/* Checkout  */
+
+.checkoutContainer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.addressContainer,
+.cartContainer {
+  flex: 1;
+  max-width: 45%;
+}
+
+.cartContainer {
+  margin-top: 50px;
+}
+
+/* Checkout Confirm */
+
+.checkoutConfirmContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.addressConfirmContainer,
+.cartConfirmContainer {
+  flex: 1;
+  max-width: 45%;
+}
+
+/* media query: above x width, cart and addresses are side by side. below, in a row. */
+@media (max-width: 550px) {
+  .checkoutContainer,
+  .checkoutConfirmContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  .addressContainer,
+  .cartContainer,
+  .addressConfirmContainer,
+  .cartConfirmContainer {
+    flex: 1;
+    max-width: 100%;
+  }
+  .cartContainer,
+  .cartConfirmContainer {
+    margin-top: 20px;
   }
 }
 

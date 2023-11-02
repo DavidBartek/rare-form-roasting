@@ -95,178 +95,235 @@ export default function Checkout ({ loggedInUser }) {
     } else if (!checkoutConfirmView) {
         return (
             <>
-                <Container>
-                    <h2>Checkout</h2>
-                    <strong>Email: </strong>{userDetails.email}<br />
-                    <strong>Shipping Address: </strong><br />
-                    <Form>
-                        <FormGroup tag="fieldset">
-                            {userDetails.shippingAddresses?.length > 0 ? (
-                                userDetails.shippingAddresses.map(a => (
-                                    <FormGroup check key={a.id}>
+                <Container className="checkoutContainer">
+                    <div className="addressContainer">
+                        <h1>Checkout</h1>
+                        <div className="bodytext">
+                            <strong className="bodytext">Email: </strong>{userDetails.email}<br />
+                            <strong className="bodytext">Shipping Address: </strong><br />
+                            <Form>
+                                <FormGroup tag="fieldset">
+                                    {userDetails.shippingAddresses?.length > 0 ? (
+                                        userDetails.shippingAddresses.map(a => (
+                                            <FormGroup check key={a.id}>
+                                                <Input
+                                                    name="addressRadio"
+                                                    type="radio"
+                                                    onChange={() => handleAddressSelect(a)}
+                                                    style={{fontSize: "larger", border: "1px solid black"}}
+                                                />
+                                                <Label check style={{fontSize: "larger"}}>
+                                                    {a.address1}<br />
+                                                    {a.address2 ? (
+                                                        <div>
+                                                            {a.address2}
+                                                            <br />
+                                                        </div>
+                                                    ) : (
+                                                        ""
+                                                    )}
+                                                    {a.city}, {a.stateCode} {a.zip}
+                                                </Label>
+                                            </FormGroup>
+                                        ))
+                                    ) : (
+                                        ""
+                                    )}
+                                    <FormGroup>
                                         <Input
                                             name="addressRadio"
                                             type="radio"
-                                            onChange={() => handleAddressSelect(a)}
+                                            onChange={() => handleNewAddressSelect()}
+                                            style={{fontSize: "larger", border: "1px solid black", marginLeft: "-5px"}}
                                         />
-                                        <Label check>
-                                            {a.address1}<br />
-                                            {a.address2 ? (
-                                                <div>
-                                                    {a.address2}
-                                                    <br />
-                                                </div>
-                                            ) : (
-                                                ""
-                                            )}
-                                            {a.city}, {a.stateCode} {a.zip}
+                                        <Label check style={{fontSize: "larger"}}>
+                                            <>
+                                                &nbsp;&nbsp;
+                                                <strong style={{fontSize: "20px"}}>Add new address</strong>
+                                                <br />
+                                            </>
                                         </Label>
                                     </FormGroup>
-                                ))
-                            ) : (
-                                ""
-                            )}
-                            <FormGroup>
-                                <Input
-                                    name="addressRadio"
-                                    type="radio"
-                                    onChange={() => handleNewAddressSelect()}
-                                />
-                                <Label check>
-                                    <>
-                                        &nbsp;&nbsp;
-                                        <strong>Add new address:</strong>
-                                        <br />
-                                    </>
-                                </Label>
-                            </FormGroup>
-                            {newAddressView ? (
-                                <FormGroup>
-                                    <FormGroup>
-                                        <Label for="address1">
-                                            Address 1
-                                        </Label>
-                                        <Input
-                                            id="address1"
-                                            name="address1"
-                                            type="text"
-                                            value={newAddress1 ?? ""}
-                                            placeholder="required"
-                                            onChange={(e) => {
-                                                setNewAddress1(e.target.value)
-                                            }}
-                                        />
-                                    </FormGroup>
-                                    <FormGroup>
-                                        <Label for="address2">
-                                            Address 2
-                                        </Label>
-                                        <Input
-                                            id="address2"
-                                            name="address2"
-                                            type="text"
-                                            value={newAddress2 ?? ""}
-                                            onChange={(e) => {
-                                                setNewAddress2(e.target.value)
-                                            }}
-                                        />
-                                    </FormGroup>
-                                    <FormGroup>
-                                        <Label for="city">
-                                            City
-                                        </Label>
-                                        <Input
-                                            id="city"
-                                            name="city"
-                                            type="text"
-                                            value={newCity ?? ""}
-                                            placeholder="required"
-                                            onChange={(e) => {
-                                                setNewCity(e.target.value)
-                                            }}
-                                        />
-                                    </FormGroup>
-                                    <FormGroup>
-                                        <Label for="stateCode">
-                                            State
-                                        </Label>
-                                        <Input
-                                            id="stateCode"
-                                            name="stateCode"
-                                            type="select"
-                                            value={newStateCode ?? ""}
-                                            
-                                            onChange={(e) => {
-                                                setNewStateCode(e.target.value)
-                                            }}
-                                        >
-                                            {stateCodes.map(s =>
-                                                <option key={s}>
-                                                    {s}
-                                                </option>
-                                            )}
-                                        </Input>
-                                    </FormGroup>
-                                    <FormGroup>
-                                        <Label for="zip">
-                                            Zip
-                                        </Label>
-                                        <Input
-                                            id="zip"
-                                            name="zip"
-                                            type="text"
-                                            value={newZip ?? ""}
-                                            placeholder="required"
-                                            onChange={(e) => {
-                                                setNewZip(e.target.value)
-                                            }}
-                                        />
-                                    </FormGroup>
-                                </FormGroup>    
-                            ) : (
-                                ""
-                            )}
-                        </FormGroup>
-                    </Form>
-                    <h5>Cart</h5>
-                    <Table borderless>
-                        <tbody>
-                            {cart.orderProducts?.map(op => (
-                                <tr key={op.id}>
-                                    <th>
-                                        image
+                                    {newAddressView ? (
+                                        <FormGroup>
+                                            <FormGroup>
+                                                <Label for="address1" className="textReset">
+                                                    Address 1
+                                                </Label>
+                                                <Input
+                                                    id="address1"
+                                                    name="address1"
+                                                    type="text"
+                                                    value={newAddress1 ?? ""}
+                                                    placeholder="required"
+                                                    onChange={(e) => {
+                                                        setNewAddress1(e.target.value)
+                                                    }}
+                                                    style={{
+                                                        fontSize: "larger",
+                                                        borderRadius: 0,
+                                                        border: "1px solid #021E36"
+                                                    }}
+                                                />
+                                            </FormGroup>
+                                            <FormGroup>
+                                                <Label for="address2" className="textReset">
+                                                    Address 2
+                                                </Label>
+                                                <Input
+                                                    id="address2"
+                                                    name="address2"
+                                                    type="text"
+                                                    value={newAddress2 ?? ""}
+                                                    onChange={(e) => {
+                                                        setNewAddress2(e.target.value)
+                                                    }}
+                                                    style={{
+                                                        fontSize: "larger",
+                                                        borderRadius: 0,
+                                                        border: "1px solid #021E36"
+                                                    }}
+                                                />
+                                            </FormGroup>
+                                            <FormGroup>
+                                                <Label for="city" className="textReset">
+                                                    City
+                                                </Label>
+                                                <Input
+                                                    id="city"
+                                                    name="city"
+                                                    type="text"
+                                                    value={newCity ?? ""}
+                                                    placeholder="required"
+                                                    onChange={(e) => {
+                                                        setNewCity(e.target.value)
+                                                    }}
+                                                    style={{
+                                                        fontSize: "larger",
+                                                        borderRadius: 0,
+                                                        border: "1px solid #021E36"
+                                                    }}
+                                                />
+                                            </FormGroup>
+                                            <FormGroup>
+                                                <Label for="stateCode" className="textReset">
+                                                    State
+                                                </Label>
+                                                <Input
+                                                    id="stateCode"
+                                                    name="stateCode"
+                                                    type="select"
+                                                    value={newStateCode ?? ""}
+                                                    onChange={(e) => {
+                                                        setNewStateCode(e.target.value)
+                                                    }}
+                                                    style={{
+                                                        fontSize: "larger",
+                                                        borderRadius: 0,
+                                                        border: "1px solid #021E36"
+                                                    }}
+                                                >
+                                                    {stateCodes.map(s =>
+                                                        <option key={s}>
+                                                            {s}
+                                                        </option>
+                                                    )}
+                                                </Input>
+                                            </FormGroup>
+                                            <FormGroup>
+                                                <Label for="zip" className="textReset">
+                                                    Zip
+                                                </Label>
+                                                <Input
+                                                    id="zip"
+                                                    name="zip"
+                                                    type="text"
+                                                    value={newZip ?? ""}
+                                                    placeholder="required"
+                                                    onChange={(e) => {
+                                                        setNewZip(e.target.value)
+                                                    }}
+                                                    style={{
+                                                        fontSize: "larger",
+                                                        borderRadius: 0,
+                                                        border: "1px solid #021E36"
+                                                    }}
+                                                />
+                                            </FormGroup>
+                                        </FormGroup>    
+                                    ) : (
+                                        ""
+                                    )}
+                                </FormGroup>
+                            </Form>
+                        
+                        </div>
+                    </div>
+
+                    <div className="cartContainer">
+                        <h3>Cart</h3>
+                        <Table borderless>
+                            <tbody style={{border: "5px #FDE6FE solid"}}>
+                                {cart.orderProducts?.map(op => (
+                                    <tr key={op.id}>
+                                        <th style={{maxWidth: "180px"}}>
+                                            <img src={op.product.imageLocation} alt="coffee" 
+                                            style={{width: "85%"}} />
+                                        </th>
+                                        <td className="textReset">
+                                            <h5 className="textReset">{op.product.displayName}</h5>
+                                            Size: {op.weight.weightOz} oz<br />
+                                            Grind: {op.grind.grindSetting}<br />
+                                            Quantity: {op.productQuantity}<br />
+                                            <h6 className="textReset">${priceFormatter(op.subtotal)}</h6>
+                                        </td>
+                                    </tr>
+                                ))}
+                                <tr>
+                                    <th className="textReset">
+                                        Total
                                     </th>
                                     <td>
-                                        <h5>{op.product.displayName}</h5>
-                                        Size: {op.weight.weightOz} oz<br />
-                                        Grind: {op.grind.grindSetting}<br />
-                                        Quantity: {op.productQuantity}<br />
-                                        <h6>${priceFormatter(op.subtotal)}</h6>
+                                        <strong className="textReset">${priceFormatter(cart.totalPrice)}</strong>
                                     </td>
                                 </tr>
-                            ))}
-                            <tr>
-                                <th>
-                                    Total
-                                </th>
-                                <td>
-                                    <strong>${priceFormatter(cart.totalPrice)}</strong>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </Table>
-                    <Button onClick={(e) => handlePurchase(e)}>Purchase</Button>
+                            </tbody>
+                        </Table>
+
+                        <Button onClick={(e) => handlePurchase(e)} className="button" style={{
+                            backgroundColor: "#FAB375",
+                            color: "#021E36",
+                            fontWeight: 800,
+                            border: "none",
+                            borderRadius: "0px",
+                            transition: "box-shadow 0.1s",
+                            fontSize: "larger",
+                            width: "100%"
+                            }}>
+                            Purchase
+                        </Button>
+
+                    </div>
                 </Container>
                 <Modal isOpen={modal} toggle={triggerEmptyAddressModal}>
-                    <ModalHeader>
+                    <ModalHeader className="textReset">
                         Please fill out all required address fields
                     </ModalHeader>
-                    <ModalFooter>
+                    <ModalFooter className="textReset">
                         <Button onClick={(e) => {
                             e.preventDefault();
                             setModal(false)}}
+                            className="button" style={{
+                                backgroundColor: "#FDE6FE",
+                                color: "#021E36",
+                                fontWeight: 800,
+                                border: "none",
+                                borderRadius: "0px",
+                                transition: "box-shadow 0.1s",
+                                fontSize: "larger"
+                                }}
                         >
-                            Ok
+                            Go back
                         </Button>
                     </ModalFooter>
                 </Modal>
