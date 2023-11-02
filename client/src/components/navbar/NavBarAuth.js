@@ -61,7 +61,7 @@ export default function NavBarAuth ({ loggedInUser, setLoggedInUser, toggleNavba
                                 </NavLink>
                             </NavItem>
                             <NavItem>
-                                <img className="navlink-image" src="/Logo_Plane.svg" alt="Logo"/>
+                                <img className="navlink-image" src="/Logo_Plane.svg" alt="Logo" style={{transform: 'scaleX(-1)'}}/>
                             </NavItem>
                         </>
                     )}
@@ -76,7 +76,7 @@ export default function NavBarAuth ({ loggedInUser, setLoggedInUser, toggleNavba
                     isOpen={popover}
                     toggle={() => togglePopover()}>
                     <PopoverBody>
-                        <h5>
+                        <h5 style={{backgroundColor: "#FFF", border: "none"}}>
                             Hi, {loggedInUser.firstName}
                         </h5>
                         <div
@@ -86,17 +86,18 @@ export default function NavBarAuth ({ loggedInUser, setLoggedInUser, toggleNavba
                                 });
                             }}
                             style={{
+                                backgroundColor: "#FFF",
                                 fontWeight: "900",
                                 cursor: "pointer"}}
                             >Sign out
                         </div>
                         <div>
-                            <NavLink tag={RRNavLink} to="/orders">
+                            <NavLink tag={RRNavLink} to="/orders" style={{backgroundColor: "#FFF"}}>
                                 My Orders
                             </NavLink>
                         </div>
                         <div>
-                            <NavLink tag={RRNavLink} to="/profile">
+                            <NavLink tag={RRNavLink} to="/profile" style={{backgroundColor: "#FFF"}}>
                                 Profile
                             </NavLink>
                         </div>

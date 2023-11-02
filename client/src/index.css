@@ -55,6 +55,8 @@ code {
   border: "1px solid #021E36"
 }} */
 
+/* regular body text */
+/* className="bodytext" */
 
 /* Global Components */
 
@@ -64,6 +66,10 @@ code {
 
 .arrow {
   background-color: transparent;
+}
+
+.bodytext {
+  font-size: larger;
 }
 
 /* navbar components */
@@ -149,8 +155,6 @@ code {
   font-size: 28px;
 }
 
-
-
 @media (max-width: 992px) {
   .togglerContainer,
   .togglerContainerUnauth {
@@ -185,7 +189,7 @@ code {
 
 @media (max-width: 381px) {
   .navbar-logo {
-    height: 40px;
+    height: 35px;
   }
 }
 
@@ -287,18 +291,24 @@ code {
   width: 100%;
 }
 
-.coffeeDetailsInfo {
+#coffeeDetailsInfo {
   margin-top: 20px;
   margin-bottom: 50px;
+  /* font-size: larger; */
 }
 
-.popover-inne {
-  border: 1px solid #FEF5ED;
+.popover {
+  border: none;
+}
+
+.popover-inner {
+  border: none;
   border-radius: 0px;
+  background-color: #FFF;
 }
 
 .popover-body {
-  background-color: #FDE6FE;
+  background-color: #FFF;
   
 }
 

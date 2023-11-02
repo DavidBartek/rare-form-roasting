@@ -26,7 +26,7 @@ export default function NavBarUnauth ({ toggleNavbar, open, setOpen }) {
                 <img className="navbar-logo" src="/Logo_Thin_500x100.svg" alt="Logo"/>
             </NavbarBrand>
             <div className="togglerContainerUnauth">
-                <NavbarToggler onClick={toggleNavbar} style={{color: "FEF5ED"}}/>
+                <NavbarToggler onClick={toggleNavbar} style={{color: "#FEF5ED"}}/>
             </div>
             <Collapse isOpen={open} navbar>
                 <Nav navbar>
@@ -43,7 +43,7 @@ export default function NavBarUnauth ({ toggleNavbar, open, setOpen }) {
                         </NavLink>
                     </NavItem>
                     <NavItem>
-                        <img className="navlink-image" src="/Logo_Plane.svg" alt="Logo"/>
+                        <img className="navlink-image" src="/Logo_Plane.svg" alt="Logo" style={{transform: 'scaleX(-1)'}}/>
                     </NavItem>
                 </Nav>
             </Collapse>
@@ -55,8 +55,8 @@ export default function NavBarUnauth ({ toggleNavbar, open, setOpen }) {
                     trigger="focus"
                     isOpen={popover}
                     toggle={() => togglePopover()}>
-                    <PopoverBody>
-                            <Link to="/login">
+                    <PopoverBody >
+                            <Link to="/login" style={{backgroundColor: "#FFF"}}>
                                 Login/Create Account
                             </Link>
                     </PopoverBody>        

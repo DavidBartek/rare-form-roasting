@@ -9,9 +9,9 @@ export default function CoffeeDetailsCartAdd ({ loggedInUser, coffeeDetails, sel
 
     const togglePopover = () => {
         setPopover(true);
-        // setTimeout(() => {
-        //     setPopover(false);
-        // }, 3000);
+        setTimeout(() => {
+            setPopover(false);
+        }, 3000);
     };
     
     const handleNavToLogin = (e) => {
@@ -74,7 +74,7 @@ export default function CoffeeDetailsCartAdd ({ loggedInUser, coffeeDetails, sel
                     target="addToCartButton"
                     isOpen={popover}
                     toggle={() => togglePopover()}>
-                    <PopoverBody>
+                    <PopoverBody className="bodytext">
                         Added to cart!
                     </PopoverBody>
                 </Popover>

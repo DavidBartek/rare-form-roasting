@@ -20,7 +20,7 @@ export default function CoffeeDetails ({ loggedInUser }) {
         getProductDetails(coffeeId).then(setCoffeeDetails);
         getGrinds().then(setGrindSettings);
         getWeights().then(setWeightSettings);
-    }, [])
+    }, [coffeeId])
 
     useEffect(() => {
         getWeightById(selectedWeightId).then(setSelectedWeightObj)
@@ -155,12 +155,12 @@ export default function CoffeeDetails ({ loggedInUser }) {
 
             </div>
 
-            <div className="coffeeDetailsInfo">
-                <strong>Origin: </strong>{coffeeDetails.locationString}, {coffeeDetails.country} - {coffeeDetails.farmString}<br />
-                <strong>Tasting Notes: </strong>{coffeeDetails.tastingNotes}<br />
-                <strong>Process: </strong>{coffeeDetails.process}<br />
-                <strong>Elevation: </strong>{coffeeDetails.elevationRangeMASL} masl<br />
-                <strong>Varietals: </strong>{coffeeDetails.varietal}<br />
+            <div className="bodytext" id="coffeeDetailsInfo">
+                <strong className="bodytext">Origin: </strong>{coffeeDetails.locationString}, {coffeeDetails.country} - {coffeeDetails.farmString}<br />
+                <strong className="bodytext">Tasting Notes: </strong>{coffeeDetails.tastingNotes}<br />
+                <strong className="bodytext">Process: </strong>{coffeeDetails.process}<br />
+                <strong className="bodytext">Elevation: </strong>{coffeeDetails.elevationRangeMASL} masl<br />
+                <strong className="bodytext">Varietals: </strong>{coffeeDetails.varietal}<br />
                 {coffeeDetails.descriptionString}
             </div>
             

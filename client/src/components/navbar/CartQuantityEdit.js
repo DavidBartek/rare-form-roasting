@@ -12,14 +12,14 @@ export default function CartQuantityEdit ({ op, quantity }) {
     }
     
     return (
-        <h6>
+        <h6 style={{backgroundColor: "#FFF"}}>
             Qty:
             {' '}
             {quantity === 1 ? (
                 // <BsDashLg />
                 '\u00A0 \u00A0'
             ) : (
-                <BsDashLg onClick={() => handleMinus()} />
+                <BsDashLg onClick={() => handleMinus()} style={{backgroundColor: "#FFF"}} />
             )}
             {' '}
             {quantity}
@@ -28,7 +28,7 @@ export default function CartQuantityEdit ({ op, quantity }) {
                 // <BsPlusLg />
                 ""
             ) : (
-                <BsPlusLg onClick={() => handleAdd()}/>
+                <BsPlusLg onClick={() => handleAdd()} style={{backgroundColor: "#FFF"}}/>
             )}
         </h6>
     )
