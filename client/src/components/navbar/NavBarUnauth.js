@@ -1,4 +1,4 @@
-import { NavLink as RRNavLink } from "react-router-dom";
+import { Link, NavLink as RRNavLink } from "react-router-dom";
 import {
 Collapse,
 Nav,
@@ -23,13 +23,16 @@ export default function NavBarUnauth ({ toggleNavbar, open, setOpen }) {
     return (
         <>
             <NavbarBrand tag={RRNavLink} to="/">
-                <img className="navbar-logo" src="images/Logo_Thin_500x100.svg" />
+                <img className="navbar-logo" src="/Logo_Thin_500x100.svg" alt="Logo"/>
             </NavbarBrand>
             <div className="togglerContainerUnauth">
-                <NavbarToggler onClick={toggleNavbar} style={{color: "FEF5ED"}}/>
+                <NavbarToggler onClick={toggleNavbar} style={{color: "#FEF5ED"}}/>
             </div>
             <Collapse isOpen={open} navbar>
                 <Nav navbar>
+                    <NavItem>
+                        <img className="navlink-image" src="/Logo_Plane.svg" alt="Logo"/>
+                    </NavItem>
                     <NavItem onClick={() => setOpen(false)}>
                         <NavLink tag={RRNavLink} to="/coffees" style={{
                                     fontWeight: "700",
@@ -38,6 +41,9 @@ export default function NavBarUnauth ({ toggleNavbar, open, setOpen }) {
                                 }}>
                             Coffees
                         </NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <img className="navlink-image" src="/Logo_Plane.svg" alt="Logo" style={{transform: 'scaleX(-1)'}}/>
                     </NavItem>
                 </Nav>
             </Collapse>
@@ -49,12 +55,10 @@ export default function NavBarUnauth ({ toggleNavbar, open, setOpen }) {
                     trigger="focus"
                     isOpen={popover}
                     toggle={() => togglePopover()}>
-                    <PopoverBody>
-                        <div>
-                            <NavLink tag={RRNavLink} to="/login">
+                    <PopoverBody >
+                            <Link to="/login" style={{backgroundColor: "#FFF"}}>
                                 Login/Create Account
-                            </NavLink>
-                        </div>
+                            </Link>
                     </PopoverBody>        
                 </Popover>
                 <Cart className="cartIcon"/>

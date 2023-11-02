@@ -13,6 +13,7 @@ import Checkout from "./checkout/Checkout";
 import CheckoutConfirm from "./checkout/CheckoutConfirm";
 import CreateCoffee from "./inventorymanager/CreateCoffee";
 import ModifyCoffee from "./inventorymanager/ModifyCoffee";
+import { Container } from "reactstrap";
 
 // note on auth...
 // should each component that is viewable by logged in and non logged in user contain a ternary in the "element" prop?
@@ -105,10 +106,18 @@ export default function ApplicationViews({ loggedInUser, setLoggedInUser }) {
         />
       </Route>
       <Route path="*" element={
-      <>
-        <h1>404: Page not found</h1>
-        <Link to="/">Return home...</Link>
-      </>} />
+        <>
+          <Container>
+          <h1>404: Page not found</h1>
+          <Link to="/">
+            Fly home...
+            <img src="/Logo_Plane.svg" alt="Logo" style={{
+              height: "20px"
+            }}/>
+          </Link>
+          </Container>
+        </>}
+      />
     </Routes>
   );
 }

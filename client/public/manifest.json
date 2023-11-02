@@ -3,18 +3,18 @@
     "name": "Rare Form Roasting Co.",
     "icons": [
       {
-        "src": "images/Logo_Plane.svg",
+        "src": "Logo_Plane.svg",
         "sizes": "64x64 32x32 24x24 16x16",
         "type": "image/svg+xml"
       },
       {
-        "src": "images/Logo_Circle_1000x1000.svg",
+        "src": "Logo_Circle_1000x1000.svg",
         "type": "image/svg+xml",
         "sizes": "1000x1000"
       },
       {
-        "src": "images/Logo_Thin_500x100.svg",
-        "type": "image/png",
+        "src": "Logo_Thin_500x100.svg",
+        "type": "image/svg+xml",
         "sizes": "500x100"
       }
     ],

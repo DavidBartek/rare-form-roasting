@@ -34,6 +34,44 @@ code {
   }
 }
 
+/* Reference */
+/* These components must be styled with inline JSX to override defaults */
+
+/* success button: */
+/* 
+  className="button" style={{
+  backgroundColor: "#75BCFA",
+  color: "#021E36",
+  fontWeight: 800,
+  border: "none",
+  borderRadius: "0px",
+  transition: "box-shadow 0.1s"
+  }} 
+*/
+
+/* input form */
+/* style={{
+  borderRadius: 0,
+  border: "1px solid #021E36"
+}} */
+
+/* regular body text */
+/* className="bodytext" */
+
+/* Global Components */
+
+.button:hover {
+  box-shadow: #021E36 1px 1px 1px;
+}
+
+.arrow {
+  background-color: transparent;
+}
+
+.bodytext {
+  font-size: larger;
+}
+
 /* navbar components */
 
 .navbar,
@@ -43,6 +81,7 @@ code {
 .togglerContainerUnauth,
 .collapse,
 .nav-item,
+.navlink-image,
 .navbar-toggler-icon,
 .navbar-brand,
 .navbar-logo,
@@ -50,6 +89,12 @@ code {
 #profileIcon,
 #cartIcon {
   background-color: #75BCFA;
+}
+
+.navbar {
+  background: linear-gradient(to bottom,
+  #75BCFA 5%, #75BCFA 90%,
+  #FEF5ED 95%, #FEF5ED 100%);
 }
 
 .container-fluid {
@@ -71,7 +116,7 @@ code {
 }
 
 .togglerContainerUnauth {
-  margin-right: 30%;
+  margin-right: 23%;
 }
 
 .nav-item {
@@ -88,6 +133,16 @@ code {
   text-shadow: #FEF5ED 1px 1px 1px;
 }
 
+.navlink-image {
+  height: 20px;
+  margin-top: 15px;
+  transition: .25s;
+}
+
+.navlink-image:hover {
+  height: 21px;
+}
+
 #profileIcon,
 #cartIcon {
   margin: 10px;
@@ -99,8 +154,6 @@ code {
 #cartIcon:hover {
   font-size: 28px;
 }
-
-
 
 @media (max-width: 992px) {
   .togglerContainer,
@@ -115,6 +168,9 @@ code {
   .navbar-icons {
     order: 3;
   }
+  .navlink-image {
+    display: none;
+  }
 }
 
 @media (max-width: 844px) {
@@ -128,6 +184,12 @@ code {
   #cartIcon {
     margin: 7px;
     font-size: 20px;
+  }
+}
+
+@media (max-width: 381px) {
+  .navbar-logo {
+    height: 35px;
   }
 }
 
@@ -153,8 +215,16 @@ code {
   border: none;
 }
 
+#sortSelect {
+  border-radius: 0;
+}
+
 .sortLabel {
   padding-top: 8px;
+}
+
+.sortDropdown {
+  border-radius: 0;
 }
 
 @media (max-width: 992px) {
@@ -192,4 +262,75 @@ code {
 .card-text {
   background-color: #FEF5ED;
   text-align: center;
+}
+
+/* Coffee Detail */
+
+.coffeeDetailsContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.coffeeDetailsSelectionsContainer {
+  order: 1;
+  margin-top: 40px;
+  width: 600px;
+}
+
+.coffeeDetailsForm {
+  width: 100%;
+}
+
+.image-container {
+  order: 2;
+  margin-top: 25px;
+  max-width: 500px;
+}
+
+.coffeeDetailImage {
+  width: 100%;
+}
+
+#coffeeDetailsInfo {
+  margin-top: 20px;
+  margin-bottom: 50px;
+  /* font-size: larger; */
+}
+
+.popover {
+  border: none;
+}
+
+.popover-inner {
+  border: none;
+  border-radius: 0px;
+  background-color: #FFF;
+}
+
+.popover-body {
+  background-color: #FFF;
+  
+}
+
+@media (max-width: 992px) {
+  .coffeeDetailsContainer {
+    flex-direction: column;
+    align-items: center;
+  }
+  .coffeeDetailImage {
+    order: 1
+  }
+  .coffeeDetailsSelectionsContainer {
+    order: 2;
+    max-width: 500px 
+  }
+}
+
+@media (max-width: 500px) {
+  .coffeeDetailsSelectionsContainer {
+    width: 300px;
+  }
+  .image-container {
+    width: 300px;
+  }
 }

@@ -24,6 +24,13 @@ export default function Cart ({ loggedInUser }) {
         setPopover(!popover);
     };
 
+    const handleNavToProduct = (e, productId) => {
+        e.preventDefault();
+        console.log(productId);
+        navigate(`/coffees/${productId}`)
+        setPopover(false);
+    }
+
     const handleRemoveFromCart = (e, opId) => {
         e.preventDefault();
         setDeleteConfirmById(opId);
@@ -53,7 +60,7 @@ export default function Cart ({ loggedInUser }) {
                     isOpen={popover}
                     toggle={() => togglePopover()}>
                     <PopoverBody>
-                        <Link to="/login">
+                        <Link to="/login" style={{backgroundColor: "#FFF"}}>
                             Log in to view cart
                         </Link>
                     </PopoverBody>
@@ -72,7 +79,7 @@ export default function Cart ({ loggedInUser }) {
                     trigger="click"
                     isOpen={popover}
                     toggle={() => togglePopover()}>
-                    <PopoverBody>
+                    <PopoverBody style={{backgroundColor: "#FFF"}}>
                         Cart is empty.
                     </PopoverBody>
                 </Popover>
@@ -90,28 +97,66 @@ export default function Cart ({ loggedInUser }) {
                 trigger="click"
                 isOpen={popover}
                 toggle={() => togglePopover()}>
-                <PopoverBody>
-                    <h5>Cart</h5>
+                <PopoverBody >
+                    <h5 style={{backgroundColor: "#FFF"}}>Cart</h5>
                     <Table borderless>
                         <tbody>
                             {cart.orderProducts?.map(op =>
                             <tr key={op.id}>
                                 <th>
-                                    image
+                                    <img src="/Logo_Plane.svg" alt="plane" style={{
+                                            backgroundColor: "#FFF", width: "60px", transform: 'scale(-1, -1)'
+                                        }} />
+                                    <img src={op.product.imageLocation} alt="coffee" 
+                                        onClick={(e) => handleNavToProduct(e, op.product.id)}
+                                        className="button" 
+                                        style={{
+                                            backgroundColor: "#FFF", width: "60px"
+                                        }} />
+                                    <img src="/Logo_Plane.svg" alt="plane" style={{
+                                            backgroundColor: "#FFF", width: "60px"
+                                        }} />
                                 </th>
                                 <td>
-                                    <h5>{op.product.displayName}</h5>
-                                    <h6>${priceFormatter(op.subtotal)}</h6>
+                                    <h5 style={{backgroundColor: "#FFF"}}>{op.product.displayName}</h5>
+                                    <h6 style={{backgroundColor: "#FFF"}}>${priceFormatter(op.subtotal)}</h6>
                                     Size: {op.weight.weightOz} oz<br />
                                     Grind: {op.grind.grindSetting}<br />
                                     <CartQuantityEdit op={op} quantity={op.productQuantity}/>
                                     {deleteConfirmById === op.id ? (
-                                    <Button onClick={(e) => handleDeleteConfirm(e, op.id)}>
-                                        Are you sure?
+                                    <>
+                                    <strong style={{backgroundColor: "#FFF"}}>Are you sure?</strong>
+                                    <Button onClick={() => setDeleteConfirmById("")} className="button" style={{
+                                        backgroundColor: "#75BCFA",
+                                        color: "#FEF5ED",
+                                        fontWeight: 600,
+                                        border: "none",
+                                        borderRadius: "0px",
+                                        transition: "box-shadow 0.1s"
+                                    }}>
+                                        no
                                     </Button>
+                                    <Button onClick={(e) => handleDeleteConfirm(e, op.id)} className="button" style={{
+                                        backgroundColor: "#021E36",
+                                        color: "#FEF5ED",
+                                        fontWeight: 600,
+                                        border: "none",
+                                        borderRadius: "0px",
+                                        transition: "box-shadow 0.1s"
+                                    }}>
+                                        yes
+                                    </Button>
+                                    </>
                                     ) : (
-                                    <Button onClick={(e) => handleRemoveFromCart(e, op.id)}>
-                                        Remove from cart
+                                    <Button onClick={(e) => handleRemoveFromCart(e, op.id)} style={{
+                                        backgroundColor: "#FFF",
+                                        color: "#021E36",
+                                        fontWeight: 800,
+                                        border: "none",
+                                        borderRadius: "0px",
+                                        transition: "box-shadow 0.1s"
+                                    }}>
+                                        Remove
                                     </Button>
                                     )}
                                 </td>
@@ -122,13 +167,21 @@ export default function Cart ({ loggedInUser }) {
                                     Total
                                 </th>
                                 <td>
-                                    <strong>${priceFormatter(cart.totalPrice)}</strong>
+                                    <strong style={{backgroundColor: "#FFF"}}>${priceFormatter(cart.totalPrice)}</strong>
                                 </td>
                             </tr>
                         </tbody>
                     </Table>
-                    <Button onClick={(e) => handleNavToCheckout(e)}>
-                        Check Out <BsArrowRightShort />
+                    <Button onClick={(e) => handleNavToCheckout(e)} className="button" style={{
+                        backgroundColor: "#FAB375",
+                        color: "#021E36",
+                        fontWeight: 800,
+                        border: "none",
+                        borderRadius: "0px",
+                        transition: "box-shadow 0.1s",
+                        width: "100%"
+                    }}>
+                        Check Out <BsArrowRightShort style={{backgroundColor: "transparent"}}/>
                     </Button>
                 </PopoverBody>
             </Popover>

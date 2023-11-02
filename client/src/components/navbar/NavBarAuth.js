@@ -24,13 +24,16 @@ export default function NavBarAuth ({ loggedInUser, setLoggedInUser, toggleNavba
     return (
         <>
             <NavbarBrand tag={RRNavLink} to="/">
-                <img className="navbar-logo" src="images/Logo_Thin_500x100.svg" />
+                <img className="navbar-logo" src="/Logo_Thin_500x100.svg" alt="Logo"/>
             </NavbarBrand>
             <div className="togglerContainer">
                 <NavbarToggler onClick={toggleNavbar} />
             </div>
             <Collapse isOpen={open} navbar>
                 <Nav navbar>
+                    <NavItem>
+                    <img className="navlink-image" src="/Logo_Plane.svg" alt="Logo"/>
+                    </NavItem>
                     <NavItem onClick={() => setOpen(false)}>
                         <NavLink tag={RRNavLink} to="/coffees" style={{
                                     fontWeight: "700",
@@ -57,6 +60,9 @@ export default function NavBarAuth ({ loggedInUser, setLoggedInUser, toggleNavba
                                     Order Manager
                                 </NavLink>
                             </NavItem>
+                            <NavItem>
+                                <img className="navlink-image" src="/Logo_Plane.svg" alt="Logo" style={{transform: 'scaleX(-1)'}}/>
+                            </NavItem>
                         </>
                     )}
                 </Nav>
@@ -70,7 +76,7 @@ export default function NavBarAuth ({ loggedInUser, setLoggedInUser, toggleNavba
                     isOpen={popover}
                     toggle={() => togglePopover()}>
                     <PopoverBody>
-                        <h5>
+                        <h5 style={{backgroundColor: "#FFF", border: "none"}}>
                             Hi, {loggedInUser.firstName}
                         </h5>
                         <div
@@ -80,17 +86,18 @@ export default function NavBarAuth ({ loggedInUser, setLoggedInUser, toggleNavba
                                 });
                             }}
                             style={{
+                                backgroundColor: "#FFF",
                                 fontWeight: "900",
                                 cursor: "pointer"}}
                             >Sign out
                         </div>
                         <div>
-                            <NavLink tag={RRNavLink} to="/orders">
+                            <NavLink tag={RRNavLink} to="/orders" style={{backgroundColor: "#FFF"}}>
                                 My Orders
                             </NavLink>
                         </div>
                         <div>
-                            <NavLink tag={RRNavLink} to="/profile">
+                            <NavLink tag={RRNavLink} to="/profile" style={{backgroundColor: "#FFF"}}>
                                 Profile
                             </NavLink>
                         </div>
