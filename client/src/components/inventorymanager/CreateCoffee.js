@@ -14,16 +14,18 @@ export default function CreateCoffee () {
     const [elevationRangeMASL, setElevationRangeMASL] = useState("");
     const [tastingNotes, setTastingNotes] = useState("");
     const [descriptionString, setDescriptionString] = useState("");
-    const [imageLocation, setImageLocation] = useState(""); // may no longer be needed after cloudinary
+    const [imageLocation, setImageLocation] = useState("");
     const [isFeatured, setIsFeatured] = useState(false);
+    const [imageInitialView, setImageInitialView] = useState(true);
+    const [imageUrlView, setImageUrlView] = useState(false);
+    const [imageView, setImageView] = useState(false);
     const [emptyFieldModal, setEmptyFieldModal] = useState(false);
     const [confirmModal, setConfirmModal] = useState(false);
     const navigate = useNavigate();
 
     const handleUploadImage = (e) => {
         e.preventDefault();
-        console.log("cloudinary upload to be implemented");
-        setImageLocation("https://media.istockphoto.com/id/1334162584/photo/african-employers-are-working-with-coffee-beans-production-at-washing-center.jpg?s=1024x1024&w=is&k=20&c=WEhilsjZwfOg19u4ei6G4jAWRdxbGJTgAAf--LyV9ks=")
+        setImageUrlView(true);
     }
 
     const triggerEmptyFieldModal = () => setEmptyFieldModal(!emptyFieldModal);
@@ -297,18 +299,101 @@ export default function CreateCoffee () {
                             Make featured?
                         </Label>
                     </FormGroup>
-                    <Button onClick={(e) => handleUploadImage(e)} className="button" style={{
-                        backgroundColor: "#75BCFA",
-                        color: "#021E36",
-                        fontWeight: 800,
-                        border: "none",
-                        borderRadius: "0px",
-                        transition: "box-shadow 0.1s",
-                        fontSize: "larger"
-                        }}>
-                        Upload image
-                    </Button>
+                    {imageInitialView ? (
+                        <Button onClick={(e) => {
+                            e.preventDefault();
+                            setImageInitialView(false);
+                            setImageUrlView(true);
+                        }} 
+                        className="button" style={{
+                            backgroundColor: "#75BCFA",
+                            color: "#021E36",
+                            fontWeight: 800,
+                            border: "none",
+                            borderRadius: "0px",
+                            transition: "box-shadow 0.1s",
+                            fontSize: "larger"
+                            }}>
+                            Upload image
+                        </Button>
+                    ) : (
+                        ""
+                    )}
+                    {imageUrlView ? (
+                        // second view
+                        <>
+                        <FormGroup>
+                            <Label for="imageUrl" style={{fontSize: "larger"}}>
+                                Image URL
+                            </Label>
+                            <Input
+                                id="imageUrl"
+                                name="imageUrl"
+                                type="text"
+                                value={imageLocation ?? ""}
+                                placeholder="Link to permanent URL here"
+                                onChange={(e) => {
+                                    setImageLocation(e.target.value)
+                                }}
+                                style={{
+                                    fontSize: "larger",
+                                    borderRadius: 0,
+                                    border: "1px solid #021E36"
+                                }}
+                            />
+                        </FormGroup>
+                        <Button className="button" 
+                            onClick={(e) => {
+                                e.preventDefault();
+                                setImageUrlView(false);
+                                setImageView(true);
+                            }}
+                            style={{
+                                backgroundColor: "#75BCFA",
+                                color: "#021E36",
+                                fontWeight: 800,
+                                border: "none",
+                                borderRadius: "0px",
+                                transition: "box-shadow 0.1s",
+                                fontSize: "larger"
+                                }}>
+                            Confirm Upload
+                        </Button>
+                        </>
+                    ) : (
+                        ""
+                    )}
+                    {imageView ? (
+                        // final view
+                        <>
+                            <br />
+                            <img src={imageLocation} alt="error uploading image" style={{maxWidth: "300px"}}/>
+                            <br />
+                            <br />
+                            <Button className="button"
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    setImageView(false);
+                                    setImageUrlView(true);
+                                }}
+                                style={{
+                                    backgroundColor: "#75BCFA",
+                                    color: "#021E36",
+                                    fontWeight: 800,
+                                    border: "none",
+                                    borderRadius: "0px",
+                                    transition: "box-shadow 0.1s",
+                                    fontSize: "larger"
+                                }}>
+                                Upload different image
+                            </Button>
+                        </>
+                    ) : (
+                        ""
+                    )}
+                    
                 </Form>
+                <br />
                 <br />
                 <Button onClick={(e) => handlePostConfirm(e)} className="button" style={{
                     backgroundColor: "#FAB375",
@@ -319,7 +404,7 @@ export default function CreateCoffee () {
                     transition: "box-shadow 0.1s",
                     fontSize: "larger",
                     }}>
-                    Add Coffee
+                    Add Coffee to Inventory
                 </Button>
                 <br />
                 <br />
@@ -328,7 +413,7 @@ export default function CreateCoffee () {
 
             <Modal isOpen={emptyFieldModal} toggle={triggerEmptyFieldModal}>
                 <ModalHeader className="textReset">
-                    Please fill out all required fields
+                    Please fill out all fields
                 </ModalHeader>
                 <ModalFooter className="textReset">
                     <Button onClick={(e) => {
