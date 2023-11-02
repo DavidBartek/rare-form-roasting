@@ -114,7 +114,8 @@ code {
 }
 
 /* overrides the offcanvas animation which otherwise bugs out because bootstrap is mad with me for changing so much */
-.offcanvas-backdrop {
+.offcanvas-backdrop,
+.modal-backdrop {
   animation-duration: .25s;
   animation-timing-function: ease-in-out;
   animation-name: custom-fade;

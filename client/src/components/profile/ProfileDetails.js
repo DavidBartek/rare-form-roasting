@@ -12,15 +12,15 @@ export default function ProfileDetails ({ loggedInUser, userDetails, renderUserD
         e.preventDefault();
         
         // changes empty strings back to default values
-        if (firstName === "") {
+        if (firstName === "" || firstName === undefined) {
             setFirstName(userDetails.firstName);
         }
 
-        if (lastName === "") {
+        if (lastName === "" || lastName === undefined) {
             setLastName(userDetails.lastName);
         }
 
-        if (email === "") {
+        if (email === "" || email === undefined) {
             setEmail(userDetails.email);
         }
 
@@ -40,9 +40,9 @@ export default function ProfileDetails ({ loggedInUser, userDetails, renderUserD
     return (
     <>
         <Form>
-            <h1>edit profile details</h1>
+            <h1 style={{marginTop: "10px"}}>Edit Profile Details</h1>
             <FormGroup>
-                <Label for="firstName">
+                <Label for="firstName" className="textReset">
                     First Name
                 </Label>
                 <Input 
@@ -54,10 +54,15 @@ export default function ProfileDetails ({ loggedInUser, userDetails, renderUserD
                     onChange={(e) => {
                         setFirstName(e.target.value);
                     }}
+                    style={{
+                        fontSize: "larger",
+                        borderRadius: 0,
+                        border: "1px solid #021E36"
+                      }}
                 />
             </FormGroup>
             <FormGroup>
-                <Label for="lastName">
+                <Label for="lastName" className="textReset">
                     Last Name
                 </Label>
                 <Input 
@@ -69,10 +74,15 @@ export default function ProfileDetails ({ loggedInUser, userDetails, renderUserD
                     onChange={(e) => {
                         setLastName(e.target.value);
                     }}
+                    style={{
+                        fontSize: "larger",
+                        borderRadius: 0,
+                        border: "1px solid #021E36"
+                      }}
                 />
             </FormGroup>
             <FormGroup>
-                <Label for="email">
+                <Label for="email" className="textReset">
                     Email
                 </Label>
                 <Input
@@ -84,30 +94,59 @@ export default function ProfileDetails ({ loggedInUser, userDetails, renderUserD
                     onChange={(e) => {
                         setEmail(e.target.value);
                     }}
+                    style={{
+                        fontSize: "larger",
+                        borderRadius: 0,
+                        border: "1px solid #021E36"
+                      }}
                 />
             </FormGroup>
             {loggedInUser.roles.includes("Admin") && (
-                <p>Logged in as an <strong>administrator.</strong></p>
+                <p className="textReset">Logged in as an <strong className="textReset">administrator.</strong></p>
             )}
         </Form>
-        <Button onClick={(e) => handleUserEdits(e)}>
+        <Button onClick={(e) => handleUserEdits(e)} className="button" style={{
+            backgroundColor: "#75BCFA",
+            color: "#021E36",
+            fontWeight: 800,
+            border: "none",
+            borderRadius: "0px",
+            transition: "box-shadow 0.1s",
+            fontSize: "larger"
+            }} >
             Submit changes
         </Button>
         <Modal isOpen={modal} toggle={toggle}>
-            <ModalHeader>
+            <ModalHeader className="textReset">
                 Confirm Profile Edits?
             </ModalHeader>
-            <ModalBody>
-                First name: {firstName}<br />
-                Last name: {lastName}<br />
-                Email: {email}<br />
+            <ModalBody className="textReset">
+                First name: {firstName ? firstName : userDetails.firstName}<br />
+                Last name: {lastName ? lastName : userDetails.lastName}<br />
+                Email: {email ? email : userDetails.email}<br />
             </ModalBody>
-            <ModalFooter>
-                <Button onClick={(e) => confirmChanges(e)}>
-                    Confirm
-                </Button>
-                <Button onClick={toggle}>
+            <ModalFooter className="textReset">
+                <Button onClick={toggle} className="button" style={{
+                    backgroundColor: "#FDE6FE",
+                    color: "#021E36",
+                    fontWeight: 800,
+                    border: "none",
+                    borderRadius: "0px",
+                    transition: "box-shadow 0.1s",
+                    fontSize: "larger"
+                    }}>
                     Cancel
+                </Button>
+                <Button onClick={(e) => confirmChanges(e)} className="button" style={{
+                    backgroundColor: "#FAB375",
+                    color: "#021E36",
+                    fontWeight: 800,
+                    border: "none",
+                    borderRadius: "0px",
+                    transition: "box-shadow 0.1s",
+                    fontSize: "larger"
+                    }}>
+                    Confirm
                 </Button>
             </ModalFooter>
         </Modal>

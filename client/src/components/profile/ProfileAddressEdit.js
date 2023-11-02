@@ -44,10 +44,19 @@ export default function ProfileAddressEdit ({ addressToEdit, setEditAddressView,
         <tbody>
             <tr>
                 <td>
-                    <Button onClick={() => setEditAddressView(false)}>Return</Button>
+                    <Button onClick={() => setEditAddressView(false)} className="button" style={{
+                        backgroundColor: "#75BCFA",
+                        color: "#021E36",
+                        fontWeight: 800,
+                        border: "none",
+                        borderRadius: "0px",
+                        transition: "box-shadow 0.1s",
+                        fontSize: "larger",
+                        marginBottom: "15px"
+                        }} >Return</Button>
                     <Form>
                         <FormGroup>
-                            <Label for="address1">
+                            <Label for="address1" className="textReset">
                                 Address 1
                             </Label>
                             <Input

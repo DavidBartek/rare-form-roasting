@@ -32,12 +32,6 @@ export default function ModifyCoffee () {
         });
     }, [coffeeId]);
 
-    // const handleUploadImage = (e) => {
-    //     e.preventDefault();
-    //     console.log("cloudinary upload to be implemented");
-    //     setImageLocation("https://media.istockphoto.com/id/1334162584/photo/african-employers-are-working-with-coffee-beans-production-at-washing-center.jpg?s=1024x1024&w=is&k=20&c=WEhilsjZwfOg19u4ei6G4jAWRdxbGJTgAAf--LyV9ks=")
-    // }
-
     const triggerConfirmModal = () => setConfirmModal(!confirmModal);
 
     const handleEditConfirm = (e) => {
