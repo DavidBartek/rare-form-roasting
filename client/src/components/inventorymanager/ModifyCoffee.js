@@ -370,7 +370,7 @@ export default function ModifyCoffee () {
                                     transition: "box-shadow 0.1s",
                                     fontSize: "larger"
                                 }}>
-                                Upload different image
+                                Replace image
                             </Button>
                         </>
                     ) : (
@@ -388,7 +388,7 @@ export default function ModifyCoffee () {
                                 name="imageUrl"
                                 type="text"
                                 value={imageLocation ?? ""}
-                                placeholder="Link to permanent URL here"
+                                placeholder={imageLocation ? imageLocation : product.imageLocation}
                                 onChange={(e) => {
                                     setImageLocation(e.target.value)
                                 }}
