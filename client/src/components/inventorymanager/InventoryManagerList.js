@@ -96,6 +96,9 @@ export default function InventoryManagerList () {
                                     <option value={"notlive"}>
                                         Not live
                                     </option>
+                                    <option value={"featured"}>
+                                        Featured
+                                    </option>
                                 </Input>
                             </Col>
                         </Row>
