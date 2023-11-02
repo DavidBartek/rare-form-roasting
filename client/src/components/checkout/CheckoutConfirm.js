@@ -28,9 +28,9 @@ export default function CheckoutConfirm ({ loggedInUser, justPlacedOrder }) {
             <h3>You will receive an email to {loggedInUser.email} with your order confirmation.</h3>
             <h4>Order #{justPlacedOrder.id} - {justPlacedOrder.orderStatus}</h4> <br />
         </Container>
-        <Container className="checkoutContainer">
+        <Container className="checkoutConfirmContainer">
         
-            <div className="addressContainer">
+            <div className="addressConfirmContainer">
                 <h4>Shipped to:</h4>
                 <div className="textReset">
                     {justPlacedOrder.shippingAddress?.address1}<br />
@@ -46,7 +46,8 @@ export default function CheckoutConfirm ({ loggedInUser, justPlacedOrder }) {
                 </div>
             </div>
 
-            <div className="cartContainer">
+            <div className="cartConfirmContainer">
+                <h2>Coming to you soon:</h2>
                 <Table borderless>
                     <tbody style={{border: "5px #FDE6FE solid"}}>
                     {justPlacedOrder?.orderProducts.map(op =>
