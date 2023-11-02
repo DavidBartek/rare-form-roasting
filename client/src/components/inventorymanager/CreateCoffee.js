@@ -23,11 +23,6 @@ export default function CreateCoffee () {
     const [confirmModal, setConfirmModal] = useState(false);
     const navigate = useNavigate();
 
-    const handleUploadImage = (e) => {
-        e.preventDefault();
-        setImageUrlView(true);
-    }
-
     const triggerEmptyFieldModal = () => setEmptyFieldModal(!emptyFieldModal);
     const triggerConfirmModal = () => setConfirmModal(!confirmModal);
 
