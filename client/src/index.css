@@ -279,12 +279,12 @@ code {
   text-align: center;
 }
 
-.homeFooter {
+.footer {
   text-align: center;
   width: 100%;
 }
 
-.homeFooter img {
+.footer img {
   max-width: 10%;
 }
 
@@ -297,6 +297,12 @@ code {
 .footerLink {
   margin: 10px;
   font-size: xx-large;
+  transition: .25s
+}
+
+.footerLink:hover {
+  font-size: 35px;
+  cursor: pointer;
 }
 
 .footerLinks img {

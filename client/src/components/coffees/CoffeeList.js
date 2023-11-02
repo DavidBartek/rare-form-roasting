@@ -3,6 +3,7 @@ import { getAllLiveProducts } from "../../managers/productManager";
 import { Card, CardBody, CardSubtitle, CardText, CardTitle, Col, Container, Form, FormGroup, Input, Label, Row } from "reactstrap";
 import { priceFormatter } from "../assets/exportFunctions";
 import { useNavigate } from "react-router-dom"
+import Footer from "../navbar/Footer";
 
 export default function CoffeeList () {
     const [products, setProducts] = useState([]);
@@ -30,6 +31,7 @@ export default function CoffeeList () {
         return null;
     }
     return (
+        <>
         <Container>
             <div className="coffeeListHeaderGroup">
                 <h1 className="coffeeListHeader">Single Origin Coffees</h1>
@@ -104,7 +106,10 @@ export default function CoffeeList () {
                     </Card>
                 )}
             </div>
+            
         </Container>
+        <Footer />
+        </>
     )
 }
 

@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
-import { BsInstagram, BsEnvelope } from "react-icons/bs";
 import { Button, Form, FormGroup, Input, Popover, PopoverBody } from "reactstrap";
 import { homePageMapEmbed } from "../../GoogleMapsData";
 import { useState } from "react";
+import Footer from "../navbar/Footer";
 
 export default function Home () {
     const navigate = useNavigate();
@@ -124,15 +124,7 @@ export default function Home () {
 
             </div>
 
-            <div className="homeFooter">
-                <img src="/Logo_Circle_Orange_1000x1000.svg" alt="circle logo" />
-                <div className="footerLinks">
-                    <img src="/Logo_Plane.svg" alt="logo"/>
-                    <BsInstagram className="footerLink"/>
-                    <BsEnvelope className="footerLink"/>
-                    <img src="/Logo_Plane.svg" alt="logo" style={{transform: 'scaleX(-1)'}}/>
-                </div>
-            </div>
+            <Footer />
         </div>
     )
 }

@@ -174,32 +174,50 @@ export default function InventoryManagerList () {
                 </Table>
             </Container>
             <Modal isOpen={deleteModal} toggle={toggleDeleteModal}>
-                <ModalHeader>
+                <ModalHeader className="textReset">
                     Remove from shop?
                 </ModalHeader>
-                <ModalBody>
+                <ModalBody className="textReset">
                     Customers will no longer be able to view {productToRemove.displayName}.
                 </ModalBody>
-                <ModalFooter>
+                <ModalFooter className="textReset">
                     <Button onClick={(e) => {
                         e.preventDefault();
                         setProductToRemove({});
                         toggleDeleteModal();
-                    }}>
+                    }}
+                        className="button" style={{
+                            backgroundColor: "#FDE6FE",
+                            color: "#021E36",
+                            fontWeight: 800,
+                            border: "none",
+                            borderRadius: "0px",
+                            transition: "box-shadow 0.1s",
+                            fontSize: "larger"
+                            }}>
                         No
                     </Button>
                     <Button onClick={(e) => {
                         handleDelete(e);
-                    }}>
+                    }}
+                        className="button" style={{
+                            backgroundColor: "#FAB375",
+                            color: "#021E36",
+                            fontWeight: 800,
+                            border: "none",
+                            borderRadius: "0px",
+                            transition: "box-shadow 0.1s",
+                            fontSize: "larger"
+                            }}>
                         Yes
                     </Button>
                 </ModalFooter>
             </Modal>
             <Modal isOpen={restoreModal} toggle={toggleRestoreModal}>
-                <ModalHeader>
+                <ModalHeader className="textReset">
                     Add to shop?
                 </ModalHeader>
-                <ModalBody>
+                <ModalBody className="textReset">
                     Customers will be able to view {productToRestore.displayName}.
                 </ModalBody>
                 <ModalFooter>
@@ -207,12 +225,30 @@ export default function InventoryManagerList () {
                         e.preventDefault();
                         setProductToRestore({});
                         toggleRestoreModal();
-                    }}>
+                    }}
+                        className="button" style={{
+                            backgroundColor: "#FDE6FE",
+                            color: "#021E36",
+                            fontWeight: 800,
+                            border: "none",
+                            borderRadius: "0px",
+                            transition: "box-shadow 0.1s",
+                            fontSize: "larger"
+                            }}>
                         No
                     </Button>
                     <Button onClick={(e) => {
                         handleAddToShop(e);
-                    }}>
+                    }}
+                        className="button" style={{
+                            backgroundColor: "#FAB375",
+                            color: "#021E36",
+                            fontWeight: 800,
+                            border: "none",
+                            borderRadius: "0px",
+                            transition: "box-shadow 0.1s",
+                            fontSize: "larger"
+                            }}>
                         Yes
                     </Button>
                 </ModalFooter>
