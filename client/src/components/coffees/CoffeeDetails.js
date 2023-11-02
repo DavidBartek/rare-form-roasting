@@ -69,7 +69,8 @@ export default function CoffeeDetails ({ loggedInUser }) {
                                 onChange={(e) => handleWeightSelect(e)}
                                 style={{
                                     borderRadius: 0,
-                                    border: "1px solid #021E36" 
+                                    border: "1px solid #021E36", 
+                                    fontSize: "larger"
                                 }}
                             >
                                 <option
@@ -96,7 +97,8 @@ export default function CoffeeDetails ({ loggedInUser }) {
                                 onChange={(e) => setSelectedGrindId(e.target.value)}
                                 style={{
                                     borderRadius: 0,
-                                    border: "1px solid #021E36" 
+                                    border: "1px solid #021E36",
+                                    fontSize: "larger"
                                 }}
                             >
                                 <option
@@ -124,7 +126,8 @@ export default function CoffeeDetails ({ loggedInUser }) {
                                 onChange={(e) => setSelectedQuantity(e.target.value)}
                                 style={{
                                     borderRadius: 0,
-                                    border: "1px solid #021E36" 
+                                    border: "1px solid #021E36",
+                                    fontSize: "larger"
                                 }}
                             >
                                 <option value="">Select quantity</option>

@@ -75,7 +75,7 @@ export default function InventoryManagerList () {
                     <Form className="inventoryListSort">
                         <Row className="row-cols-lg-auto g-3 align-items-center">
                             <Col className="sortLabel">
-                                <Label for="sortSelect">
+                                <Label for="sortSelect" style={{fontSize: "larger"}}>
                                     Sort by:
                                 </Label>
                             </Col>
@@ -85,6 +85,7 @@ export default function InventoryManagerList () {
                                     name="sortSelect"
                                     type="select"
                                     onChange={(e) => handleSort(e.target.value)}
+                                    style={{fontSize: "larger"}}
                                 >
                                     <option value={""}>
                                         All
