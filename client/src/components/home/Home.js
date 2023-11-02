@@ -1,9 +1,19 @@
 import { useNavigate } from "react-router-dom";
-import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
+import { BsInstagram, BsEnvelope } from "react-icons/bs";
+import { Button, Form, FormGroup, Input, Popover, PopoverBody } from "reactstrap";
 import { homePageMapEmbed } from "../../GoogleMapsData";
+import { useState } from "react";
 
 export default function Home () {
     const navigate = useNavigate();
+    const [popover, setPopover] = useState(false);
+
+    const togglePopover = () => {
+        setPopover(true);
+        setTimeout(() => {
+            setPopover(false);
+        }, 3000);
+    };
 
     const handleNavToCoffeeDetail = (e) => {
         e.preventDefault();
@@ -13,6 +23,11 @@ export default function Home () {
     const handleNavToCoffees = (e) => {
         e.preventDefault();
         navigate("/coffees");
+    }
+
+    const handleEmailSignup = (e) => {
+        e.preventDefault();
+        togglePopover();
     }
 
     return (
@@ -81,7 +96,7 @@ export default function Home () {
                             />
                         </FormGroup>
                     </Form>
-                    <Button className="button" style={{
+                    <Button className="button" id="emailSignupButton" style={{
                         backgroundColor: "#FDE6FE",
                         color: "#021E36",
                         fontWeight: 800,
@@ -89,17 +104,33 @@ export default function Home () {
                         borderRadius: "0px",
                         fontSize: "x-large",
                         transition: "box-shadow 0.1s"
-                        }}>
+                        }}
+                        onClick={(e) => handleEmailSignup(e)}>
                         Sign up
                     </Button>
+                    <Popover
+                        target="emailSignupButton"
+                        isOpen={popover}
+                        toggle={() => togglePopover()}
+                    >
+                        <PopoverBody className="bodytext">
+                            Check your inbox!
+                        </PopoverBody>
+                    </Popover>
                     <h6>We respect your privacy.</h6>
                 </div>
 
             </div>
+
+            <div className="homeFooter">
+                <img src="/Logo_Circle_Orange_1000x1000.svg" alt="circle logo" />
+                <div className="footerLinks">
+                    <img src="/Logo_Plane.svg" alt="logo"/>
+                    <BsInstagram className="footerLink"/>
+                    <BsEnvelope className="footerLink"/>
+                    <img src="/Logo_Plane.svg" alt="logo" style={{transform: 'scaleX(-1)'}}/>
+                </div>
+            </div>
         </div>
-        // <Container>
-        //     <h1>Welcome to Rare Form Roasting</h1>
-        //     <div>Banner graphic & button here</div>
-        // </Container>
     )
 }

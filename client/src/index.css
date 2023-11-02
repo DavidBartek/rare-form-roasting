@@ -257,6 +257,31 @@ code {
   text-align: center;
 }
 
+.homeFooter {
+  text-align: center;
+  width: 100%;
+}
+
+.homeFooter img {
+  max-width: 10%;
+}
+
+.footerLinks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footerLink {
+  margin: 10px;
+  font-size: xx-large;
+}
+
+.footerLinks img {
+  margin: 10px;
+  width: 40px;
+}
+
 @media (max-width: 1100px) {
   .homeHeaderContainer {
     display: flex;
