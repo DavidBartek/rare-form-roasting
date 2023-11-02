@@ -68,69 +68,105 @@ export default function InventoryManagerList () {
     return (
         <>
             <Container>
-                <h1>manage coffees</h1>
-                <Button onClick={(e) => handleNavCreateCoffee(e)}>
+                <div className="inventoryListHeaderGroup">
+                
+                    <h1 className="inventoryListHeader">manage coffees</h1>
+                    
+                    <Form className="inventoryListSort">
+                        <Row className="row-cols-lg-auto g-3 align-items-center">
+                            <Col className="sortLabel">
+                                <Label for="sortSelect">
+                                    Sort by:
+                                </Label>
+                            </Col>
+                            <Col>
+                                <Input
+                                    id="sortSelect"
+                                    name="sortSelect"
+                                    type="select"
+                                    onChange={(e) => handleSort(e.target.value)}
+                                >
+                                    <option value={""}>
+                                        All
+                                    </option>
+                                    <option value={"live"}>
+                                        Live in shop
+                                    </option>
+                                    <option value={"notlive"}>
+                                        Not live
+                                    </option>
+                                </Input>
+                            </Col>
+                        </Row>
+                    </Form>
+
+                </div>
+
+                <Button onClick={(e) => handleNavCreateCoffee(e)} className="button" style={{
+                    backgroundColor: "#FAB375",
+                    color: "#021E36",
+                    fontWeight: 800,
+                    border: "none",
+                    borderRadius: "0px",
+                    transition: "box-shadow 0.1s",
+                    marginBottom: "25px"
+                    }} >
                     Add new coffee
                 </Button>
-                <Form>
-                    <Row className="row-cols-lg-auto g-3 align-items-center">
-                        <Col>
-                            <Label for="sortSelect">
-                                Sort by:
-                            </Label>
-                        </Col>
-                        <Col>
-                            <Input
-                                id="sortSelect"
-                                name="sortSelect"
-                                type="select"
-                                onChange={(e) => handleSort(e.target.value)}
-                            >
-                                <option value={""}>
-                                    All
-                                </option>
-                                <option value={"live"}>
-                                    Live in shop
-                                </option>
-                                <option value={"notlive"}>
-                                    Not live
-                                </option>
-                            </Input>
-                        </Col>
-                    </Row>
-                </Form>
-                <Table>
-                    <tbody>
+
+                <Table hover>
+                    <tbody style={{border: "5px #FDE6FE solid"}}>
                         {inventoryList.map(p =>
-                            <tr key={p.id}>
+                            <tr key={p.id} >
                                 <th>
-                                    image
+                                    <img src={p.imageLocation} alt="coffee" className="coffeeImageInList"/>
                                 </th>
-                                <td>
+                                <td className="textDetailsInList">
                                     {p.displayName}<br />
                                     Country: {p.country}<br />
                                     Process: {p.process}<br />
                                     Location: {p.locationString}, {p.farmString}<br />
                                     Unit price: ${priceFormatter(p.price)}
                                 </td>
-                                <td>
-                                    <Button onClick={(e) => handleUpdateCoffee(e, p.id)}>
+                                <td >
+                                    <br />
+                                    <Button onClick={(e) => handleUpdateCoffee(e, p.id)} className="button" style={{
+                                        backgroundColor: "#75BCFA",
+                                        color: "#021E36",
+                                        fontWeight: 800,
+                                        border: "none",
+                                        borderRadius: "0px",
+                                        transition: "box-shadow 0.1s"
+                                        }} >
                                         Update Details
                                     </Button>
-                                </td>
-                                {p.isLive ? (
-                                    <td>
-                                        <Button onClick={(e) => handleConfirmDelete(e, p)}>
+                                    <br />
+                                    <br />
+                                    <br />
+                                    {p.isLive ? (
+                                        <Button onClick={(e) => handleConfirmDelete(e, p)} className="button" style={{
+                                            backgroundColor: "#021E36",
+                                            color: "#FEF5ED",
+                                            fontWeight: 800,
+                                            border: "none",
+                                            borderRadius: "0px",
+                                            transition: "box-shadow 0.1s"
+                                            }}>
                                             Remove from Shop
                                         </Button>
-                                    </td>
                                 ) : (
-                                    <td>
-                                        <Button onClick={(e) => handleConfirmAdd(e, p)}>
+                                        <Button onClick={(e) => handleConfirmAdd(e, p)} className="button" style={{
+                                            backgroundColor: "#FAB375",
+                                            color: "#FEF5ED",
+                                            fontWeight: 800,
+                                            border: "none",
+                                            borderRadius: "0px",
+                                            transition: "box-shadow 0.1s"
+                                            }}>
                                             Add to Shop
                                         </Button>
-                                    </td>
                                 )}
+                                </td>
                             </tr>
                         )}
                     </tbody>
