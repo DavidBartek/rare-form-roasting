@@ -70,7 +70,7 @@ export default function InventoryManagerList () {
             <Container>
                 <div className="inventoryListHeaderGroup">
                 
-                    <h1 className="inventoryListHeader">manage coffees</h1>
+                    <h1 className="inventoryListHeader">Manage Coffees</h1>
                     
                     <Form className="inventoryListSort">
                         <Row className="row-cols-lg-auto g-3 align-items-center">
@@ -95,6 +95,9 @@ export default function InventoryManagerList () {
                                     </option>
                                     <option value={"notlive"}>
                                         Not live
+                                    </option>
+                                    <option value={"featured"}>
+                                        Featured
                                     </option>
                                 </Input>
                             </Col>
@@ -123,11 +126,11 @@ export default function InventoryManagerList () {
                                     <img src={p.imageLocation} alt="coffee" className="coffeeImageInList"/>
                                 </th>
                                 <td className="textDetailsInList">
+                                    <br />
                                     {p.displayName}<br />
-                                    Country: {p.country}<br />
-                                    Process: {p.process}<br />
-                                    Location: {p.locationString}, {p.farmString}<br />
-                                    Unit price: ${priceFormatter(p.price)}
+                                    {p.country}, {p.process}<br />
+                                    {p.isLive ? "Live in shop" : "Not live in shop"} // {p.isFeatured ? "Featured" : "Not featured"}<br />
+                                    ${priceFormatter(p.price)} / 12 oz bag
                                 </td>
                                 <td >
                                     <br />

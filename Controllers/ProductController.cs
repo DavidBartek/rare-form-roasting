@@ -121,6 +121,10 @@ public class ProductController : ControllerBase
         {
             return Ok(allProducts.Where(p => p.IsLive == false).ToList());
         }
+        else if (sort == "featured")
+        {
+            return Ok(allProducts.Where(p => p.IsFeatured == true).ToList());
+        }
         else
         {
             return BadRequest("Invalid 'sort' parameter.");
