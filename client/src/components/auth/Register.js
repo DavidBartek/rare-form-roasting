@@ -39,7 +39,7 @@ export default function Register({ setLoggedInUser }) {
       marginTop: "25px" }}>
       <h1>Sign Up</h1>
       <FormGroup>
-        <Label>First Name</Label>
+        <Label style={{fontSize: "larger"}}>First Name</Label>
         <Input
           type="text"
           value={firstName}
@@ -47,13 +47,14 @@ export default function Register({ setLoggedInUser }) {
             setFirstName(e.target.value);
           }}
           style={{
+            fontSize: "larger",
             borderRadius: 0,
             border: "1px solid #021E36"
           }}
         />
       </FormGroup>
       <FormGroup>
-        <Label>Last Name</Label>
+        <Label style={{fontSize: "larger"}}>Last Name</Label>
         <Input
           type="text"
           value={lastName}
@@ -61,13 +62,14 @@ export default function Register({ setLoggedInUser }) {
             setLastName(e.target.value);
           }}
           style={{
+            fontSize: "larger",
             borderRadius: 0,
             border: "1px solid #021E36"
           }}
         />
       </FormGroup>
       <FormGroup>
-        <Label>Email</Label>
+        <Label style={{fontSize: "larger"}}>Email</Label>
         <Input
           type="email"
           value={email}
@@ -75,13 +77,14 @@ export default function Register({ setLoggedInUser }) {
             setEmail(e.target.value);
           }}
           style={{
+            fontSize: "larger",
             borderRadius: 0,
             border: "1px solid #021E36"
           }}
         />
       </FormGroup>
       <FormGroup>
-        <Label>Password</Label>
+        <Label style={{fontSize: "larger"}}>Password</Label>
         <Input
           invalid={passwordMismatch}
           type="password"
@@ -91,13 +94,14 @@ export default function Register({ setLoggedInUser }) {
             setPassword(e.target.value);
           }}
           style={{
+            fontSize: "larger",
             borderRadius: 0,
             border: "1px solid #021E36"
           }}
         />
       </FormGroup>
       <FormGroup>
-        <Label> Confirm Password</Label>
+        <Label style={{fontSize: "larger"}}> Confirm Password</Label>
         <Input
           invalid={passwordMismatch}
           type="password"
@@ -107,6 +111,7 @@ export default function Register({ setLoggedInUser }) {
             setConfirmPassword(e.target.value);
           }}
           style={{
+            fontSize: "larger",
             borderRadius: 0,
             border: "1px solid #021E36"
           }}
@@ -123,7 +128,8 @@ export default function Register({ setLoggedInUser }) {
           fontWeight: 800,
           border: "none",
           borderRadius: "0px",
-          transition: "box-shadow 0.1s"
+          transition: "box-shadow 0.1s",
+          fontSize: "larger"
           }}
       >
         Register

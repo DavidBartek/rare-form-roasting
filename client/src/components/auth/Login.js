@@ -29,7 +29,7 @@ export default function Login({ loggedInUser, setLoggedInUser }) {
       <h1>Login</h1>
       <h5>(to place orders, see order history, etc.)</h5>
       <FormGroup>
-        <Label>Email</Label>
+        <Label style={{fontSize: "larger"}}>Email</Label>
         <Input
           invalid={failedLogin}
           type="text"
@@ -39,13 +39,14 @@ export default function Login({ loggedInUser, setLoggedInUser }) {
             setEmail(e.target.value);
           }}
           style={{
+            fontSize: "larger",
             borderRadius: 0,
             border: "1px solid #021E36"
           }}
         />
       </FormGroup>
       <FormGroup>
-        <Label>Password</Label>
+        <Label style={{fontSize: "larger"}}>Password</Label>
         <Input
           invalid={failedLogin}
           type="password"
@@ -55,6 +56,7 @@ export default function Login({ loggedInUser, setLoggedInUser }) {
             setPassword(e.target.value);
           }}
           style={{
+            fontSize: "larger",
             borderRadius: 0,
             border: "1px solid #021E36"
           }}
@@ -68,7 +70,8 @@ export default function Login({ loggedInUser, setLoggedInUser }) {
         fontWeight: 800,
         border: "none",
         borderRadius: "0px",
-        transition: "box-shadow 0.1s"
+        transition: "box-shadow 0.1s",
+        fontSize: "larger"
         }}>
         Login
       </Button>

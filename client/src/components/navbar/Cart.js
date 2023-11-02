@@ -60,7 +60,7 @@ export default function Cart ({ loggedInUser }) {
                     isOpen={popover}
                     toggle={() => togglePopover()}>
                     <PopoverBody>
-                        <Link to="/login" style={{backgroundColor: "#FFF"}}>
+                        <Link to="/login" style={{backgroundColor: "#FFF", fontSize: "larger"}}>
                             Log in to view cart
                         </Link>
                     </PopoverBody>
@@ -79,7 +79,7 @@ export default function Cart ({ loggedInUser }) {
                     trigger="click"
                     isOpen={popover}
                     toggle={() => togglePopover()}>
-                    <PopoverBody style={{backgroundColor: "#FFF"}}>
+                    <PopoverBody style={{backgroundColor: "#FFF", fontSize: "larger"}}>
                         Cart is empty.
                     </PopoverBody>
                 </Popover>

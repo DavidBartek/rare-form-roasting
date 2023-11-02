@@ -92,7 +92,9 @@ export default function Home () {
                                 name="emailSignup"
                                 type="email"
                                 placeholder="Email"
-                                style={{fontSize: "larger"}}
+                                style={{fontSize: "larger",
+                                borderRadius: 0,
+                                border: "1px solid #021E36"}}
                             />
                         </FormGroup>
                     </Form>

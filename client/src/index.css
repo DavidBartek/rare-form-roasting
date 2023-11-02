@@ -45,12 +45,14 @@ code {
   fontWeight: 800,
   border: "none",
   borderRadius: "0px",
-  transition: "box-shadow 0.1s"
+  transition: "box-shadow 0.1s",
+  fontSize: "larger"
   }} 
 */
 
 /* input form */
 /* style={{
+  fontSize: "larger",
   borderRadius: 0,
   border: "1px solid #021E36"
 }} */
@@ -72,12 +74,32 @@ code {
   font-size: larger;
 }
 
+.textReset {
+  background-color: transparent;
+  font-size: larger;
+}
+
 .coffeeImageInList {
   width: 200px;
 }
 
 .textDetailsInList {
   font-size: x-large;
+}
+
+.modal {
+  background-color: transparent;
+}
+
+.modal-dialog {
+  background-color: transparent;
+}
+
+.modal-header,
+.modal-title,
+.modal-body,
+.modal-footer {
+  background-color: #FFF;
 }
 
 @media (max-width: 992px) {
@@ -459,3 +481,6 @@ code {
 .inventoryListSort {
   padding-top: 10px;
 }
+
+/* Product Modify Form  */
+

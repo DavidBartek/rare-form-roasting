@@ -109,11 +109,13 @@ export default function ModifyCoffee () {
     return (
         <>
             <Container>
-                <h1>Modify a Coffee</h1>
-                <Link to="/inventorymanager">Back to Inventory Manager</Link>
+                <h1>Modify details: {product.displayName}</h1>
+                <Link to="/inventorymanager" style={{fontSize: "larger"}}>
+                    Back to Inventory Manager
+                </Link>
                 <Form>
                     <FormGroup>
-                        <Label for="displayName">
+                        <Label for="displayName" style={{fontSize: "larger"}}>
                             Display Name
                         </Label>
                         <Input
@@ -125,10 +127,15 @@ export default function ModifyCoffee () {
                             onChange={(e) => {
                                 setDisplayName(e.target.value)
                             }}
+                            style={{
+                                fontSize: "larger",
+                                borderRadius: 0,
+                                border: "1px solid #021E36"
+                              }}
                         />
                     </FormGroup>
                     <FormGroup>
-                        <Label for="price">
+                        <Label for="price" style={{fontSize: "larger"}}>
                             Price
                         </Label>
                         <Input
@@ -140,10 +147,15 @@ export default function ModifyCoffee () {
                             onChange={(e) => {
                                 setPrice(e.target.value)
                             }}
+                            style={{
+                                fontSize: "larger",
+                                borderRadius: 0,
+                                border: "1px solid #021E36"
+                              }}
                         />
                     </FormGroup>
                     <FormGroup>
-                        <Label for="country">
+                        <Label for="country" style={{fontSize: "larger"}}>
                             Country
                         </Label>
                         <Input
@@ -155,10 +167,15 @@ export default function ModifyCoffee () {
                             onChange={(e) => {
                                 setCountry(e.target.value)
                             }}
+                            style={{
+                                fontSize: "larger",
+                                borderRadius: 0,
+                                border: "1px solid #021E36"
+                              }}
                         />
                     </FormGroup>
                     <FormGroup>
-                        <Label for="locationString">
+                        <Label for="locationString" style={{fontSize: "larger"}}>
                             Location/Region
                         </Label>
                         <Input
@@ -170,10 +187,15 @@ export default function ModifyCoffee () {
                             onChange={(e) => {
                                 setLocationString(e.target.value)
                             }}
+                            style={{
+                                fontSize: "larger",
+                                borderRadius: 0,
+                                border: "1px solid #021E36"
+                              }}
                         />
                     </FormGroup>
                     <FormGroup>
-                        <Label for="farmString">
+                        <Label for="farmString" style={{fontSize: "larger"}}>
                             Farm
                         </Label>
                         <Input
@@ -185,10 +207,15 @@ export default function ModifyCoffee () {
                             onChange={(e) => {
                                 setFarmString(e.target.value)
                             }}
+                            style={{
+                                fontSize: "larger",
+                                borderRadius: 0,
+                                border: "1px solid #021E36"
+                              }}
                         />
                     </FormGroup>
                     <FormGroup>
-                        <Label for="process">
+                        <Label for="process" style={{fontSize: "larger"}}>
                             Processing Method
                         </Label>
                         <Input
@@ -199,6 +226,11 @@ export default function ModifyCoffee () {
                             onChange={(e) => {
                                 setProcess(e.target.value)
                             }}
+                            style={{
+                                fontSize: "larger",
+                                borderRadius: 0,
+                                border: "1px solid #021E36"
+                              }}
                         >
                             <option value={""}>
                                 Select below
@@ -215,7 +247,7 @@ export default function ModifyCoffee () {
                         </Input>
                     </FormGroup>
                     <FormGroup>
-                        <Label for="varietal">
+                        <Label for="varietal" style={{fontSize: "larger"}}>
                             Varietal
                         </Label>
                         <Input
@@ -227,10 +259,15 @@ export default function ModifyCoffee () {
                             onChange={(e) => {
                                 setVarietal(e.target.value)
                             }}
+                            style={{
+                                fontSize: "larger",
+                                borderRadius: 0,
+                                border: "1px solid #021E36"
+                              }}
                         />
                     </FormGroup>
                     <FormGroup>
-                        <Label for="elevationRangeMASL">
+                        <Label for="elevationRangeMASL" style={{fontSize: "larger"}}>
                             Elevation in MASL
                         </Label>
                         <Input
@@ -242,10 +279,15 @@ export default function ModifyCoffee () {
                             onChange={(e) => {
                                 setElevationRangeMASL(e.target.value)
                             }}
+                            style={{
+                                fontSize: "larger",
+                                borderRadius: 0,
+                                border: "1px solid #021E36"
+                              }}
                         />
                     </FormGroup>
                     <FormGroup>
-                        <Label for="tastingNotes">
+                        <Label for="tastingNotes" style={{fontSize: "larger"}}>
                             Tasting Notes
                         </Label>
                         <Input
@@ -257,10 +299,15 @@ export default function ModifyCoffee () {
                             onChange={(e) => {
                                 setTastingNotes(e.target.value)
                             }}
+                            style={{
+                                fontSize: "larger",
+                                borderRadius: 0,
+                                border: "1px solid #021E36"
+                              }}
                         />
                     </FormGroup>
                     <FormGroup>
-                        <Label for="descriptionString">
+                        <Label for="descriptionString" style={{fontSize: "larger"}}>
                             Description
                         </Label>
                         <Input
@@ -272,6 +319,11 @@ export default function ModifyCoffee () {
                             onChange={(e) => {
                                 setDescriptionString(e.target.value)
                             }}
+                            style={{
+                                fontSize: "larger",
+                                borderRadius: 0,
+                                border: "1px solid #021E36"
+                              }}
                         />
                     </FormGroup>
                     <FormGroup switch>
@@ -283,46 +335,89 @@ export default function ModifyCoffee () {
                             onChange={() => {
                                 setIsFeatured(!isFeatured);
                             }}
+                            style={{
+                                fontSize: "larger",
+                                borderRadius: 0,
+                                border: "1px solid #021E36"
+                              }}
                         />
-                        <Label checked for="isFeatured">
+                        <Label checked for="isFeatured" style={{fontSize: "larger"}}>
                             Featured
                         </Label>
                     </FormGroup>
-                    <Button onClick={(e) => handleUploadImage(e)}>
+                    <Button onClick={(e) => handleUploadImage(e)} className="button" style={{
+                        backgroundColor: "#75BCFA",
+                        color: "#021E36",
+                        fontWeight: 800,
+                        border: "none",
+                        borderRadius: "0px",
+                        transition: "box-shadow 0.1s",
+                        fontSize: "larger"
+                        }} >
                         Upload image
                     </Button>
                 </Form>
-                <Button onClick={(e) => handleEditConfirm(e)}>
+                <br />
+                <Button onClick={(e) => handleEditConfirm(e)} className="button" style={{
+                    backgroundColor: "#FAB375",
+                    color: "#021E36",
+                    fontWeight: 800,
+                    border: "none",
+                    borderRadius: "0px",
+                    transition: "box-shadow 0.1s",
+                    fontSize: "larger",
+                    }}>
                     Submit Edits
                 </Button>
+                <br />
+                <br />
             </Container>
             <Modal isOpen={confirmModal} toggle={triggerConfirmModal}>
-                <ModalHeader>
+                <ModalHeader className="textReset">
                     Review edits - is this correct?
                 </ModalHeader>
-                <ModalBody>
-                    Display Name: {displayName}<br />
-                    Price: ${price}<br />
-                    country: {country}<br />
-                    locationString: {locationString}<br />
-                    farmString: {farmString}<br />
-                    process: {process}<br />
-                    varietal: {varietal}<br />
-                    elevationRangeMASL: {elevationRangeMASL}<br />
-                    tastingNotes: {tastingNotes}<br />
-                    descriptionString: {descriptionString}<br />
-                    imageLocation: {imageLocation}<br />
-                    Featured: {isFeatured ? "yes" : "no"}<br />
+                <ModalBody className="textReset">
+                    <strong className="textReset">Display Name:</strong> {displayName}<br />
+                    <strong className="textReset">Price:</strong> ${price}<br />
+                    <strong className="textReset">Country:</strong> {country}<br />
+                    <strong className="textReset">Location:</strong> {locationString}<br />
+                    <strong className="textReset">Farm:</strong> {farmString}<br />
+                    <strong className="textReset">Process:</strong> {process}<br />
+                    <strong className="textReset">Varietal:</strong> {varietal}<br />
+                    <strong className="textReset">Elevation (MASL):</strong> {elevationRangeMASL}<br />
+                    <strong className="textReset">Tasting Notes:</strong> {tastingNotes}<br />
+                    <strong className="textReset">Description:</strong> {descriptionString}<br />
+                    <strong className="textReset">Image:</strong><br/>
+                        <img src={imageLocation} alt="coffee" style={{maxWidth: "50%"}}/><br />
+                    <strong className="textReset">Featured:</strong> {isFeatured ? "yes" : "no"}<br />
                 </ModalBody>
                 <ModalFooter>
                     <Button onClick={(e) => {
                         e.preventDefault();
                         setConfirmModal(false)}}
+                        className="button" style={{
+                            backgroundColor: "#FDE6FE",
+                            color: "#021E36",
+                            fontWeight: 800,
+                            border: "none",
+                            borderRadius: "0px",
+                            transition: "box-shadow 0.1s",
+                            fontSize: "larger"
+                            }}
                     >
                         Go back
                     </Button>
                     <Button onClick={(e) => {
                         handleEditCoffee(e)}}
+                        className="button" style={{
+                            backgroundColor: "#FAB375",
+                            color: "#021E36",
+                            fontWeight: 800,
+                            border: "none",
+                            borderRadius: "0px",
+                            transition: "box-shadow 0.1s",
+                            fontSize: "larger"
+                            }}
                     >
                         Yes
                     </Button>

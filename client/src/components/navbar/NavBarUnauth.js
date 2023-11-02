@@ -56,7 +56,7 @@ export default function NavBarUnauth ({ toggleNavbar, open, setOpen }) {
                     isOpen={popover}
                     toggle={() => togglePopover()}>
                     <PopoverBody >
-                            <Link to="/login" style={{backgroundColor: "#FFF"}}>
+                            <Link to="/login" style={{backgroundColor: "#FFF", fontSize: "larger"}}>
                                 Login/Create Account
                             </Link>
                     </PopoverBody>        
