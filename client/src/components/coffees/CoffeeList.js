@@ -3,6 +3,7 @@ import { getAllLiveProducts } from "../../managers/productManager";
 import { Card, CardBody, CardSubtitle, CardText, CardTitle, Col, Container, Form, FormGroup, Input, Label, Row } from "reactstrap";
 import { priceFormatter } from "../assets/exportFunctions";
 import { useNavigate } from "react-router-dom"
+import Footer from "../navbar/Footer";
 
 export default function CoffeeList () {
     const [products, setProducts] = useState([]);
@@ -30,6 +31,7 @@ export default function CoffeeList () {
         return null;
     }
     return (
+        <>
         <Container>
             <div className="coffeeListHeaderGroup">
                 <h1 className="coffeeListHeader">Single Origin Coffees</h1>
@@ -37,7 +39,7 @@ export default function CoffeeList () {
                     <FormGroup>
                         <Row className="row-cols-lg-auto g-3 align-items-center">
                             <Col className="sortLabel">
-                                <Label for="sortSelect">
+                                <Label for="sortSelect" style={{fontSize: "larger"}}>
                                     Sort by:
                                 </Label>
                             </Col>
@@ -47,6 +49,7 @@ export default function CoffeeList () {
                                     name="sortSelect"
                                     type="select"
                                     onChange={(e) => handleSort(e.target.value)}
+                                    style={{fontSize: "larger"}}
                                 >
                                     <option value={""}>
                                         Select below
@@ -88,22 +91,25 @@ export default function CoffeeList () {
                             width="100%"
                         />
                         <CardBody>
-                            <CardTitle tag="h5">
+                            <CardTitle tag="h4">
                                 {p.displayName}
                             </CardTitle>
                             <CardSubtitle
                                 className="mb-2 text-muted"
-                                tag="h6">
+                                tag="h5">
                                 From ${priceFormatter(p.price)}
                             </CardSubtitle>
-                            <CardText>
+                            <CardText className="bodytext">
                                 {p.tastingNotes}
                             </CardText>
                         </CardBody>
                     </Card>
                 )}
             </div>
+            
         </Container>
+        <Footer />
+        </>
     )
 }
 

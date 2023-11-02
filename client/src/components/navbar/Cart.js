@@ -60,7 +60,7 @@ export default function Cart ({ loggedInUser }) {
                     isOpen={popover}
                     toggle={() => togglePopover()}>
                     <PopoverBody>
-                        <Link to="/login" style={{backgroundColor: "#FFF"}}>
+                        <Link to="/login" style={{backgroundColor: "#FFF", fontSize: "larger"}}>
                             Log in to view cart
                         </Link>
                     </PopoverBody>
@@ -79,7 +79,7 @@ export default function Cart ({ loggedInUser }) {
                     trigger="click"
                     isOpen={popover}
                     toggle={() => togglePopover()}>
-                    <PopoverBody style={{backgroundColor: "#FFF"}}>
+                    <PopoverBody style={{backgroundColor: "#FFF", fontSize: "larger"}}>
                         Cart is empty.
                     </PopoverBody>
                 </Popover>
@@ -104,16 +104,10 @@ export default function Cart ({ loggedInUser }) {
                             {cart.orderProducts?.map(op =>
                             <tr key={op.id}>
                                 <th>
-                                    <img src="/Logo_Plane.svg" alt="plane" style={{
-                                            backgroundColor: "#FFF", width: "60px", transform: 'scale(-1, -1)'
-                                        }} />
                                     <img src={op.product.imageLocation} alt="coffee" 
                                         onClick={(e) => handleNavToProduct(e, op.product.id)}
                                         className="button" 
                                         style={{
-                                            backgroundColor: "#FFF", width: "60px"
-                                        }} />
-                                    <img src="/Logo_Plane.svg" alt="plane" style={{
                                             backgroundColor: "#FFF", width: "60px"
                                         }} />
                                 </th>
@@ -125,7 +119,9 @@ export default function Cart ({ loggedInUser }) {
                                     <CartQuantityEdit op={op} quantity={op.productQuantity}/>
                                     {deleteConfirmById === op.id ? (
                                     <>
-                                    <strong style={{backgroundColor: "#FFF"}}>Are you sure?</strong>
+                                    <strong style={{backgroundColor: "#FFF"}}>
+                                        Are you sure?
+                                    </strong><br/>
                                     <Button onClick={() => setDeleteConfirmById("")} className="button" style={{
                                         backgroundColor: "#75BCFA",
                                         color: "#FEF5ED",

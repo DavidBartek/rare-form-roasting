@@ -4,6 +4,7 @@ import { getGrinds, getProductDetails, getWeightById, getWeights } from "../../m
 import { Container, Form, FormGroup, Input, Label } from "reactstrap";
 import CoffeeDetailsCalcPrice from "./CoffeeDetailsCalcPrice";
 import CoffeeDetailsCartAdd from "./CoffeeDetailsCartAdd";
+import Footer from "../navbar/Footer";
 
 export default function CoffeeDetails ({ loggedInUser }) {
     const params = useParams();
@@ -34,6 +35,8 @@ export default function CoffeeDetails ({ loggedInUser }) {
         return "nothing to display here.";
     }
     return (
+        <>
+        
         <Container>
             <h1 style={{display: "inline"}}>
                     <Link style={{textDecoration: "none"}} to="/coffees">
@@ -69,7 +72,8 @@ export default function CoffeeDetails ({ loggedInUser }) {
                                 onChange={(e) => handleWeightSelect(e)}
                                 style={{
                                     borderRadius: 0,
-                                    border: "1px solid #021E36" 
+                                    border: "1px solid #021E36", 
+                                    fontSize: "larger"
                                 }}
                             >
                                 <option
@@ -96,7 +100,8 @@ export default function CoffeeDetails ({ loggedInUser }) {
                                 onChange={(e) => setSelectedGrindId(e.target.value)}
                                 style={{
                                     borderRadius: 0,
-                                    border: "1px solid #021E36" 
+                                    border: "1px solid #021E36",
+                                    fontSize: "larger"
                                 }}
                             >
                                 <option
@@ -124,7 +129,8 @@ export default function CoffeeDetails ({ loggedInUser }) {
                                 onChange={(e) => setSelectedQuantity(e.target.value)}
                                 style={{
                                     borderRadius: 0,
-                                    border: "1px solid #021E36" 
+                                    border: "1px solid #021E36",
+                                    fontSize: "larger"
                                 }}
                             >
                                 <option value="">Select quantity</option>
@@ -165,6 +171,10 @@ export default function CoffeeDetails ({ loggedInUser }) {
             </div>
             
         </Container>
+
+        <Footer />
+
+        </>
 
         
     )

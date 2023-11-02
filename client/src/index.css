@@ -45,12 +45,14 @@ code {
   fontWeight: 800,
   border: "none",
   borderRadius: "0px",
-  transition: "box-shadow 0.1s"
+  transition: "box-shadow 0.1s",
+  fontSize: "larger"
   }} 
 */
 
 /* input form */
 /* style={{
+  fontSize: "larger",
   borderRadius: 0,
   border: "1px solid #021E36"
 }} */
@@ -72,6 +74,43 @@ code {
   font-size: larger;
 }
 
+.textReset {
+  background-color: transparent;
+  font-size: larger;
+}
+
+.coffeeImageInList {
+  width: 200px;
+}
+
+.textDetailsInList {
+  font-size: x-large;
+}
+
+.modal {
+  background-color: transparent;
+}
+
+.modal-dialog {
+  background-color: transparent;
+}
+
+.modal-header,
+.modal-title,
+.modal-body,
+.modal-footer {
+  background-color: #FFF;
+}
+
+@media (max-width: 992px) {
+  .coffeeImageInList {
+    width: 100px;
+  }
+  .textDetailsInList {
+    font-size: large;
+  }
+}
+
 /* navbar components */
 
 .navbar,
@@ -91,12 +130,6 @@ code {
   background-color: #75BCFA;
 }
 
-.navbar {
-  background: linear-gradient(to bottom,
-  #75BCFA 5%, #75BCFA 90%,
-  #FEF5ED 95%, #FEF5ED 100%);
-}
-
 .container-fluid {
   display: flex;
   justify-content: space-between;
@@ -112,11 +145,11 @@ code {
 }
 
 .togglerContainer {
-  margin-right: 15%;
+  margin-right: 16.5%;
 }
 
 .togglerContainerUnauth {
-  margin-right: 23%;
+  margin-right: 25.5%;
 }
 
 .nav-item {
@@ -155,6 +188,12 @@ code {
   font-size: 28px;
 }
 
+@media (max-width: 1300px) {
+  .togglerContainer {
+    margin-right: 1%;
+  }
+}
+
 @media (max-width: 992px) {
   .togglerContainer,
   .togglerContainerUnauth {
@@ -190,6 +229,113 @@ code {
 @media (max-width: 381px) {
   .navbar-logo {
     height: 35px;
+  }
+}
+
+/* Home page components */
+
+.home {
+  position: relative;
+}
+
+.headerImageContainer {
+  display: flex;
+  max-width: 100%;
+}
+
+.headerImageContainer img {
+  flex: 1;
+  max-width: 50%;
+}
+
+.headerButtonContainer {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: #FEF5ED;
+  padding: 20px;
+  transition: 0.25s
+}
+
+.headerButtonContainer:hover {
+  box-shadow: rgb(2, 30, 54, 0.3) 0 0 10px
+}
+
+.homeBottom {
+  display: flex;
+  max-width: 100%;
+}
+
+.homeBottom div {
+  flex: 1;
+  max-width: 50%;
+}
+
+.homeMapContainer,
+.emailSignupContainer {
+  padding: 40px;
+  text-align: center;
+}
+
+/* Footer  */
+
+.footer {
+  text-align: center;
+  width: 100%;
+}
+
+.footer img {
+  max-width: 10%;
+  transition: .25s
+}
+
+.footerLogo:hover {
+  max-width: 10.5%;
+  cursor: pointer;
+}
+
+.footerLinks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footerLink {
+  margin: 10px;
+  font-size: xx-large;
+  transition: .25s
+}
+
+.footerLink:hover {
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.footerLinks img {
+  margin: 10px;
+  width: 40px;
+}
+
+@media (max-width: 1100px) {
+  .homeHeaderContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  .headerButtonContainer {
+    position: static;
+    top: auto;
+    left: auto;
+    transform: none;
+  }
+  .homeBottom {
+    flex-direction: column;
+    text-align: center;
+  }
+  .homeBottom div {
+    flex: 1;
+    max-width: 100%;
   }
 }
 
@@ -334,3 +480,21 @@ code {
     width: 300px;
   }
 }
+
+/* Inventory Manager List */
+
+.inventoryListHeaderGroup {
+  display: flex;
+  justify-content: space-between;
+}
+
+.inventoryListHeader {
+  padding-bottom: 15px;
+}
+
+.inventoryListSort {
+  padding-top: 10px;
+}
+
+/* Product Modify Form  */
+
