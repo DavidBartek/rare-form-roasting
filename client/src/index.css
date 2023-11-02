@@ -279,6 +279,8 @@ code {
   text-align: center;
 }
 
+/* Footer  */
+
 .footer {
   text-align: center;
   width: 100%;
@@ -286,6 +288,12 @@ code {
 
 .footer img {
   max-width: 10%;
+  transition: .25s
+}
+
+.footerLogo:hover {
+  max-width: 10.5%;
+  cursor: pointer;
 }
 
 .footerLinks {
