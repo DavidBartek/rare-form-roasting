@@ -488,6 +488,40 @@ code {
   }
 }
 
+/* Checkout  */
+
+.checkoutContainer {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.addressContainer,
+.cartContainer {
+  flex: 1;
+  max-width: 45%;
+}
+
+.cartContainer {
+  margin-top: 50px;
+}
+
+/* media query: above x width, cart and addresses are side by side. below, in a row. */
+@media (max-width: 550px) {
+  .checkoutContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  .addressContainer,
+  .cartContainer {
+    flex: 1;
+    max-width: 100%;
+  }
+  .cartContainer {
+    margin-top: 20px;
+  }
+}
+
 /* Inventory Manager List */
 
 .inventoryListHeaderGroup {
