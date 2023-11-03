@@ -1,14 +1,11 @@
 import { Button, Container, Table } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import { priceFormatter } from "../assets/exportFunctions";
+import { createCartMap } from "../../GoogleMapsData";
 
 export default function CheckoutConfirm ({ loggedInUser, justPlacedOrder }) {
-    // const [justPlacedOrder, setJustPlacedOrder] = useState({});
-    const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     getJustPlacedOrder(loggedInUser.id).then(setJustPlacedOrder);
-    // });
+    const navigate = useNavigate();
 
     const handleNavigateHome = (e) => {
         e.preventDefault();
@@ -29,7 +26,7 @@ export default function CheckoutConfirm ({ loggedInUser, justPlacedOrder }) {
         <Container className="checkoutConfirmContainer">
         
             <div className="addressConfirmContainer">
-                <h4>Shipped to:</h4>
+                <h4>To be shipped to:</h4>
                 <div className="textReset">
                     {justPlacedOrder.userProfile?.fullName}<br />
                     {justPlacedOrder.shippingAddress?.address1}<br />
@@ -42,6 +39,16 @@ export default function CheckoutConfirm ({ loggedInUser, justPlacedOrder }) {
                         ""
                         )}
                     {justPlacedOrder.shippingAddress?.city}, {justPlacedOrder.shippingAddress?.stateCode} {justPlacedOrder.shippingAddress?.zip}
+                </div>
+                <div className="homeMapContainer">
+                    <iframe
+                        title="cartMap"
+                        referrerPolicy="no-referrer-when-downgrade"
+                        src={createCartMap(justPlacedOrder.shippingAddress.address1, justPlacedOrder.shippingAddress.city, justPlacedOrder.shippingAddress.stateCode, justPlacedOrder.shippingAddress.zip)}
+                        allowFullScreen
+                        style={{width: "100%", height: "30vh"}}
+                    >
+                    </iframe>
                 </div>
             </div>
 
@@ -83,7 +90,8 @@ export default function CheckoutConfirm ({ loggedInUser, justPlacedOrder }) {
                     borderRadius: "0px",
                     transition: "box-shadow 0.1s",
                     fontSize: "larger",
-                    width: "100%"
+                    width: "100%",
+                    marginBottom: "20px"
                     }}>
                     Return home
                 </Button>
