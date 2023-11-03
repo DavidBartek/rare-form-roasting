@@ -102,11 +102,32 @@ code {
   background-color: #FFF;
 }
 
+.offcanvas {
+  background-color: transparent;
+}
+
 .offcanvas-header,
 .offcanvas-title,
 .offcanvas-body,
 .offcanvas-backdrop {
   background-color: transparent;
+}
+
+/* overrides the offcanvas animation which otherwise bugs out because bootstrap is mad with me for changing so much */
+.offcanvas-backdrop,
+.modal-backdrop {
+  animation-duration: .25s;
+  animation-timing-function: ease-in-out;
+  animation-name: custom-fade;
+}
+
+@keyframes custom-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 @media (max-width: 992px) {
@@ -116,6 +137,10 @@ code {
   .textDetailsInList {
     font-size: large;
   }
+}
+
+.mb-3 {
+  background-color: #FEF5ED;
 }
 
 /* navbar components */

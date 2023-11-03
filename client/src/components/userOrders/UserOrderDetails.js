@@ -10,30 +10,30 @@ export default function UserOrderDetails ({ order, toggleOffCanvas }) {
 
     return (
     <>
-        <OffcanvasHeader toggle={() => toggleOffCanvas()}>
+        <OffcanvasHeader toggle={() => toggleOffCanvas()} className="textReset">
             Order #{order.id}
         </OffcanvasHeader>
         <OffcanvasBody>
             <Table borderless>
                 <tbody>
                     <tr>
-                        <th scope="row">
+                        <th scope="row" className="textReset">
                             Order Date
                         </th>
-                        <td>
+                        <td className="textReset">
                             {dateTimeConverter(order.datePlaced)}
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row">
+                        <th scope="row" className="textReset">
                             Status
                         </th>
-                        <td>
+                        <td className="textReset">
                             {order.orderStatus}
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row">
+                        <th scope="row" className="textReset">
                             Items
                         </th>
                         <td>
@@ -41,32 +41,32 @@ export default function UserOrderDetails ({ order, toggleOffCanvas }) {
                     </tr>
                     {order.orderProducts.map(op =>
                     <tr key={op.id}>
-                        <th>
-                            image
+                        <th style={{maxWidth: "180px"}}>
+                            <img src={op.product.imageLocation} alt="coffee" style={{maxWidth: "95%"}}/>
                         </th>
-                        <td>
+                        <td className="textReset">
                             {op.product.displayName}<br />
-                            <i>Qty: {op.productQuantity}</i><br />
-                            <i>Size: {op.weight.weightOz} oz</i><br />
-                            <i>Grind: {op.grind.grindSetting}</i><br />
+                            Qty: {op.productQuantity}<br />
+                            Size: {op.weight.weightOz} oz<br />
+                            Grind: {op.grind.grindSetting}<br />
                             Subtotal: ${priceFormatter(op.subtotal)}<br />
-                            <Link to={linkGenerator(op.product.id)}>Buy again</Link>
+                            <Link to={linkGenerator(op.product.id)} className="textReset">Buy again</Link>
                         </td>
                     </tr>
                     )}
                     <tr>
-                        <th>
+                        <th className="textReset">
                             Total
                         </th>
                         <td>
-                            <strong>${priceFormatter(order.totalPrice)}</strong>
+                            <strong className="textReset">${priceFormatter(order.totalPrice)}</strong>
                         </td>
                     </tr>
                     <tr>
-                        <th>
+                        <th className="textReset">
                             Shipping
                         </th>
-                        <td>
+                        <td className="textReset">
                             {order.userProfile.fullName}<br />
                             {order.shippingAddress.address1}<br />
                             {order.shippingAddress.address2 ? (

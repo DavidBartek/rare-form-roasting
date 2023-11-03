@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Button, Container, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader, Table } from "reactstrap";
+import { Button, Container, Form, FormGroup, Input, Label, Modal, ModalFooter, ModalHeader, Table } from "reactstrap";
 import { getUserDetailsWithRolesAndEmail } from "../../managers/userProfileManager";
 import { getCurrentOrder, getJustPlacedOrder, placeOrder } from "../../managers/orderManager";
 import { stateCodes } from "../assets/StateCodes";
@@ -21,8 +21,6 @@ export default function Checkout ({ loggedInUser }) {
     const [modal, setModal] = useState(false);
     const [checkoutConfirmView, setCheckoutConfirmView] = useState(false);
     const [justPlacedOrder, setJustPlacedOrder] = useState({}); // for prop drilling to CheckoutConfirm.js
-
-
 
     const renderUserDetailsAndCart = () => {
         getUserDetailsWithRolesAndEmail(loggedInUser.id).then(setUserDetails);

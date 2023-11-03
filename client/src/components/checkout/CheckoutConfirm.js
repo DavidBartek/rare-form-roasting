@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import { getJustPlacedOrder } from "../../managers/orderManager";
 import { Button, Container, Table } from "reactstrap";
 import { useNavigate } from "react-router-dom";
 import { priceFormatter } from "../assets/exportFunctions";
@@ -33,6 +31,7 @@ export default function CheckoutConfirm ({ loggedInUser, justPlacedOrder }) {
             <div className="addressConfirmContainer">
                 <h4>Shipped to:</h4>
                 <div className="textReset">
+                    {justPlacedOrder.userProfile?.fullName}<br />
                     {justPlacedOrder.shippingAddress?.address1}<br />
                     {justPlacedOrder.shippingAddress?.address2 ? (
                         <div>
@@ -70,7 +69,7 @@ export default function CheckoutConfirm ({ loggedInUser, justPlacedOrder }) {
                                 Total
                             </th>
                             <td>
-                                <strong>${priceFormatter(justPlacedOrder.totalPrice)}</strong>
+                                <strong className="textReset">${priceFormatter(justPlacedOrder.totalPrice)}</strong>
                             </td>
                         </tr>
                     </tbody>

@@ -41,13 +41,22 @@ export default function ProfileAddressEdit ({ addressToEdit, setEditAddressView,
     }
     
     return (
-        <tbody>
-            <tr>
-                <td>
-                    <Button onClick={() => setEditAddressView(false)}>Return</Button>
+        <tbody style={{border: "5px #75BCFA solid"}}>
+            <tr style={{marginBottom: "15px"}}>
+                <td style={{backgroundColor: "#FEF5ED"}}>
+                    <Button onClick={() => setEditAddressView(false)} className="button" style={{
+                        backgroundColor: "#75BCFA",
+                        color: "#021E36",
+                        fontWeight: 800,
+                        border: "none",
+                        borderRadius: "0px",
+                        transition: "box-shadow 0.1s",
+                        fontSize: "larger",
+                        marginBottom: "15px"
+                        }} >Return</Button>
                     <Form>
                         <FormGroup>
-                            <Label for="address1">
+                            <Label for="address1" className="textReset">
                                 Address 1
                             </Label>
                             <Input
@@ -59,11 +68,16 @@ export default function ProfileAddressEdit ({ addressToEdit, setEditAddressView,
                                 onChange={(e) => {
                                     setAddress1(e.target.value)
                                 }}
+                                style={{
+                                    fontSize: "larger",
+                                    borderRadius: 0,
+                                    border: "1px solid #021E36"
+                                  }}
                             />
                         </FormGroup>
                         {addressToEdit.address2 ? (
                             <FormGroup>
-                                <Label for="address2">
+                                <Label for="address2" className="textReset">
                                     Address 2
                                 </Label>
                                 <Input
@@ -75,11 +89,16 @@ export default function ProfileAddressEdit ({ addressToEdit, setEditAddressView,
                                     onChange={(e) => {
                                         setAddress2(e.target.value)
                                     }}
+                                    style={{
+                                        fontSize: "larger",
+                                        borderRadius: 0,
+                                        border: "1px solid #021E36"
+                                      }}
                                 />
                             </FormGroup>
                         ) : (
                             <FormGroup>
-                                <Label for="address2">
+                                <Label for="address2" className="textReset">
                                     Address 2
                                 </Label>
                                 <Input
@@ -90,11 +109,16 @@ export default function ProfileAddressEdit ({ addressToEdit, setEditAddressView,
                                     onChange={(e) => {
                                         setAddress2(e.target.value)
                                     }}
+                                    style={{
+                                        fontSize: "larger",
+                                        borderRadius: 0,
+                                        border: "1px solid #021E36"
+                                      }}
                                 />
                             </FormGroup>
                         )}
                         <FormGroup>
-                            <Label for="city">
+                            <Label for="city" className="textReset">
                                 City
                             </Label>
                             <Input
@@ -106,10 +130,15 @@ export default function ProfileAddressEdit ({ addressToEdit, setEditAddressView,
                                 onChange={(e) => {
                                     setCity(e.target.value)
                                 }}
+                                style={{
+                                    fontSize: "larger",
+                                    borderRadius: 0,
+                                    border: "1px solid #021E36"
+                                  }}
                             />
                         </FormGroup>
                         <FormGroup>
-                            <Label for="stateCode">
+                            <Label for="stateCode" className="textReset">
                                 State
                             </Label>
                             <Input
@@ -119,7 +148,12 @@ export default function ProfileAddressEdit ({ addressToEdit, setEditAddressView,
                                 value={stateCode}
                                 onChange={(e) => {
                                     setStateCode(e.target.value)
-                                }}>
+                                }}
+                                style={{
+                                    fontSize: "larger",
+                                    borderRadius: 0,
+                                    border: "1px solid #021E36"
+                                  }}>
                             {stateCodes.map(s =>
                                 <option key={s}>
                                     {s}
@@ -128,7 +162,7 @@ export default function ProfileAddressEdit ({ addressToEdit, setEditAddressView,
                             </Input>
                         </FormGroup>
                         <FormGroup>
-                            <Label for="zip">
+                            <Label for="zip" className="textReset">
                                 Zip
                             </Label>
                             <Input
@@ -139,10 +173,25 @@ export default function ProfileAddressEdit ({ addressToEdit, setEditAddressView,
                                 onChange={(e) => {
                                     setZip(e.target.value)
                                 }}
+                                style={{
+                                    fontSize: "larger",
+                                    borderRadius: 0,
+                                    border: "1px solid #021E36"
+                                  }}
                             />
                         </FormGroup>
                     </Form>
-                    <Button onClick={(e) => handleSaveAddressChange(e)}>Save</Button>
+                    <Button onClick={(e) => handleSaveAddressChange(e)} className="button" style={{
+                        backgroundColor: "#FAB375",
+                        color: "#021E36",
+                        fontWeight: 800,
+                        border: "none",
+                        borderRadius: "0px",
+                        transition: "box-shadow 0.1s",
+                        fontSize: "larger"
+                    }}
+                        >Save
+                    </Button>
                 </td>
             </tr>
         </tbody>

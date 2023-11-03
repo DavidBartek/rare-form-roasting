@@ -37,25 +37,19 @@ export default function ProfileAddresses ({ userDetails, renderUserDetails }) {
     }
     return (
         <>
+            <h3 style={{marginTop: "15px"}}>Linked Addresses</h3>
             <Table borderless>
-                <thead>
-                    <tr>
-                        <th>
-                            Linked Addresses
-                        </th>
-                    </tr>
-                </thead>
                 {userDetails.shippingAddresses?.length > 0 ? (
                     editAddressView ? (
                         <ProfileAddressEdit addressToEdit={addressToEdit} setEditAddressView={setEditAddressView} renderUserDetails={renderUserDetails}/>
                     ) : (
-                        <tbody>
+                        <tbody style={{border: "5px #FDE6FE solid"}}>
                         {userDetails.shippingAddresses.map(a =>
                             <tr key={a.id}>
-                                <td>
+                                <td className="textDetailsInList">
                                     {a.address1}<br />
                                     {a.address2 ? (
-                                        <div>
+                                        <div className="textDetailsInList" style={{backgroundColor: "transparent"}}>
                                             {a.address2}
                                             <br />
                                         </div>
@@ -66,18 +60,40 @@ export default function ProfileAddresses ({ userDetails, renderUserDetails }) {
                                 </td>
                                 <td>
                                     <Button onClick={(e) => {
-                                        handleModifyAddress(e, a);}}>Modify</Button>
+                                        handleModifyAddress(e, a);}} className="button" style={{
+                                            backgroundColor: "#FAB375",
+                                            color: "#021E36",
+                                            fontWeight: 800,
+                                            border: "none",
+                                            borderRadius: "0px",
+                                            transition: "box-shadow 0.1s",
+                                            fontSize: "larger"
+                                            }}
+                                        >
+                                            Modify
+                                        </Button>
                                 </td>
                                 <td>
-                                    <Button onClick={(e) => handleRemoveAddress(e, a)}>Remove</Button>
+                                    <Button onClick={(e) => handleRemoveAddress(e, a)} className="button" style={{
+                                        backgroundColor: "#021E36",
+                                        color: "#FEF5ED",
+                                        fontWeight: 800,
+                                        border: "none",
+                                        borderRadius: "0px",
+                                        transition: "box-shadow 0.1s",
+                                        fontSize: "larger"
+                                        }}
+                                    >
+                                        Remove
+                                    </Button>
                                 </td>
                             </tr>)}
                     </tbody>
                     )
                 ) : (
-                    <tbody>
+                    <tbody style={{border: "5px #FDE6FE solid"}}>
                         <tr>
-                            <td>
+                            <td className="textDetailsInList">
                                 No linked addresses
                             </td>
                         </tr>
@@ -85,10 +101,10 @@ export default function ProfileAddresses ({ userDetails, renderUserDetails }) {
                 )}
             </Table>
             <Modal isOpen={modal} toggle={toggle}>
-                <ModalHeader>
+                <ModalHeader className="textReset">
                     Confirm Removal?
                 </ModalHeader>
-                <ModalBody>
+                <ModalBody className="textReset">
                     {addressToDelete.address1}<br />
                     {addressToDelete.address2 ? (
                         <div>
@@ -100,12 +116,28 @@ export default function ProfileAddresses ({ userDetails, renderUserDetails }) {
                     )}
                     {addressToDelete.city}, {addressToDelete.stateCode} {addressToDelete.zip}<br />
                 </ModalBody>
-                <ModalFooter>
-                    <Button onClick={(e) => confirmChanges(e)}>
-                        Confirm
+                <ModalFooter className="textReset">
+                    <Button onClick={toggle} className="button" style={{
+                            backgroundColor: "#FDE6FE",
+                            color: "#021E36",
+                            fontWeight: 800,
+                            border: "none",
+                            borderRadius: "0px",
+                            transition: "box-shadow 0.1s",
+                            fontSize: "larger"
+                            }}>
+                        Go back
                     </Button>
-                    <Button onClick={toggle}>
-                        Cancel
+                    <Button onClick={(e) => confirmChanges(e)} className="button" style={{
+                            backgroundColor: "#FAB375",
+                            color: "#021E36",
+                            fontWeight: 800,
+                            border: "none",
+                            borderRadius: "0px",
+                            transition: "box-shadow 0.1s",
+                            fontSize: "larger"
+                            }}>
+                        Confirm
                     </Button>
                 </ModalFooter>
             </Modal>
