@@ -346,7 +346,7 @@ export default function ModifyCoffee () {
                     {imageInitialView ? (
                         <>
                             <br />
-                            <img src={product.imageLocation} alt="error uploading image" style={{maxWidth: "300px"}}/>
+                            <img src={product.imageLocation} alt="coffee" style={{maxWidth: "300px"}}/>
                             <br />
                             <br />
                             <Button className="button"
@@ -418,7 +418,7 @@ export default function ModifyCoffee () {
                     {imageUpdatedView ? (
                         <>
                             <br />
-                            <img src={imageLocation} alt="error uploading image" style={{maxWidth: "300px"}}/>
+                            <img src={imageLocation} alt="coffee" style={{maxWidth: "300px"}}/>
                             <br />
                             <br />
                             <Button className="button"

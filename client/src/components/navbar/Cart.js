@@ -26,7 +26,6 @@ export default function Cart ({ loggedInUser }) {
 
     const handleNavToProduct = (e, productId) => {
         e.preventDefault();
-        console.log(productId);
         navigate(`/coffees/${productId}`)
         setPopover(false);
     }
