@@ -49,7 +49,7 @@ export default function ProfileAddresses ({ userDetails, renderUserDetails }) {
                                 <td className="textDetailsInList">
                                     {a.address1}<br />
                                     {a.address2 ? (
-                                        <div>
+                                        <div className="textDetailsInList" style={{backgroundColor: "transparent"}}>
                                             {a.address2}
                                             <br />
                                         </div>

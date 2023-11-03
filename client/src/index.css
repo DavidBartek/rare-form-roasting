@@ -139,6 +139,10 @@ code {
   }
 }
 
+.mb-3 {
+  background-color: #FEF5ED;
+}
+
 /* navbar components */
 
 .navbar,
