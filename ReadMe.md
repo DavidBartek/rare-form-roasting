@@ -1,5 +1,5 @@
 # Rare Form Coffee Roasting Co.
-### A proof-of-concept e-commerce website for my personal coffee roasting company. Built with ASP.NET (C#/.NET), React.js, PostgreSQL, Entity Framework Core, and Reactstrap.
+### A proof-of-concept e-commerce website for my personal coffee roasting company. Built with C#/.NET (ASP.NET WebAPI), React.js, PostgreSQL, Entity Framework Core, and Reactstrap.
 
 *featuring...*
 - Custom-built backend with ASP.NET MVC controllers for API endpoints, securely connected to a PostgreSQL database for persistent storage
