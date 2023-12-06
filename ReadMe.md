@@ -20,3 +20,9 @@ View a quick demonstration of *Rare Form Roasting Co.* here:
 - Full CRUD operations on multiple fronts: customer users can customize and place orders, admin users can manage orders and inventory
 - Development managed using agile methodology; created an ERD, wireframe, and user stories; planned sprints; managed tasks via GitHub Issue Tracker & Projects tool
 - A well-thought-through UI and vibe: friendly for multiple viewports; custom graphic design and branding
+
+## Wireframe
+![Rare Form Roasting Wireframe](RFRWireframe.png)
+
+## ERD
+![Rare Form Roasting ERD](RFRERD.png)
