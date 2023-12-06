@@ -1,4 +1,4 @@
-![Rare Form Roasting Logo](RFRLogoCircle.svg)
+![Rare Form Roasting Logo](RFRLogoCircle.png)
 
 *Rare Form Roasting Co.* is a proof-of-concept e-commerce website for my personal coffee roasting company. 
 
