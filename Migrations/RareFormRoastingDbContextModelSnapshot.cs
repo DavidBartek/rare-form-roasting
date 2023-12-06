@@ -51,7 +51,7 @@ namespace rare_form_roasting.Migrations
                         new
                         {
                             Id = "c3aaeb97-d2ba-4a53-a521-4eea61e59b35",
-                            ConcurrencyStamp = "2e1839bd-1d76-4fac-a589-2e982f0f1e4f",
+                            ConcurrencyStamp = "52bf13fe-2332-421d-b749-b5b499b5397b",
                             Name = "Admin",
                             NormalizedName = "admin"
                         });
@@ -150,13 +150,13 @@ namespace rare_form_roasting.Migrations
                         {
                             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a12471f7-6884-4dd0-989f-5f6fc1673eda",
-                            Email = "david@rfr.comx",
+                            ConcurrencyStamp = "99d60dee-da4c-4102-a01d-e0b5c2eec9c7",
+                            Email = "david@rareformroasting.comx",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
-                            PasswordHash = "AQAAAAEAACcQAAAAEFPAJ+zF+z8nNG05c1H49gzunkyAPs3kFZDff0eY15eA1YBAf/C2xubf29UY8jLkDA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMTTUYl5BxDmQpmQ25dIK3z1Pa6t7nYHiM+V3mxnuLo23Mzgfv9gbkPQlxspNQnQLQ==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "8086f523-94b1-431a-8eb7-f63b02393124",
+                            SecurityStamp = "e980c46d-462d-4860-a5dd-74ea052beaaa",
                             TwoFactorEnabled = false
                         });
                 });
@@ -633,7 +633,7 @@ namespace rare_form_roasting.Migrations
                         new
                         {
                             Id = 1,
-                            Address1 = "214 Chamberlin St",
+                            Address1 = "214 37th Ave N",
                             City = "Nashville",
                             IsActive = true,
                             StateCode = "TN",
@@ -643,7 +643,7 @@ namespace rare_form_roasting.Migrations
                         new
                         {
                             Id = 2,
-                            Address1 = "12405 W 19th Pl",
+                            Address1 = "12405 W 20th Ave",
                             City = "Lakewood",
                             IsActive = true,
                             StateCode = "CO",

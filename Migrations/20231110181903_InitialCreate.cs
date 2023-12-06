@@ -411,12 +411,12 @@ namespace rare_form_roasting.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetRoles",
                 columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
-                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "2e1839bd-1d76-4fac-a589-2e982f0f1e4f", "Admin", "admin" });
+                values: new object[] { "c3aaeb97-d2ba-4a53-a521-4eea61e59b35", "52bf13fe-2332-421d-b749-b5b499b5397b", "Admin", "admin" });
 
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "a12471f7-6884-4dd0-989f-5f6fc1673eda", "david@rfr.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEFPAJ+zF+z8nNG05c1H49gzunkyAPs3kFZDff0eY15eA1YBAf/C2xubf29UY8jLkDA==", null, false, "8086f523-94b1-431a-8eb7-f63b02393124", false, null });
+                values: new object[] { "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f", 0, "99d60dee-da4c-4102-a01d-e0b5c2eec9c7", "david@rareformroasting.comx", false, false, null, null, null, "AQAAAAEAACcQAAAAEMTTUYl5BxDmQpmQ25dIK3z1Pa6t7nYHiM+V3mxnuLo23Mzgfv9gbkPQlxspNQnQLQ==", null, false, "e980c46d-462d-4860-a5dd-74ea052beaaa", false, null });
 
             migrationBuilder.InsertData(
                 table: "Grinds",
@@ -466,8 +466,8 @@ namespace rare_form_roasting.Migrations
                 columns: new[] { "Id", "Address1", "Address2", "City", "IsActive", "StateCode", "UserProfileId", "Zip" },
                 values: new object[,]
                 {
-                    { 1, "214 Chamberlin St", null, "Nashville", true, "TN", 1, "37209" },
-                    { 2, "12405 W 19th Pl", null, "Lakewood", true, "CO", 1, "80215" }
+                    { 1, "214 37th Ave N", null, "Nashville", true, "TN", 1, "37209" },
+                    { 2, "12405 W 20th Ave", null, "Lakewood", true, "CO", 1, "80215" }
                 });
 
             migrationBuilder.InsertData(

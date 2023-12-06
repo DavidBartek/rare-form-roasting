@@ -37,7 +37,7 @@ public class RareFormRoastingDbContext : IdentityDbContext<IdentityUser>
         modelBuilder.Entity<IdentityUser>().HasData(new IdentityUser
         {
             Id = "dbc40bc6-0829-4ac5-a3ed-180f5e916a5f",
-            Email = "david@rfr.comx",
+            Email = "david@rareformroasting.comx",
             PasswordHash = new PasswordHasher<IdentityUser>().HashPassword(null, _configuration["AdminPassword"])
         });
 
@@ -74,7 +74,7 @@ public class RareFormRoastingDbContext : IdentityDbContext<IdentityUser>
             {
                 Id = 1, 
                 UserProfileId = 1, 
-                Address1 = "214 Chamberlin St", 
+                Address1 = "214 37th Ave N", 
                 City = "Nashville", 
                 StateCode = "TN", 
                 Zip = "37209", 
@@ -84,7 +84,7 @@ public class RareFormRoastingDbContext : IdentityDbContext<IdentityUser>
             {
                 Id = 2, 
                 UserProfileId = 1, 
-                Address1 = "12405 W 19th Pl", 
+                Address1 = "12405 W 20th Ave", 
                 City = "Lakewood", 
                 StateCode = "CO", 
                 Zip = "80215", 
